@@ -1,0 +1,6 @@
+FILENAME := 3at
+PLATFORM := win64
+COMPILER_PREFIX := x86_64-w64-mingw32
+EXE := $(FILENAME)_$(PLATFORM).exe
+
+include Makefile.base
