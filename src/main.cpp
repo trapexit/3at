@@ -20,7 +20,7 @@ generate_to_adp4_argparser(CLI::App      &app_,
   Opts::ToADP4 &opts = opts_.to_adp4;
 
   subcmd = app_.add_subcommand("to-adp4","");
-  subcmd->add_option("filepath",opts.filepaths)
+  subcmd->add_option("filepaths",opts.filepaths)
     ->description("Path to source file")
     ->type_name("PATH")
     ->check(CLI::ExistingFile)
