@@ -18,5 +18,6 @@ namespace Opts
   struct Options
   {
     Example example;
+    ToADP4 to_adp4;
   };
 }
