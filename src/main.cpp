@@ -48,7 +48,7 @@ int
 main(int    argc_,
      char **argv_)
 {
-  CLI::App app("APPNAME: APP DESCRIPTION");
+  CLI::App app("3at: 3DO Audio Tool");
   Opts::Options opts;
 
   generate_argparser(app,opts);
