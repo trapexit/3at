@@ -13,7 +13,7 @@ namespace fs = std::filesystem;
 
 static
 void
-generate_example_argparser(CLI::App      &app_,
+generate_to_adp4_argparser(CLI::App      &app_,
                            Opts::Options &opts_)
 {
   CLI::App *subcmd;
