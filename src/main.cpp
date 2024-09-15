@@ -2,6 +2,7 @@
 #include "fmt.hpp"
 #include "options.hpp"
 #include "subcmd_example.hpp"
+#include "subcmd_to_adp4.hpp"
 
 #include <unistd.h>
 
@@ -26,7 +27,7 @@ generate_to_adp4_argparser(CLI::App      &app_,
     ->check(CLI::ExistingFile)
     ->required();
 
-  auto func = std::bind(SubCmd::example,
+  auto func = std::bind(SubCmd::to_adp4(const Opts::ToADP4 &),
                         std::cref(opts));
 
   subcmd->callback(func);
