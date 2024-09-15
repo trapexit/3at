@@ -40,7 +40,7 @@ generate_argparser(CLI::App      &app_,
   app_.set_help_all_flag("--help-all","List help for all subcommands");
   app_.require_subcommand();
 
-  generate_example_argparser(app_,opts_);
+  generate_to_adp4_argparser(app_,opts_);
 }
 
 
