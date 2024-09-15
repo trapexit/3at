@@ -1,7 +1,6 @@
 #include "CLI11.hpp"
 #include "fmt.hpp"
 #include "options.hpp"
-#include "subcmd_example.hpp"
 #include "subcmd_to_adp4.hpp"
 
 #include <unistd.h>
