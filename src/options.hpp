@@ -12,7 +12,7 @@ namespace Opts
 
   struct ToADP4
   {
-    std::vector<std::filesystem::path> filepaths;    
+    std::vector<std::filesystem::path> filepaths;
   };
 
   struct Options
