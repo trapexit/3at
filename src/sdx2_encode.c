@@ -68,8 +68,10 @@ encode(s32 curr_sample_,
   exact = set_exact_mode(exact);
 
   temp =  ABS(curr_sample_ - decode(exact,prev_sample_));
-  if (ABS(curr_sample-decode(exact+2,prev_sample)) < temp) exact+=2;
-  else if (ABS(curr_sample-decode(exact-2,prev_sample)) < temp) exact-=2;
+  if(ABS(curr_sample-decode(exact+2,prev_sample)) < temp)
+    exact += 2;
+  else if(ABS(curr_sample-decode(exact-2,prev_sample)) < temp)
+    exact -= 2;
 
   if (ABS(curr_sample - prev_sample) > 32767) return exact;
 	 
