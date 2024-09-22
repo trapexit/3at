@@ -162,8 +162,7 @@ sdx2_encode_mono(const s16 *ibuf_,
     }
 
  error:
-  return Result;
-	
+  return 0;
 }
 /*********************************************************************
  **		Loops through SSND chunk grabbing 16bits encoding them as 8 and
