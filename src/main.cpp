@@ -39,7 +39,7 @@ generate_to_sdx2_argparser(CLI::App      &app_,
                            Opts::Options &opts_)
 {
   CLI::App *subcmd;
-  Opts::ToADP4 &opts = opts_.to_sdx2;
+  Auto &opts = opts_.to_sdx2;
 
   subcmd = app_.add_subcommand("to-sdx2","");
   subcmd->add_option("filepaths",opts.filepaths)
