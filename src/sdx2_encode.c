@@ -30,9 +30,9 @@ typedef struct SDX2ContextBlk
 /*********************************************************************
  ** 		Local ANSI function prototypes                                
  *********************************************************************/
-static s8 helpEncode( s32 CurSamp);
-static s8 encode( s32 CurSamp, s32 PrevSamp);
-static s16 decode( s32 CurSamp, s32 PrevSamp);
+static s8 helpEncode( s32 curr_sample);
+static s8 encode( s32 curr_sample, s32 prev_sample);
+static s16 decode( s32 curr_sample, s32 prev_sample);
 
 /*********************************************************************
  ** 		Macros                                
@@ -49,13 +49,13 @@ static s16 decode( s32 CurSamp, s32 PrevSamp);
  *********************************************************************/
 static
 s16
-decode(s32 CurSamp,
-       s32 PrevSamp) 
+decode(s32 curr_sample,
+       s32 prev_sample) 
 {
-  if(CurSamp & 1) 
-    return (PrevSamp + dc(CurSamp));
+  if(curr_sample & 1) 
+    return (prev_sample + dc(curr_sample));
   else 
-    return (dc(CurSamp));
+    return (dc(curr_sample));
 }
 
 /*********************************************************************
@@ -65,19 +65,19 @@ decode(s32 CurSamp,
  *********************************************************************/
 static
 s8
-helpEncode(s32 CurSamp)
+helpEncode(s32 curr_sample)
 {
   s32 neg;
   s8 EncSamp;
 
   neg = 0;
-  if (CurSamp < 0)
+  if (curr_sample < 0)
     {
       neg = 1;
-      CurSamp = -CurSamp;
+      curr_sample = -curr_sample;
     }			
 		          
-  EncSamp =  sqrt((float)(CurSamp>>1));
+  EncSamp =  sqrt((float)(curr_sample>>1));
   return (neg?-EncSamp:EncSamp);
 }
 
@@ -86,35 +86,35 @@ helpEncode(s32 CurSamp)
  **
  **		On error: does nothing  
  *********************************************************************/
-static s8 encode(s32 CurSamp, s32 PrevSamp) 
+static s8 encode(s32 curr_sample, s32 prev_sample) 
 {
   s8 Exact,Delta;
   s32 temp;
 	
-  Exact = helpEncode(CurSamp);
+  Exact = helpEncode(curr_sample);
   Exact = Exact&~1;
-  temp =  ABS(CurSamp-decode(Exact,PrevSamp));
-  if (ABS(CurSamp-decode(Exact+2,PrevSamp)) < temp) Exact+=2;
-  else if (ABS(CurSamp-decode(Exact-2,PrevSamp)) < temp) Exact-=2;
+  temp =  ABS(curr_sample-decode(Exact,prev_sample));
+  if (ABS(curr_sample-decode(Exact+2,prev_sample)) < temp) Exact+=2;
+  else if (ABS(curr_sample-decode(Exact-2,prev_sample)) < temp) Exact-=2;
 
-  if (ABS(CurSamp - PrevSamp) > 32767) return Exact;
+  if (ABS(curr_sample - prev_sample) > 32767) return Exact;
 	 
-  Delta = helpEncode(CurSamp-PrevSamp);
+  Delta = helpEncode(curr_sample-prev_sample);
   Delta = Delta|1;
 
-  temp =  ABS(CurSamp - decode(Delta,PrevSamp));
+  temp =  ABS(curr_sample - decode(Delta,prev_sample));
 	 
   /* check for wraparound on the delta case */
   if (temp > 30000) {
     // we overflowed 16 bits on this delta.
     // Pull it closer to the center
     Delta = ((Delta<0)?(Delta+2):(Delta-2));
-    temp =  ABS(CurSamp - decode(Delta,PrevSamp));
+    temp =  ABS(curr_sample - decode(Delta,prev_sample));
   }
 	 	
-  if (ABS(CurSamp - decode(Delta+2,PrevSamp)) < temp) Delta+=2;
-  else if (ABS(CurSamp - decode(Delta - 2,PrevSamp)) < temp) Delta-=2;
-  if (ABS(CurSamp - decode(Exact,PrevSamp)) < ABS(CurSamp - decode(Delta,PrevSamp))) return Exact;
+  if (ABS(curr_sample - decode(Delta+2,prev_sample)) < temp) Delta+=2;
+  else if (ABS(curr_sample - decode(Delta - 2,prev_sample)) < temp) Delta-=2;
+  if (ABS(curr_sample - decode(Exact,prev_sample)) < ABS(curr_sample - decode(Delta,prev_sample))) return Exact;
   else return Delta;
 }
 
@@ -159,18 +159,18 @@ sdx2_encode_mono(const s16 *ibuf_,
 		
       *outBufferPtr++ = comp_sample;
 		
-      CurErr = decode((s32)CompSamp,(s32)ctx->prevMonoSamp);
-      CurErr = ABS((s32)CurSamp-CurErr);
+      CurErr = decode((s32)CompSamp,(s32)prev_sample);
+      CurErr = ABS((s32)curr_sample-CurErr);
       if (CurErr > ctx->maxMonoErr)
         {
           ctx->maxMonoErr = CurErr;
           printf("   (New Max Err = %ld...  Curr:%d, Prev:%d, Comp:%d, Deco:%d) \n", ctx->maxMonoErr, 
-                 CurSamp, ctx->prevMonoSamp, CompSamp,decode((s32)CompSamp,(s32)ctx->prevMonoSamp));
+                 curr_sample, ctx->prevMonoSamp, CompSamp,decode((s32)CompSamp,(s32)ctx->prevMonoSamp));
         }
       /* debug printf for looking at each sample */
       if (0) 
         printf("   DEBUG-- Comp:%d = Curr:%d, Prev:%d .. Deco:%d) \n",CompSamp,
-               CurSamp,ctx->prevMonoSamp,decode((s32)CompSamp,(s32)ctx->prevMonoSamp));
+               curr_sample,ctx->prevMonoSamp,decode((s32)CompSamp,(s32)ctx->prevMonoSamp));
 			
       ctx->avgMonoErr += CurErr;
       fflush(stdout);
