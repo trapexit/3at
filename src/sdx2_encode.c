@@ -159,23 +159,23 @@ sdx2_encode_mono(const s16 *ibuf_,
 		
       *outBufferPtr++ = comp_sample;
 		
-      CurErr = decode((s32)CompSamp,(s32)prev_sample);
+      CurErr = decode((s32)comp_sample,(s32)prev_sample);
       CurErr = ABS((s32)curr_sample-CurErr);
       if (CurErr > ctx->maxMonoErr)
         {
           ctx->maxMonoErr = CurErr;
           printf("   (New Max Err = %ld...  Curr:%d, Prev:%d, Comp:%d, Deco:%d) \n", ctx->maxMonoErr, 
-                 curr_sample, ctx->prevMonoSamp, CompSamp,decode((s32)CompSamp,(s32)ctx->prevMonoSamp));
+                 curr_sample, ctx->prevMonoSamp, comp_sample,decode((s32)comp_sample,(s32)ctx->prevMonoSamp));
         }
       /* debug printf for looking at each sample */
       if (0) 
-        printf("   DEBUG-- Comp:%d = Curr:%d, Prev:%d .. Deco:%d) \n",CompSamp,
-               curr_sample,ctx->prevMonoSamp,decode((s32)CompSamp,(s32)ctx->prevMonoSamp));
+        printf("   DEBUG-- Comp:%d = Curr:%d, Prev:%d .. Deco:%d) \n",comp_sample,
+               curr_sample,ctx->prevMonoSamp,decode((s32)comp_sample,(s32)ctx->prevMonoSamp));
 			
       ctx->avgMonoErr += CurErr;
       fflush(stdout);
 
-      ctx->prevMonoSamp = (s32) decode((s32)CompSamp,(s32)ctx->prevMonoSamp);
+      ctx->prevMonoSamp = (s32) decode((s32)comp_sample,(s32)ctx->prevMonoSamp);
     }
 
  error:
@@ -197,7 +197,7 @@ sdx2_encode_stereo(SDX2ContextBlkPtr ctx)
   s32   ix;
   s16*	inBufferPtr  = ctx->inBufferPtr;
   char*	outBufferPtr = ctx->outBufferPtr;
-  s8    CompSamp     = 0;
+  s8    comp_sample     = 0;
   s16 	CurLeftSamp  = 0;
   s16 	CurRightSamp = 0;
   s32	CurErr;
@@ -212,68 +212,68 @@ sdx2_encode_stereo(SDX2ContextBlkPtr ctx)
 		
       if(ix)
         {
-          CompSamp = encode((s32)CurLeftSamp,(s32)ctx->prevLeftSamp);
+          comp_sample = encode((s32)CurLeftSamp,(s32)ctx->prevLeftSamp);
         }
       else 
         {	/* force literal first time */
-          CompSamp = helpEncode((s32)CurLeftSamp);
-          CompSamp &= ~1;	
+          comp_sample = helpEncode((s32)CurLeftSamp);
+          comp_sample &= ~1;	
         }
 			
-      *outBufferPtr++ = CompSamp;
+      *outBufferPtr++ = comp_sample;
 
-      CurErr = decode((s32)CompSamp,(s32)ctx->prevLeftSamp);
+      CurErr = decode((s32)comp_sample,(s32)ctx->prevLeftSamp);
       CurErr = ABS((s32)CurLeftSamp-CurErr);
       if (CurErr > ctx->maxLeftErr) 
         {
           ctx->maxLeftErr = CurErr;
           printf("   (New Max Err (Left) = %ld...  Curr:%d, Prev:%d, Comp:%d, Deco:%d) \n", ctx->maxLeftErr, 
-                 CurLeftSamp, ctx->prevLeftSamp, CompSamp,decode((s32)CompSamp,(s32)ctx->prevLeftSamp));
+                 CurLeftSamp, ctx->prevLeftSamp, comp_sample,decode((s32)comp_sample,(s32)ctx->prevLeftSamp));
         }
       /* debug printf for looking at each sample */
       if (0) 
-        printf("   DEBUG-- Comp:%d = Curr:%d, Prev:%d .. Deco:%d) \n",CompSamp,
-               CurLeftSamp,ctx->prevLeftSamp,decode((s32)CompSamp,(s32)ctx->prevLeftSamp));
+        printf("   DEBUG-- Comp:%d = Curr:%d, Prev:%d .. Deco:%d) \n",comp_sample,
+               CurLeftSamp,ctx->prevLeftSamp,decode((s32)comp_sample,(s32)ctx->prevLeftSamp));
 		
       ctx->avgLeftErr += CurErr;
       fflush(stdout);
 
-      ctx->prevLeftSamp = decode((s32)CompSamp,(s32)ctx->prevLeftSamp);
+      ctx->prevLeftSamp = decode((s32)comp_sample,(s32)ctx->prevLeftSamp);
 		
 
       /* Process Right Sample */
       CurRightSamp = *inBufferPtr++;
 
       if (ix) 
-        CompSamp = encode((s32)CurRightSamp,(s32)ctx->prevRightSamp);
+        comp_sample = encode((s32)CurRightSamp,(s32)ctx->prevRightSamp);
       else 
         {	/* force literal first time */
-          CompSamp = helpEncode((s32)CurRightSamp);
-          CompSamp &= ~1;	
+          comp_sample = helpEncode((s32)CurRightSamp);
+          comp_sample &= ~1;	
         }
 		
-      *outBufferPtr++ = CompSamp;
+      *outBufferPtr++ = comp_sample;
 		
       if (1)
         {
-          CurErr = decode((s32)CompSamp,(s32)ctx->prevRightSamp);
+          CurErr = decode((s32)comp_sample,(s32)ctx->prevRightSamp);
           CurErr = ABS((s32)CurRightSamp-CurErr);
           if (CurErr > ctx->maxRightErr) 
             {
               ctx->maxRightErr = CurErr;
               printf("   (New Max Err (Right) = %ld...  Curr:%d, Prev:%d, Comp:%d, Deco:%d) \n", ctx->maxRightErr, 
-                     CurRightSamp, ctx->prevRightSamp, CompSamp,decode((s32)CompSamp,(s32)ctx->prevRightSamp));
+                     CurRightSamp, ctx->prevRightSamp, comp_sample,decode((s32)comp_sample,(s32)ctx->prevRightSamp));
             }
           /* debug printf for looking at each sample */
           if (0) 
-            printf("   DEBUG-- Comp:%d = Curr:%d, Prev:%d .. Deco:%d) \n",CompSamp,
-                   CurRightSamp,ctx->prevRightSamp,decode((s32)CompSamp,(s32)ctx->prevRightSamp));
+            printf("   DEBUG-- Comp:%d = Curr:%d, Prev:%d .. Deco:%d) \n",comp_sample,
+                   CurRightSamp,ctx->prevRightSamp,decode((s32)comp_sample,(s32)ctx->prevRightSamp));
 			
           ctx->avgRightErr += CurErr;
           fflush(stdout);
         }
 
-      ctx->prevRightSamp = decode((s32)CompSamp,(s32)ctx->prevRightSamp);
+      ctx->prevRightSamp = decode((s32)comp_sample,(s32)ctx->prevRightSamp);
     }
 			
  error:
