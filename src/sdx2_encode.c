@@ -143,7 +143,7 @@ sdx2_encode_mono(const s16 *ibuf_,
 		
   for (ix = 0; ix < ibuf_len_; ++ix)   /* %Q (++ix) why did stever pre-increment counter */
     {
-      CurSamp = *inBufferPtr++;
+      curr_sample = *inBufferPtr++;
 
       if (ix) 
         CompSamp = encode((s32)CurSamp,(s32)ctx->prevMonoSamp);
