@@ -64,7 +64,7 @@ encode(s32 curr_sample_,
   s8 delta;
   s32 temp;
 	
-  exact = helpEncode(curr_sample);
+  exact = helpEncode(curr_sample_);
   exact = set_exact_mode(exact);
 
   temp =  ABS(curr_sample-decode(exact,prev_sample));
