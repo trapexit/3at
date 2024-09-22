@@ -63,6 +63,7 @@ generate_argparser(CLI::App      &app_,
   app_.require_subcommand();
 
   generate_to_adp4_argparser(app_,opts_);
+  generate_to_sdx2_argparser(app_,opts_);  
 }
 
 
