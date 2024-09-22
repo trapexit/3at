@@ -157,7 +157,7 @@ sdx2_encode_mono(const s16 *ibuf_,
           comp_sample &= ~1;	
         }
 		
-      *outBufferPtr++ = CompSamp;
+      *outBufferPtr++ = comp_sample;
 		
       CurErr = decode((s32)CompSamp,(s32)ctx->prevMonoSamp);
       CurErr = ABS((s32)CurSamp-CurErr);
