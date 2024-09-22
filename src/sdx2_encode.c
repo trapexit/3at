@@ -86,7 +86,10 @@ helpEncode(s32 curr_sample)
  **
  **		On error: does nothing  
  *********************************************************************/
-static s8 encode(s32 curr_sample, s32 prev_sample) 
+static
+s8
+encode(s32 curr_sample,
+       s32 prev_sample) 
 {
   s8 Exact,Delta;
   s32 temp;
