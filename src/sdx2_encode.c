@@ -142,7 +142,7 @@ sdx2_encode_mono(const s16 *ibuf_,
     {
       curr_sample = ibuf_[i];
 
-      if(ix)
+      if(i)
         {
           comp_sample = encode((s32)curr_sample,(s32)prev_sample);
         }
