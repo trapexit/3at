@@ -92,7 +92,7 @@ encode(s32 curr_sample_,
     return exact;
 	 
   delta = helpEncode(curr_sample-prev_sample);
-  delta = delta|1;
+  delta = set_delta_mode(delta);
 
   temp =  ABS(curr_sample - decode(delta,prev_sample));
 	 
