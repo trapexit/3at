@@ -179,9 +179,9 @@ sdx2_encode_stereo(const s16 *ibuf_,
   s16   curr_right_sample = 0;
   s32	err;
 	
-  for (i = 0; i < ibuf_len_; ++ix) 
+  for (i = 0; i < ibuf_len_; i += 2) 
     {
-      /* Process Left Sample */
+      curr_left_sample = ibuf_[i+];
       CurLeftSamp = *inBufferPtr++;
 		
       if(ix)
