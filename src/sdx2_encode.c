@@ -141,6 +141,7 @@ sdx2_encode_mono(const s16 *ibuf_,
   s16 	curr_sample      = 0;
   s8    comp_sample     = 0;
   s16   prev_sample = 0;
+  
 	
   printf("\n  Encoding mono block...\n");
   fflush(stdout);
@@ -167,8 +168,11 @@ sdx2_encode_mono(const s16 *ibuf_,
       if (err > ctx->maxMonoErr)
         {
           ctx->maxMonoErr = err;
-          printf("   (New Max Err = %ld...  Curr:%d, Prev:%d, Comp:%d, Deco:%d) \n", ctx->maxMonoErr, 
-                 curr_sample, ctx->prevMonoSamp, comp_sample,decode((s32)comp_sample,(s32)ctx->prevMonoSamp));
+          printf("   (New Max Err = %ld...  Curr:%d, Prev:%d, Comp:%d, Deco:%d) \n",
+                 ctx->maxMonoErr, 
+                 curr_sample,
+                 prev_sample,
+                 comp_sample,decode((s32)comp_sample,(s32)prev_sample));
         }
       /* debug printf for looking at each sample */
       if (0) 
