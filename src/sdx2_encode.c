@@ -219,10 +219,10 @@ sdx2_encode_stereo(const s16 *ibuf_,
 }
 
 s32
-sdx2_encode(s16 *ibuf_,
-            u32  ibuf_len_,
-            s8  *obuf_,
-            u8   num_channels_)
+sdx2_encode(const s16 *ibuf_,
+            const u32  ibuf_len_,
+            const u8   num_channels_,            
+            s8        *obuf_)
 {
   switch(num_channels_)
     {
