@@ -166,7 +166,7 @@ sdx2_encode_mono(const s16 *ibuf_,
 		
       err = decode((s32)comp_sample,(s32)prev_sample);
       err = ABS((s32)curr_sample - err);
-      if (err > ctx->maxMonoErr)
+      if (err > max_err)
         {
           ctx->maxMonoErr = err;
           printf("   (New Max Err = %ld...  Curr:%d, Prev:%d, Comp:%d, Deco:%d) \n",
