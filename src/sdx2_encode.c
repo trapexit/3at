@@ -4,39 +4,6 @@
 #include <math.h>
 #include <string.h>
 
-typedef struct SDX2ContextBlk
-{
-  s16* inBufferPtr;
-  char*	 outBufferPtr;
-  s32	 bytesPerFrame;
-  s32	 framesInBuffer;
-  s32	 bytesInSample;
-  s16	 prevLeftSamp;
-  s16	 prevRightSamp;
-  s16	 prevMonoSamp;
-  s32 	 avgLeftErr;
-  s32	 maxLeftErr;
-  s32	 avgRightErr;
-  s32	 maxRightErr;
-  s32	 avgMonoErr;
-  s32	 maxMonoErr;
-} SDX2ContextBlk, *SDX2ContextBlkPtr;
-
-/*********************************************************************
- ** Buffersize to use when encoding.
- ********************************************************************/
-#define BUFFERSIZE	(256*1024)
-
-/*********************************************************************
- ** 		Local ANSI function prototypes                                
- *********************************************************************/
-static s8 helpEncode( s32 curr_sample);
-static s8 encode( s32 curr_sample, s32 prev_sample);
-static s16 decode( s32 curr_sample, s32 prev_sample);
-
-/*********************************************************************
- ** 		Macros                                
- *********************************************************************/
 #define MAX(a,b) ((((a)<(b))?(b):(a)))
 #define MIN(a,b) ((((a)<(b))?(a):(b)))
 #define ABS(a) ((((a)<0))?-(a):(a))
