@@ -138,6 +138,7 @@ sdx2_encode_mono(const s16 *ibuf_,
   s32 	Result       = 0;
   s32	ix;
   s32	err       = 0;
+  s32   max_err = 0;
   s16 	curr_sample      = 0;
   s8    comp_sample     = 0;
   s16   prev_sample = 0;
