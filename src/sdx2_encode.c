@@ -139,6 +139,7 @@ sdx2_encode_mono(const s16 *ibuf_,
   s32	ix;
   s32	err       = 0;
   s32   max_err = 0;
+  s32   avg_err = 0;
   s16 	curr_sample      = 0;
   s8    comp_sample     = 0;
   s16   prev_sample = 0;
@@ -175,10 +176,6 @@ sdx2_encode_mono(const s16 *ibuf_,
                  prev_sample,
                  comp_sample,decode((s32)comp_sample,(s32)prev_sample));
         }
-      /* debug printf for looking at each sample */
-      if (0) 
-        printf("   DEBUG-- Comp:%d = Curr:%d, Prev:%d .. Deco:%d) \n",comp_sample,
-               curr_sample,ctx->prevMonoSamp,decode((s32)comp_sample,(s32)ctx->prevMonoSamp));
 			
       ctx->avgMonoErr += err;
       fflush(stdout);
