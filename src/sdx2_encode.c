@@ -148,7 +148,6 @@ sdx2_encode_mono(const s16 *ibuf_,
         }
       else 
         {
-          /* force literal first time */
           comp_sample = helpEncode((s32)curr_sample);
           comp_sample &= ~1;	
         }
