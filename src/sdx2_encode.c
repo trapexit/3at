@@ -50,6 +50,14 @@ set_exact_mode(const s8 v_)
   return (v & ~1);
 }
 
+static
+int
+is_clipping(const s32 sample0_,
+            const s32 sample1_)
+{
+  return (ABS(sample0_ - sample1_) > 32767);
+}
+
 /*********************************************************************
  **		Encode a s16 as a compressed byte
  **
