@@ -24,10 +24,10 @@
 extern "C" {
 #endif
 
-  s32 sdx2_encode(const s16 *ibuf,
-                  const u32  ibuf_len,
-                  const u8   num_channels,                  
-                  s8        *obuf);
+s32 sdx2_encode(const s16 *ibuf,
+                const u32  ibuf_len,
+                const u8   num_channels,                  
+                s8        *obuf);
 
 #ifdef __cplusplus
 }
