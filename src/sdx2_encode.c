@@ -65,7 +65,8 @@ encode(s32 curr_sample_,
   s32 temp;
 	
   exact = helpEncode(curr_sample);
-  exact = exact&~1;
+  exact = set_exact_mode(exact);
+
   temp =  ABS(curr_sample-decode(exact,prev_sample));
   if (ABS(curr_sample-decode(exact+2,prev_sample)) < temp) exact+=2;
   else if (ABS(curr_sample-decode(exact-2,prev_sample)) < temp) exact-=2;
