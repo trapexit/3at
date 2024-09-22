@@ -213,26 +213,7 @@ sdx2_encode_stereo(const s16 *ibuf_,
 
       obuf_[i+1] = comp_sample;
 		
-      if (1)
-        {
-          err = decode((s32)comp_sample,(s32)ctx->prevRightSamp);
-          err = ABS((s32)CurRightSamp-err);
-          if (err > ctx->maxRightErr) 
-            {
-              ctx->maxRightErr = err;
-              printf("   (New Max Err (Right) = %ld...  Curr:%d, Prev:%d, Comp:%d, Deco:%d) \n", ctx->maxRightErr, 
-                     CurRightSamp, ctx->prevRightSamp, comp_sample,decode((s32)comp_sample,(s32)ctx->prevRightSamp));
-            }
-          /* debug printf for looking at each sample */
-          if (0) 
-            printf("   DEBUG-- Comp:%d = Curr:%d, Prev:%d .. Deco:%d) \n",comp_sample,
-                   CurRightSamp,ctx->prevRightSamp,decode((s32)comp_sample,(s32)ctx->prevRightSamp));
-			
-          ctx->avgRightErr += err;
-          fflush(stdout);
-        }
-
-      ctx->prevRightSamp = decode((s32)comp_sample,(s32)ctx->prevRightSamp);
+      prev_right_sample = decode((s32)comp_sample,(s32)prev_right_sample);
     }
 			
  error:
