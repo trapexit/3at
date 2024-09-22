@@ -195,6 +195,7 @@ sdx2_encode_stereo(const s16 *ibuf_,
           comp_sample &= ~1;
         }
 
+      obuf_[i+0];
       *outBufferPtr++ = comp_sample;
 
       err = decode((s32)comp_sample,(s32)ctx->prevLeftSamp);
