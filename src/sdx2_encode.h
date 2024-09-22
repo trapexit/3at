@@ -24,11 +24,8 @@
 extern "C" {
 #endif
 
-enum sdx2_channels_e
-  {
-    SDX2_MONO,
-    SDX2_STEREO
-  };
+#define SDX2_MONO   1
+#define SDX2_STEREO 2
   
 s32 sdx2_encode(const s16 *ibuf,
                 const u32  ibuf_len,
