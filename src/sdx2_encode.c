@@ -161,7 +161,6 @@ sdx2_encode_mono(const s16 *ibuf_,
       prev_sample = (s32)decode((s32)comp_sample,(s32)prev_sample);
     }
 
- error:
   return 0;
 }
 /*********************************************************************
