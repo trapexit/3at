@@ -34,6 +34,27 @@ generate_to_adp4_argparser(CLI::App      &app_,
 
 static
 void
+generate_to_sdx2_argparser(CLI::App      &app_,
+                           Opts::Options &opts_)
+{
+  CLI::App *subcmd;
+  Opts::ToADP4 &opts = opts_.to_adp4;
+
+  subcmd = app_.add_subcommand("to-adp4","");
+  subcmd->add_option("filepaths",opts.filepaths)
+    ->description("Path to source file")
+    ->type_name("PATH")
+    ->check(CLI::ExistingFile)
+    ->required();
+
+  auto func = std::bind(SubCmd::to_adp4,
+                        std::cref(opts));
+
+  subcmd->callback(func);
+}
+
+static
+void
 generate_argparser(CLI::App      &app_,
                    Opts::Options &opts_)
 {
