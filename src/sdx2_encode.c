@@ -135,8 +135,8 @@ sdx2_encode_mono(const s16 *ibuf_,
   s32 	Result       = 0;
   s32	ix;
   s32	CurErr       = 0;
-  s16 	CurSamp      = 0;
-  s8    CompSamp     = 0;
+  s16 	curr_sample      = 0;
+  s8    comp_sample     = 0;
 	
   printf("\n  Encoding mono block...\n");
   fflush(stdout);
