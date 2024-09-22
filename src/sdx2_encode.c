@@ -145,8 +145,10 @@ sdx2_encode_mono(const s16 *ibuf_,
     {
       curr_sample = *inBufferPtr++;
 
-      if (ix) 
-        CompSamp = encode((s32)CurSamp,(s32)ctx->prevMonoSamp);
+      if(ix)
+        {
+          comp_sample = encode((s32)CurSamp,(s32)ctx->prevMonoSamp);
+        }
       else 
         {	/* force literal first time */
           CompSamp = helpEncode((s32)CurSamp);
