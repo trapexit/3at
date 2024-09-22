@@ -53,35 +53,35 @@ s8
 encode(s32 curr_sample_,
        s32 prev_sample_) 
 {
-  s8 Exact;
-  s8 Delta;
+  s8 exact;
+  s8 delta;
   s32 temp;
 	
-  Exact = helpEncode(curr_sample);
-  Exact = Exact&~1;
-  temp =  ABS(curr_sample-decode(Exact,prev_sample));
-  if (ABS(curr_sample-decode(Exact+2,prev_sample)) < temp) Exact+=2;
-  else if (ABS(curr_sample-decode(Exact-2,prev_sample)) < temp) Exact-=2;
+  exact = helpEncode(curr_sample);
+  exact = exact&~1;
+  temp =  ABS(curr_sample-decode(exact,prev_sample));
+  if (ABS(curr_sample-decode(exact+2,prev_sample)) < temp) exact+=2;
+  else if (ABS(curr_sample-decode(exact-2,prev_sample)) < temp) exact-=2;
 
-  if (ABS(curr_sample - prev_sample) > 32767) return Exact;
+  if (ABS(curr_sample - prev_sample) > 32767) return exact;
 	 
-  Delta = helpEncode(curr_sample-prev_sample);
-  Delta = Delta|1;
+  delta = helpEncode(curr_sample-prev_sample);
+  delta = delta|1;
 
-  temp =  ABS(curr_sample - decode(Delta,prev_sample));
+  temp =  ABS(curr_sample - decode(delta,prev_sample));
 	 
   /* check for wraparound on the delta case */
   if (temp > 30000) {
     // we overflowed 16 bits on this delta.
     // Pull it closer to the center
-    Delta = ((Delta<0)?(Delta+2):(Delta-2));
-    temp =  ABS(curr_sample - decode(Delta,prev_sample));
+    delta = ((delta<0)?(delta+2):(delta-2));
+    temp =  ABS(curr_sample - decode(delta,prev_sample));
   }
 	 	
-  if (ABS(curr_sample - decode(Delta+2,prev_sample)) < temp) Delta+=2;
-  else if (ABS(curr_sample - decode(Delta - 2,prev_sample)) < temp) Delta-=2;
-  if (ABS(curr_sample - decode(Exact,prev_sample)) < ABS(curr_sample - decode(Delta,prev_sample))) return Exact;
-  else return Delta;
+  if (ABS(curr_sample - decode(delta+2,prev_sample)) < temp) delta+=2;
+  else if (ABS(curr_sample - decode(delta - 2,prev_sample)) < temp) delta-=2;
+  if (ABS(curr_sample - decode(exact,prev_sample)) < ABS(curr_sample - decode(delta,prev_sample))) return exact;
+  else return delta;
 }
 
 /*********************************************************************
