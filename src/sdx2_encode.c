@@ -43,6 +43,13 @@ helpEncode(s32 curr_sample)
   return (neg?-EncSamp:EncSamp);
 }
 
+static
+s8
+set_exact_mode(const s8 v_)
+{
+  return (v & ~1);
+}
+
 /*********************************************************************
  **		Encode a s16 as a compressed byte
  **
