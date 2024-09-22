@@ -169,7 +169,9 @@ sdx2_encode_mono(const s16 *ibuf_,
  *********************************************************************/
 static
 s32
-sdx2_encode_stereo(SDX2ContextBlkPtr ctx)
+sdx2_encode_stereo(const s16 *ibuf_,
+                   const u32  ibuf_len_,
+                   s8        *obuf_)
 {
   s32 	Result       = 0;
   s32   ix;
