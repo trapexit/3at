@@ -91,7 +91,8 @@ s8
 encode(s32 curr_sample,
        s32 prev_sample) 
 {
-  s8 Exact,Delta;
+  s8 Exact;
+  s8 Delta;
   s32 temp;
 	
   Exact = helpEncode(curr_sample);
@@ -172,12 +173,12 @@ sdx2_encode_stereo(const s16 *ibuf_,
                    const u32  ibuf_len_,
                    s8        *obuf_)
 {
-  s32   i;
-  s8    comp_sample     = 0;
-  s16   curr_left_sample = 0;
-  s16   prev_left_sample = 0;
-  s16   curr_right_sample = 0;
-  s16   prev_right_sample = 0;
+  s32 i;
+  s8  comp_sample       = 0;
+  s16 curr_left_sample  = 0;
+  s16 prev_left_sample  = 0;
+  s16 curr_right_sample = 0;
+  s16 prev_right_sample = 0;
 	
   for (i = 0; i < ibuf_len_; i += 2) 
     {
