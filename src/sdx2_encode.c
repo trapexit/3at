@@ -144,11 +144,8 @@ sdx2_encode_mono(const s16 *ibuf_,
   s8    comp_sample     = 0;
   s16   prev_sample = 0;
   
-	
-  printf("\n  Encoding mono block...\n");
-  fflush(stdout);
 		
-  for (ix = 0; ix < ibuf_len_; ++ix)   /* %Q (++ix) why did stever pre-increment counter */
+  for (ix = 0; ix < ibuf_len_; ++ix)
     {
       curr_sample = *inBufferPtr++;
 
