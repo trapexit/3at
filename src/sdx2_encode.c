@@ -133,8 +133,6 @@ sdx2_encode_mono(const s16 *ibuf_,
                  const u32  ibuf_len_,
                  s8        *obuf_)	
 {
-  s16*	inBufferPtr  = ibuf_;
-  char*	outBufferPtr = obuf_;
   s32 	Result       = 0;
   s32	ix;
   s32	err       = 0;
