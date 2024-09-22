@@ -216,9 +216,7 @@ sdx2_encode_stereo(const s16 *ibuf_,
       prev_right_sample = decode((s32)comp_sample,(s32)prev_right_sample);
     }
 			
- error:
-  return Result;
-	
+  return 0;
 }
 
 s32
