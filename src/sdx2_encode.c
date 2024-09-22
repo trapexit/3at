@@ -137,6 +137,7 @@ sdx2_encode_mono(const s16 *ibuf_,
   s32	CurErr       = 0;
   s16 	curr_sample      = 0;
   s8    comp_sample     = 0;
+  s16   prev_sample = 0;
 	
   printf("\n  Encoding mono block...\n");
   fflush(stdout);
@@ -147,7 +148,7 @@ sdx2_encode_mono(const s16 *ibuf_,
 
       if(ix)
         {
-          comp_sample = encode((s32)CurSamp,(s32)ctx->prevMonoSamp);
+          comp_sample = encode((s32)curr_sample,(s32)prev_sample);
         }
       else 
         {	/* force literal first time */
