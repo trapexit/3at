@@ -187,7 +187,7 @@ sdx2_encode_stereo(const s16 *ibuf_,
 		
       if(i)
         {
-          comp_sample = encode((s32)curr_left_sample,(s32)ctx->prevLeftSamp);
+          comp_sample = encode((s32)curr_left_sample,(s32)prev_left_sample);
         }
       else 
         {	/* force literal first time */
