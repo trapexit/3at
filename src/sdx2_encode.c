@@ -47,7 +47,14 @@ static
 s8
 set_exact_mode(const s8 v_)
 {
-  return (v & ~1);
+  return (v_ & ~1);
+}
+
+static
+s8
+set_delta_mode(const s8 v_)
+{
+  return (v_ | 1);
 }
 
 static
