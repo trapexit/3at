@@ -220,22 +220,15 @@ sdx2_encode_stereo(const s16 *ibuf_,
 }
 
 s32
-sdx2_encode(s16 *in_buf,
-            u32  in_buf_len,
-            s8  *out_buf,
-            u8 num_channels)
+sdx2_encode(s16 *ibuf_,
+            u32  ibuf_len_,
+            s8  *obuf_,
+            u8   num_channels)
 {
-  SDX2ContextBlk ctx = {0};
-
-  ctx.inBufferPtr = in_buf;
-  ctx.outBufferPtr = out_buf;
-  ctx.bytesPerFrame = 2 * num_channels;
-  ctx.bytesInSample = in_buf_len;
-  
   switch(num_channels)
     {
     case 1:
-      return sdx2_encode_mono(&ctx);
+      return sdx2_encode_mono(in_buf,i);
     case 2:
       return sdx2_encode_stereo(&ctx);
     default:
