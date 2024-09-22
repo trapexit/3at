@@ -152,8 +152,8 @@ sdx2_encode_mono(const s16 *ibuf_,
         }
       else 
         {	/* force literal first time */
-          CompSamp = helpEncode((s32)CurSamp);
-          CompSamp &= ~1;	
+          comp_sample = helpEncode((s32)curr_sample);
+          comp_sample &= ~1;	
         }
 		
       *outBufferPtr++ = CompSamp;
