@@ -155,8 +155,8 @@ sdx2_encode_mono(const s16 *ibuf_,
           comp_sample = helpEncode((s32)curr_sample);
           comp_sample &= ~1;	
         }
-		
-      *outBufferPtr++ = comp_sample;
+
+      obuf_[i] = comp_sample;
 		
       prev_sample = (s32)decode((s32)comp_sample,(s32)prev_sample);
     }
