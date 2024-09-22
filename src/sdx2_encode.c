@@ -50,8 +50,8 @@ helpEncode(s32 curr_sample)
  *********************************************************************/
 static
 s8
-encode(s32 curr_sample,
-       s32 prev_sample) 
+encode(s32 curr_sample_,
+       s32 prev_sample_) 
 {
   s8 Exact;
   s8 Delta;
