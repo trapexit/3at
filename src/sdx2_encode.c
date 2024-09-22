@@ -137,7 +137,7 @@ sdx2_encode_mono(const s16 *ibuf_,
   char*	outBufferPtr = obuf_;
   s32 	Result       = 0;
   s32	ix;
-  s32	CurErr       = 0;
+  s32	err       = 0;
   s16 	curr_sample      = 0;
   s8    comp_sample     = 0;
   s16   prev_sample = 0;
@@ -162,11 +162,11 @@ sdx2_encode_mono(const s16 *ibuf_,
 		
       *outBufferPtr++ = comp_sample;
 		
-      CurErr = decode((s32)comp_sample,(s32)prev_sample);
-      CurErr = ABS((s32)curr_sample-CurErr);
-      if (CurErr > ctx->maxMonoErr)
+      err = decode((s32)comp_sample,(s32)prev_sample);
+      err = ABS((s32)curr_sample-err);
+      if (err > ctx->maxMonoErr)
         {
-          ctx->maxMonoErr = CurErr;
+          ctx->maxMonoErr = err;
           printf("   (New Max Err = %ld...  Curr:%d, Prev:%d, Comp:%d, Deco:%d) \n", ctx->maxMonoErr, 
                  curr_sample, ctx->prevMonoSamp, comp_sample,decode((s32)comp_sample,(s32)ctx->prevMonoSamp));
         }
@@ -175,7 +175,7 @@ sdx2_encode_mono(const s16 *ibuf_,
         printf("   DEBUG-- Comp:%d = Curr:%d, Prev:%d .. Deco:%d) \n",comp_sample,
                curr_sample,ctx->prevMonoSamp,decode((s32)comp_sample,(s32)ctx->prevMonoSamp));
 			
-      ctx->avgMonoErr += CurErr;
+      ctx->avgMonoErr += err;
       fflush(stdout);
 
       ctx->prevMonoSamp = (s32) decode((s32)comp_sample,(s32)ctx->prevMonoSamp);
@@ -203,7 +203,7 @@ sdx2_encode_stereo(SDX2ContextBlkPtr ctx)
   s8    comp_sample     = 0;
   s16 	CurLeftSamp  = 0;
   s16 	CurRightSamp = 0;
-  s32	CurErr;
+  s32	err;
 	
   printf("\n  Encoding stereo block...\n");
   fflush(stdout);
@@ -225,11 +225,11 @@ sdx2_encode_stereo(SDX2ContextBlkPtr ctx)
 			
       *outBufferPtr++ = comp_sample;
 
-      CurErr = decode((s32)comp_sample,(s32)ctx->prevLeftSamp);
-      CurErr = ABS((s32)CurLeftSamp-CurErr);
-      if (CurErr > ctx->maxLeftErr) 
+      err = decode((s32)comp_sample,(s32)ctx->prevLeftSamp);
+      err = ABS((s32)CurLeftSamp-err);
+      if (err > ctx->maxLeftErr) 
         {
-          ctx->maxLeftErr = CurErr;
+          ctx->maxLeftErr = err;
           printf("   (New Max Err (Left) = %ld...  Curr:%d, Prev:%d, Comp:%d, Deco:%d) \n", ctx->maxLeftErr, 
                  CurLeftSamp, ctx->prevLeftSamp, comp_sample,decode((s32)comp_sample,(s32)ctx->prevLeftSamp));
         }
@@ -238,7 +238,7 @@ sdx2_encode_stereo(SDX2ContextBlkPtr ctx)
         printf("   DEBUG-- Comp:%d = Curr:%d, Prev:%d .. Deco:%d) \n",comp_sample,
                CurLeftSamp,ctx->prevLeftSamp,decode((s32)comp_sample,(s32)ctx->prevLeftSamp));
 		
-      ctx->avgLeftErr += CurErr;
+      ctx->avgLeftErr += err;
       fflush(stdout);
 
       ctx->prevLeftSamp = decode((s32)comp_sample,(s32)ctx->prevLeftSamp);
@@ -259,11 +259,11 @@ sdx2_encode_stereo(SDX2ContextBlkPtr ctx)
 		
       if (1)
         {
-          CurErr = decode((s32)comp_sample,(s32)ctx->prevRightSamp);
-          CurErr = ABS((s32)CurRightSamp-CurErr);
-          if (CurErr > ctx->maxRightErr) 
+          err = decode((s32)comp_sample,(s32)ctx->prevRightSamp);
+          err = ABS((s32)CurRightSamp-err);
+          if (err > ctx->maxRightErr) 
             {
-              ctx->maxRightErr = CurErr;
+              ctx->maxRightErr = err;
               printf("   (New Max Err (Right) = %ld...  Curr:%d, Prev:%d, Comp:%d, Deco:%d) \n", ctx->maxRightErr, 
                      CurRightSamp, ctx->prevRightSamp, comp_sample,decode((s32)comp_sample,(s32)ctx->prevRightSamp));
             }
@@ -272,7 +272,7 @@ sdx2_encode_stereo(SDX2ContextBlkPtr ctx)
             printf("   DEBUG-- Comp:%d = Curr:%d, Prev:%d .. Deco:%d) \n",comp_sample,
                    CurRightSamp,ctx->prevRightSamp,decode((s32)comp_sample,(s32)ctx->prevRightSamp));
 			
-          ctx->avgRightErr += CurErr;
+          ctx->avgRightErr += err;
           fflush(stdout);
         }
 
