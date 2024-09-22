@@ -173,19 +173,13 @@ sdx2_encode_stereo(const s16 *ibuf_,
                    const u32  ibuf_len_,
                    s8        *obuf_)
 {
-  s32 	Result       = 0;
-  s32   ix;
-  s16*	inBufferPtr  = ctx->inBufferPtr;
-  char*	outBufferPtr = ctx->outBufferPtr;
+  s32   i;
   s8    comp_sample     = 0;
-  s16 	CurLeftSamp  = 0;
-  s16 	CurRightSamp = 0;
+  s16   curr_left_sample = 0;
+  s16   curr_right_sample = 0;
   s32	err;
 	
-  printf("\n  Encoding stereo block...\n");
-  fflush(stdout);
-
-  for (ix = 0; ix < ctx->framesInBuffer; ++ix) 
+  for (i = 0; i < ibuf_len_; ++ix) 
     {
       /* Process Left Sample */
       CurLeftSamp = *inBufferPtr++;
