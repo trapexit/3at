@@ -2,6 +2,7 @@
 #include "fmt.hpp"
 #include "options.hpp"
 #include "subcmd_to_adp4.hpp"
+#include "subcmd_to_sdx2.hpp"
 
 #include <unistd.h>
 
