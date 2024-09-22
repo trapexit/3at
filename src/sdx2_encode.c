@@ -165,22 +165,7 @@ sdx2_encode_mono(const s16 *ibuf_,
 		
       *outBufferPtr++ = comp_sample;
 		
-      err = decode((s32)comp_sample,(s32)prev_sample);
-      err = ABS((s32)curr_sample - err);
-      if (err > max_err)
-        {
-          ctx->maxMonoErr = err;
-          printf("   (New Max Err = %ld...  Curr:%d, Prev:%d, Comp:%d, Deco:%d) \n",
-                 max_err,
-                 curr_sample,
-                 prev_sample,
-                 comp_sample,decode((s32)comp_sample,(s32)prev_sample));
-        }
-			
-      ctx->avgMonoErr += err;
-      fflush(stdout);
-
-      ctx->prevMonoSamp = (s32) decode((s32)comp_sample,(s32)ctx->prevMonoSamp);
+      prev_sample = (s32) decode((s32)comp_sample,(s32)ctx->prevMonoSamp);
     }
 
  error:
