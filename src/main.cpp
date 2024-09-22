@@ -47,7 +47,7 @@ generate_to_sdx2_argparser(CLI::App      &app_,
     ->check(CLI::ExistingFile)
     ->required();
 
-  auto func = std::bind(SubCmd::to_adp4,
+  auto func = std::bind(SubCmd::to_sdx2,
                         std::cref(opts));
 
   subcmd->callback(func);
