@@ -81,7 +81,7 @@ encode(s32 curr_sample_,
   else if(ABS(curr_sample_-decode(exact-2,prev_sample_)) < temp)
     exact -= 2;
 
-  if(ABS(curr_sample_ - prev_sample_) > 32767)
+  if(is_clipping(curr_sample_,prev_sample_))
     return exact;
 	 
   delta = helpEncode(curr_sample-prev_sample);
