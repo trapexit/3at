@@ -29,6 +29,7 @@
 
 namespace l
 {
+  static
   u32
   file_size(FILE *f_)
   {
