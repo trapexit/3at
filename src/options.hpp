@@ -19,5 +19,6 @@ namespace Opts
   {
     Example example;
     ToADP4  to_adp4;
+    ToSDX2  to_sdx2;
   };
 }
