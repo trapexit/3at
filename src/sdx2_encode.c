@@ -223,7 +223,7 @@ s32
 sdx2_encode(s16 *ibuf_,
             u32  ibuf_len_,
             s8  *obuf_,
-            u8   num_channels)
+            u8   num_channels_)
 {
   switch(num_channels)
     {
