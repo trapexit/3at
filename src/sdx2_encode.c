@@ -158,7 +158,7 @@ sdx2_encode_mono(const s16 *ibuf_,
 		
       *outBufferPtr++ = comp_sample;
 		
-      prev_sample = (s32) decode((s32)comp_sample,(s32)ctx->prevMonoSamp);
+      prev_sample = (s32)decode((s32)comp_sample,(s32)prev_sample);
     }
 
  error:
