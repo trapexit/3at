@@ -225,7 +225,7 @@ sdx2_encode(s16 *ibuf_,
             s8  *obuf_,
             u8   num_channels_)
 {
-  switch(num_channels)
+  switch(num_channels_)
     {
     case 1:
       return sdx2_encode_mono(in_buf,i);
