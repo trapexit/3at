@@ -144,10 +144,10 @@ sdx2_encode_mono(const s16 *ibuf_,
   s8    comp_sample     = 0;
   s16   prev_sample = 0;
   
-		
+  
   for (ix = 0; ix < ibuf_len_; ++ix)
     {
-      curr_sample = *inBufferPtr++;
+      curr_sample = *ibuf_++;
 
       if(ix)
         {
