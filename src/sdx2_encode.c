@@ -94,7 +94,7 @@ encode(s32 curr_sample_,
   delta = helpEncode(curr_sample-prev_sample);
   delta = set_delta_mode(delta);
 
-  temp =  ABS(curr_sample - decode(delta,prev_sample));
+  temp = ABS(curr_sample - decode(delta,prev_sample));
 	 
   /* check for wraparound on the delta case */
   if (temp > 30000) {
