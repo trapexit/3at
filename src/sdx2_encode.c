@@ -11,13 +11,13 @@
 
 static
 s16
-decode(s32 curr_sample,
-       s32 prev_sample) 
+decode(s32 curr_sample_,
+       s32 prev_sample_) 
 {
-  if(curr_sample & 1) 
-    return (prev_sample + dc(curr_sample));
+  if(curr_sample_ & 1) 
+    return (prev_sample_ + dc(curr_sample_));
   else 
-    return (dc(curr_sample));
+    return (dc(curr_sample_));
 }
 
 /*********************************************************************
