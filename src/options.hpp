@@ -15,6 +15,11 @@ namespace Opts
     std::vector<std::filesystem::path> filepaths;
   };
 
+  struct ToSDX2
+  {
+    std::vector<std::filesystem::path> filepaths;
+  };
+
   struct Options
   {
     Example example;
