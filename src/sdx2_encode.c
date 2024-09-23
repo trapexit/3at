@@ -104,7 +104,7 @@ encode_sample(s32 curr_sample_,
   else if(ABS(curr_sample_ - decode_sample(exact-2,prev_sample_)) < temp)
     exact -= 2;
 
-  if(is_clipping(curr_sample_,prev_sample_))
+  if(is_clipping_s16(curr_sample_,prev_sample_))
     return exact;
 	 
   delta = square_root(curr_sample_-prev_sample_);
