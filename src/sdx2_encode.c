@@ -60,12 +60,16 @@ int
 is_diff_clipping_s16(const s32 sample0_,
                      const s32 sample1_)
 {
-  s32 res;
+  s32 s0;
+  s32 s1;
+  s32 diff;
 
-  res = (sample0_ - sample1_);
-  if(res > INT16_MAX)
+  s0 = sample0_;
+  s1 = sample1_;
+  diff = (s0 - s1);
+  if(diff > INT16_MAX)
     return 1;
-  if(res < INT16_MIN)
+  if(diff < INT16_MIN)
     return 1;
   return 0;
 }
