@@ -99,10 +99,10 @@ encode_sample(s32 curr_sample_,
   exact = square_root(curr_sample_);
   exact = set_exact_mode(exact);
 
-  tmp = ABS(curr_sample_ - decode_sample(exact,prev_sample_));
-  if(ABS(curr_sample_ - decode_sample(exact+2,prev_sample_)) < tmp)
+  tmp = abs_s16(curr_sample_ - decode_sample(exact,prev_sample_));
+  if(abs_s16(curr_sample_ - decode_sample(exact+2,prev_sample_)) < tmp)
     exact += 2;
-  else if(ABS(curr_sample_ - decode_sample(exact-2,prev_sample_)) < tmp)
+  else if(abs_s16(curr_sample_ - decode_sample(exact-2,prev_sample_)) < tmp)
     exact -= 2;
 
   if(is_diff_clipping_s16(curr_sample_,prev_sample_))
@@ -111,22 +111,22 @@ encode_sample(s32 curr_sample_,
   delta = square_root(curr_sample_ - prev_sample_);
   delta = set_delta_mode(delta);
 
-  tmp = ABS(curr_sample_ - decode_sample(delta,prev_sample_));
+  tmp = abs_s16(curr_sample_ - decode_sample(delta,prev_sample_));
 
   /* check for wraparound on the delta case */
   if (tmp > 30000) {
     // we overflowed 16 bits on this delta.
     // Pull it closer to the center
     delta = ((delta<0)?(delta+2):(delta-2));
-    tmp =  ABS(curr_sample_- decode_sample(delta,prev_sample_));
+    tmp =  abs_s16(curr_sample_- decode_sample(delta,prev_sample_));
   }
 
-  if(ABS(curr_sample_ - decode_sample(delta+2,prev_sample_)) < tmp)
+  if(abs_s16(curr_sample_ - decode_sample(delta+2,prev_sample_)) < tmp)
     delta += 2;
-  else if(ABS(curr_sample_ - decode_sample(delta-2,prev_sample_)) < tmp)
+  else if(abs_s16(curr_sample_ - decode_sample(delta-2,prev_sample_)) < tmp)
     delta -= 2;
 
-  if(ABS(curr_sample_ - decode_sample(exact,prev_sample_)) < ABS(curr_sample_- decode_sample(delta,prev_sample_)))
+  if(abs_s16(curr_sample_ - decode_sample(exact,prev_sample_)) < abs_s16(curr_sample_- decode_sample(delta,prev_sample_)))
     return exact;
 
   return delta;
