@@ -61,10 +61,17 @@ is_delta_mode(const s32 v_)
 
 static
 int
-is_clipping(const s32 sample0_,
-            const s32 sample1_)
+is_clipping_s16(const s32 sample0_,
+                const s32 sample1_)
 {
-  return (ABS(sample0_ - sample1_) > 32767);
+  s32 res;
+
+  res = (sample0_ - sample1_);
+  if(res > 32767)
+    return 1;
+  if(res < -32767)
+    return 1;
+  return 0;
 }
 
 static
