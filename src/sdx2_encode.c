@@ -121,12 +121,13 @@ encode_sample(s32 curr_sample_,
   tmp = delta_sample(curr_sample_,delta,prev_sample_);
 
   /* check for wraparound on the delta case */
-  if (tmp > 30000) {
-    // we overflowed 16 bits on this delta.
-    // Pull it closer to the center
-    delta = ((delta<0)?(delta+2):(delta-2));
-    tmp =  abs_s16(curr_sample_- decode_sample(delta,prev_sample_));
-  }
+  if (tmp > 30000)
+    {
+      // we overflowed 16 bits on this delta.
+      // Pull it closer to the center
+      delta = ((delta<0)?(delta+2):(delta-2));
+      tmp =  abs_s16(curr_sample_- decode_sample(delta,prev_sample_));
+    }
 
   if(abs_s16(curr_sample_ - decode_sample(delta+2,prev_sample_)) < tmp)
     delta += 2;
