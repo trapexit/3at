@@ -141,6 +141,8 @@ encode_sample(s32 curr_sample_,
      delta_sample(curr_sample_,delta,prev_sample_))
     return exact;
 
+  printf("delta: %d\n",delta);
+  
   return delta;
 }
 
