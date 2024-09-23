@@ -100,7 +100,7 @@ encode_sample(s32 curr_sample_,
   exact = set_exact_mode(exact);
 
   tmp = ABS(curr_sample_ - decode_sample(exact,prev_sample_));
-      assert(tmp <=f INT16_MAX && tmp >= INT16_MIN);  
+      assert(tmp <= INT16_MAX && tmp >= INT16_MIN);  
   if((tmp > INT16_MAX || tmp < INT16_MIN))
     {
       printf("tmp = %d\n",tmp);
