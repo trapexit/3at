@@ -103,7 +103,7 @@ encode_sample(s32 curr_sample_,
       assert(tmp <= INT16_MAX && tmp >= INT16_MIN);  
   if((tmp > INT16_MAX || tmp < INT16_MIN))
     {
-      printf("tmp = %d\n",tmp);
+      gprintf("tmp = %d\n",tmp);
 
     }
   if(ABS(curr_sample_ - decode_sample(exact+2,prev_sample_)) < tmp)
