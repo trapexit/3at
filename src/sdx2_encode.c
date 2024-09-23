@@ -89,9 +89,9 @@ delta_sample(const s16 curr_,
 {
   s16 dec_sample;
 
-  dec_sample = decode_sample(
+  dec_sample = decode_sample(curr_exact_,prev_);
   
-  return abs_s16(v0_ - decode_sample(
+  return abs_s16(curr_ - dec_sample)
 }
 
 static
