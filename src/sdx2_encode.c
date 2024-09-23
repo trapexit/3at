@@ -105,7 +105,7 @@ encode_sample(const s16 curr_sample_,
 {
   s8 exact;
   s8 delta;
-  s32 tmp;
+  s16 tmp;
 
   exact = square_root(curr_sample_);
   exact = set_exact_mode(exact);
