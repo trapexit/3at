@@ -20,7 +20,7 @@ abs_s16_4x(const s16 v_)
 }
 
 static
-s16
+s16pppp
 square_root(s16 sample_)
 {
   s32 neg;
