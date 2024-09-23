@@ -11,7 +11,7 @@
 
 static
 s16
-decode(s32 curr_sample_,
+decode_sample(s32 curr_sample_,
        s32 prev_sample_) 
 {
   if(curr_sample_ & 1) 
@@ -82,10 +82,10 @@ encode_sample(s32 curr_sample_,
   exact = helpEncode(curr_sample_);
   exact = set_exact_mode(exact);
 
-  temp = ABS(curr_sample_ - decode(exact,prev_sample_));
-  if(ABS(curr_sample_-decode(exact+2,prev_sample_)) < temp)
+  temp = ABS(curr_sample_ - decode_sample(exact,prev_sample_));
+  if(ABS(curr_sample_-decode_sample(exact+2,prev_sample_)) < temp)
     exact += 2;
-  else if(ABS(curr_sample_-decode(exact-2,prev_sample_)) < temp)
+  else if(ABS(curr_sample_-decode_sample(exact-2,prev_sample_)) < temp)
     exact -= 2;
 
   if(is_clipping(curr_sample_,prev_sample_))
@@ -94,19 +94,19 @@ encode_sample(s32 curr_sample_,
   delta = helpEncode(curr_sample_-prev_sample_);
   delta = set_delta_mode(delta);
 
-  temp = ABS(curr_sample_ - decode(delta,prev_sample_));
+  temp = ABS(curr_sample_ - decode_sample(delta,prev_sample_));
 	 
   /* check for wraparound on the delta case */
   if (temp > 30000) {
     // we overflowed 16 bits on this delta.
     // Pull it closer to the center
     delta = ((delta<0)?(delta+2):(delta-2));
-    temp =  ABS(curr_sample_- decode(delta,prev_sample_));
+    temp =  ABS(curr_sample_- decode_sample(delta,prev_sample_));
   }
 	 	
-  if (ABS(curr_sample_- decode(delta+2,prev_sample_)) < temp) delta+=2;
-  else if (ABS(curr_sample_- decode(delta - 2,prev_sample_)) < temp) delta-=2;
-  if (ABS(curr_sample_- decode(exact,prev_sample_)) < ABS(curr_sample_- decode(delta,prev_sample_))) return exact;
+  if (ABS(curr_sample_- decode_sample(delta+2,prev_sample_)) < temp) delta+=2;
+  else if (ABS(curr_sample_- decode_sample(delta - 2,prev_sample_)) < temp) delta-=2;
+  if (ABS(curr_sample_- decode_sample(exact,prev_sample_)) < ABS(curr_sample_- decode_sample(delta,prev_sample_))) return exact;
   else return delta;
 }
 
@@ -176,7 +176,7 @@ sdx2_encode_stereo(const s16 *ibuf_,
 
       obuf_[i+0] = comp_sample;
 
-      prev_left_sample = decode((s32)comp_sample,(s32)prev_left_sample);
+      prev_left_sample = decode_sample((s32)comp_sample,(s32)prev_left_sample);
 		
       curr_right_sample = ibuf_[i+1];
 
@@ -192,7 +192,7 @@ sdx2_encode_stereo(const s16 *ibuf_,
 
       obuf_[i+1] = comp_sample;
 		
-      prev_right_sample = decode((s32)comp_sample,(s32)prev_right_sample);
+      prev_right_sample = decode_sample((s32)comp_sample,(s32)prev_right_sample);
     }
 			
   return 0;
