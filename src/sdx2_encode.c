@@ -4,9 +4,6 @@
 #include <math.h>
 #include <stdint.h>
 
-#define MAX(a,b) ((((a)<(b))?(b):(a)))
-#define MIN(a,b) ((((a)<(b))?(a):(b)))
-
 static
 s16
 abs_s16(const s16 v_)
