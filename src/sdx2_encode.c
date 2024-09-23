@@ -1,5 +1,6 @@
 #include "types_ints.h"
 
+#include <cassert>
 #include <cstdint>
 #include <math.h>
 #include <stdint.h>
