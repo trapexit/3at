@@ -10,7 +10,16 @@
 
 static
 s16
-abs_4x(const s16 v_)
+abs_s16(const s16 v_)
+{
+  if(v_ == INT16_MIN)
+    return INT16_MAX;
+  return ((v_ < 0) ? -v_ : v_);
+}
+
+static
+s16
+abs_s16_4x(const s16 v_)
 {
   return ((v_ * abs(v_)) * 2);
 }
