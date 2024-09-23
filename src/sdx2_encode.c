@@ -100,7 +100,6 @@ encode_sample(s32 curr_sample_,
   exact = set_exact_mode(exact);
 
   tmp = ABS(curr_sample_ - decode_sample(exact,prev_sample_));
-  assert(tmp <= INT16_MAX && tmp >= INT16_MIN);
   if(ABS(curr_sample_ - decode_sample(exact+2,prev_sample_)) < tmp)
     exact += 2;
   else if(ABS(curr_sample_ - decode_sample(exact-2,prev_sample_)) < tmp)
