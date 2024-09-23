@@ -126,6 +126,10 @@ sdx2_encode_mono(const s16 *ibuf_,
   s16 curr_sample = 0;
   s16 prev_sample = 0;  
   s8  comp_sample = 0;
+
+  curr_sample = ibuf_[0];
+  comp_sample = helpEncode((s32)curr_sample);
+  comp_sample = set_exact_mode(comp_sample);
   
   for (i = 0; i < ibuf_len_; ++i)
     {
