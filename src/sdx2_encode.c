@@ -36,7 +36,7 @@ square_root(s32 sample_)
   if(neg)
     sample_ = -sample_;
 
-  sample_ = sqrt((double)(sample_ / 2));
+  sample_ = (s32)sqrt((double)(sample_ / 2));
 
   return (neg ? -sample_ : sample_);
 }
