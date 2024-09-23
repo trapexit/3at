@@ -96,8 +96,8 @@ delta_sample(const s16 curr_,
 
 static
 s8
-encode_sample(s32 curr_sample_,
-              s32 prev_sample_)
+encode_sample(const s16 curr_sample_,
+              const s16 prev_sample_)
 {
   s8 exact;
   s8 delta;
