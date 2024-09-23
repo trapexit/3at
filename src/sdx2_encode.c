@@ -35,10 +35,10 @@ square_root(s32 sample_)
   neg = (sample_ < 0);
   if(neg)
     sample_ = -sample_;
-		          
-  EncSamp =  sqrt((float)(sample_ >> 1));
 
-  return (neg ? -EncSamp : EncSamp);
+  sample_ = sqrt((double)(sample_ / 2);
+
+  return (neg ? -sample_ : sample_);
 }
 
 static
