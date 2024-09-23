@@ -1,6 +1,5 @@
 #include "types_ints.h"
 
-#include <stdio.h>
 #include <math.h>
 
 #define MAX(a,b) ((((a)<(b))?(b):(a)))
