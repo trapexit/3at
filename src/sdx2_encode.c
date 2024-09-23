@@ -27,16 +27,17 @@ decode_sample(s32 curr_sample_,
  *********************************************************************/
 static
 s8
-helpEncode(s32 curr_sample)
+square_root(s32 sample_)
+//helpEncode(s32 curr_sample)
 {
   s32 neg;
   s8 EncSamp;
 
   neg = 0;
-  if (curr_sample < 0)
+  if (sample_ < 0)
     {
       neg = 1;
-      curr_sample = -curr_sample;
+      sample_ = -sample_;
     }			
 		          
   EncSamp =  sqrt((float)(curr_sample>>1));
