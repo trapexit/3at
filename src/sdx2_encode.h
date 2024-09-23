@@ -24,6 +24,9 @@
 extern "C" {
 #endif
 
+#define SDX2_SUCCESS 0
+#define SDX2_ERROR   1  
+  
 #define SDX2_MONO   1
 #define SDX2_STEREO 2
   
