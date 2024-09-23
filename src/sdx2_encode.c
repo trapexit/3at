@@ -28,7 +28,6 @@ decode_sample(s32 curr_sample_,
 static
 s8
 square_root(s16 sample_)
-//helpEncode(s32 curr_sample)
 {
   s32 neg;
 
