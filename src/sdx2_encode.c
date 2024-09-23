@@ -40,7 +40,7 @@ square_root(s32 sample_)
       sample_ = -sample_;
     }			
 		          
-  EncSamp =  sqrt((float)(curr_sample>>1));
+  EncSamp =  sqrt((float)(sample_ >> 1));
   return (neg?-EncSamp:EncSamp);
 }
 
