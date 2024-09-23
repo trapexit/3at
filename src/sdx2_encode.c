@@ -106,11 +106,11 @@ encode_sample(s32 curr_sample_,
   exact = square_root(curr_sample_);
   exact = set_exact_mode(exact);
 
-  /* tmp = delta_sample(curr_sample_,exact,prev_sample_); */
-  /* if(delta_sample(curr_sample_,exact+2,prev_sample_) < tmp) */
-  /*   exact += 2; */
-  /* else if(delta_sample(curr_sample_,exact-2,prev_sample_) < tmp) */
-  /*   exact -= 2; */
+  tmp = delta_sample(curr_sample_,exact,prev_sample_);
+  if(delta_sample(curr_sample_,exact+2,prev_sample_) < tmp)
+    exact += 2;
+  else if(delta_sample(curr_sample_,exact-2,prev_sample_) < tmp)
+    exact -= 2;
 
   if(is_diff_clipping_s16(curr_sample_,prev_sample_))
     return exact;
