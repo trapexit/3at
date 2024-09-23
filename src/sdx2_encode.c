@@ -130,20 +130,13 @@ sdx2_encode_mono(const s16 *ibuf_,
   curr_sample = ibuf_[0];
   comp_sample = helpEncode((s32)curr_sample);
   comp_sample = set_exact_mode(comp_sample);
+  obuf_[0] = comp_sample;
   
-  for (i = 0; i < ibuf_len_; ++i)
+  for (i = 1; i < ibuf_len_; i++)
     {
       curr_sample = ibuf_[i];
 
-      if(i)
-        {
-          comp_sample = encode_sample((s32)curr_sample,(s32)prev_sample);
-        }
-      else 
-        {
-          comp_sample = helpEncode((s32)curr_sample);
-          comp_sample &= ~1;	
-        }
+      comp_sample = encode_sample((s32)curr_sample,(s32)prev_sample);
 
       obuf_[i] = comp_sample;
 		
