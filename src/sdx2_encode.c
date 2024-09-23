@@ -148,13 +148,7 @@ sdx2_encode_mono(const s16 *ibuf_,
 
   return 0;
 }
-/*********************************************************************
- **		Loops through SSND chunk grabbing 16bits encoding them as 8 and
- **		writing them back out to new SSND chunk in outfile.
- **		Prints stats on encoding
- **
- **		On error: returns failure code  
- *********************************************************************/
+
 static
 s32
 sdx2_encode_stereo(const s16 *ibuf_,
