@@ -118,7 +118,7 @@ encode_sample(s32 curr_sample_,
   delta = square_root(curr_sample_ - prev_sample_);
   delta = set_delta_mode(delta);
 
-  tmp = abs_s16(curr_sample_ - decode_sample(delta,prev_sample_));
+  tmp = delta_sample(curr_sample_,delta,prev_sample_);
 
   /* check for wraparound on the delta case */
   if (tmp > 30000) {
