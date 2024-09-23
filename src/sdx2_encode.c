@@ -30,8 +30,8 @@ s8
 square_root(s32 sample_)
 //helpEncode(s32 curr_sample)
 {
+  s8 sample;  
   s32 neg;
-  s8 sample;
 
   neg = 0;
   if (sample_ < 0)
