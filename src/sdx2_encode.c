@@ -155,7 +155,7 @@ sdx2_encode_mono(const s16 *ibuf_,
   curr_sample = ibuf_[0];
   comp_sample = square_root(curr_sample);
   comp_sample = set_exact_mode(comp_sample);
-  obuf_[0] = comp_sample;
+  obuf_[0]    = comp_sample;
 
   for (i = 1; i < ibuf_len_; i++)
     {
