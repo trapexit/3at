@@ -77,7 +77,7 @@ encode_sample(s32 curr_sample_,
   s8 delta;
   s32 temp;
 	
-  exact = helpEncode(curr_sample_);
+  exact = square_root(curr_sample_);
   exact = set_exact_mode(exact);
 
   temp = ABS(curr_sample_ - decode_sample(exact,prev_sample_));
@@ -89,7 +89,7 @@ encode_sample(s32 curr_sample_,
   if(is_clipping(curr_sample_,prev_sample_))
     return exact;
 	 
-  delta = helpEncode(curr_sample_-prev_sample_);
+  delta = square_root(curr_sample_-prev_sample_);
   delta = set_delta_mode(delta);
 
   temp = ABS(curr_sample_ - decode_sample(delta,prev_sample_));
@@ -126,7 +126,7 @@ sdx2_encode_mono(const s16 *ibuf_,
   s8  comp_sample = 0;
 
   curr_sample = ibuf_[0];
-  comp_sample = helpEncode((s32)curr_sample);
+  comp_sample = square_root((s32)curr_sample);
   comp_sample = set_exact_mode(comp_sample);
   obuf_[0] = comp_sample;
   
@@ -168,7 +168,7 @@ sdx2_encode_stereo(const s16 *ibuf_,
         }
       else 
         {
-          comp_sample = helpEncode((s32)curr_left_sample);
+          comp_sample = square_root((s32)curr_left_sample);
           comp_sample &= ~1;	
         }
 
@@ -184,7 +184,7 @@ sdx2_encode_stereo(const s16 *ibuf_,
         }
       else 
         {
-          comp_sample = helpEncode((s32)curr_right_sample);
+          comp_sample = square_root((s32)curr_right_sample);
           comp_sample &= ~1;	
         }
 
