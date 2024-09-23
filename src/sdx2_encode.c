@@ -129,9 +129,9 @@ encode_sample(s32 curr_sample_,
       tmp = delta_sample(curr_sample_,delta,prev_sample_)
     }
 
-  if(abs_s16(curr_sample_ - decode_sample(delta+2,prev_sample_)) < tmp)
+  if(delta_sample(curr_sample_,delta+2,prev_sample_) < tmp)
     delta += 2;
-  else if(abs_s16(curr_sample_ - decode_sample(delta-2,prev_sample_)) < tmp)
+  else if(delta_sample(curr_sample_,delta-2,prev_sample_) < tmp)
     delta -= 2;
 
   if(abs_s16(curr_sample_ - decode_sample(exact,prev_sample_)) < abs_s16(curr_sample_- decode_sample(delta,prev_sample_)))
