@@ -107,7 +107,7 @@ encode_sample(s32 curr_sample_,
   if(is_diff_clipping_s16(curr_sample_,prev_sample_))
     return exact;
 
-  delta = square_root(curr_sample_-prev_sample_);
+  delta = square_root(curr_sample_ - prev_sample_);
   delta = set_delta_mode(delta);
 
   temp = ABS(curr_sample_ - decode_sample(delta,prev_sample_));
