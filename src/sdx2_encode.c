@@ -55,11 +55,6 @@ is_clipping(const s32 sample0_,
   return (ABS(sample0_ - sample1_) > 32767);
 }
 
-/*********************************************************************
- **		Encode a s16 as a compressed byte
- **
- **		On error: does nothing  
- *********************************************************************/
 static
 s8
 encode_sample(s32 curr_sample_,
