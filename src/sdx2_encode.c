@@ -1,5 +1,6 @@
 #include "types_ints.h"
 
+#include <cstdint>
 #include <math.h>
 #include <stdint.h>
 
@@ -67,9 +68,9 @@ is_diff_clipping_s16(const s32 sample0_,
   s32 res;
 
   res = (sample0_ - sample1_);
-  if(res > 32767)
+  if(res > INT16_MAX)
     return 1;
-  if(res < -32767)
+  if(res < INT16_MIN)
     return 1;
   return 0;
 }
