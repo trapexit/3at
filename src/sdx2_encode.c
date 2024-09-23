@@ -20,11 +20,6 @@ decode_sample(s32 curr_sample_,
     return (dc(curr_sample_));
 }
 
-/*********************************************************************
- **		Take Sqrt of a s16 and return a s8
- **
- **		On error: does nothing  
- *********************************************************************/
 static
 s8
 square_root(s16 sample_)
