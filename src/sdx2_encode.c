@@ -27,7 +27,7 @@ decode_sample(s32 curr_sample_,
  *********************************************************************/
 static
 s8
-square_root(s32 sample_)
+square_root(s16 sample_)
 //helpEncode(s32 curr_sample)
 {
   s32 neg;
@@ -36,7 +36,7 @@ square_root(s32 sample_)
   if(neg)
     sample_ = -sample_;
 
-  sample_ = (s32)sqrt((double)(sample_ / 2));
+  sample_ = (s16)sqrt((double)(sample_ / 2));
 
   return (neg ? -sample_ : sample_);
 }
