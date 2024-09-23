@@ -113,7 +113,10 @@ encode_sample(s32 curr_sample_,
     exact -= 2;
 
   if(is_diff_clipping_s16(curr_sample_,prev_sample_))
-    return exact;
+    {
+      printf("exact: %d\n",exact);
+      return exact;
+    }
 
   delta = square_root(curr_sample_ - prev_sample_);
   delta = set_delta_mode(delta);
