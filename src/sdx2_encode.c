@@ -91,7 +91,7 @@ delta_sample(const s16 curr_,
 
   dec_sample = decode_sample(curr_exact_,prev_);
   
-  return abs_s16(curr_ - dec_sample)
+  return abs_s16(curr_ - dec_sample);
 }
 
 static
