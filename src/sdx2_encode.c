@@ -76,8 +76,8 @@ is_diff_clipping_s16(const s32 sample0_,
 
 static
 s16
-decode_sample(s32 curr_sample_,
-              s32 prev_sample_)
+decode_sample(const s32 curr_sample_,
+              const s32 prev_sample_)
 {
   if(is_delta_mode(curr_sample_))
     return (prev_sample_ + abs_s16_4x(curr_sample_));
