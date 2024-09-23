@@ -1,22 +1,12 @@
 #include "types_ints.h"
 
 #include <math.h>
+#include <stdint.h>
 
 #define MAX(a,b) ((((a)<(b))?(b):(a)))
 #define MIN(a,b) ((((a)<(b))?(a):(b)))
 #define ABS(a) ((((a)<0))?-(a):(a))
 #define dc(v) ((((s16)v)*(s16)(ABS(v)))<<1)
-
-static
-s16
-decode_sample(s32 curr_sample_,
-       s32 prev_sample_) 
-{
-  if(curr_sample_ & 1) 
-    return (prev_sample_ + dc(curr_sample_));
-  else 
-    return (dc(curr_sample_));
-}
 
 static
 s8
@@ -49,11 +39,31 @@ set_delta_mode(const s8 v_)
 
 static
 int
+is_delta_mode(const s32 v_)
+{
+  return !!(v_ & 1);
+}
+
+static
+int
 is_clipping(const s32 sample0_,
             const s32 sample1_)
 {
   return (ABS(sample0_ - sample1_) > 32767);
 }
+
+static
+s16
+decode_sample(s32 curr_sample_,
+       s32 prev_sample_) 
+{
+  if(is_delta_mode(curr_sample_))
+  if(curr_sample_ & 1) 
+    return (prev_sample_ + dc(curr_sample_));
+  else 
+    return (dc(curr_sample_));
+}
+
 
 static
 s8
