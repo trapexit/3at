@@ -1,7 +1,6 @@
 #include "types_ints.h"
 
-#include <cassert>
-#include <cstdint>
+#include <assert.h>
 #include <math.h>
 #include <stdint.h>
 
