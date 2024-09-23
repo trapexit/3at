@@ -77,7 +77,7 @@ is_diff_clipping_s16(const s32 sample0_,
 static
 s16
 decode_sample(s32 curr_sample_,
-       s32 prev_sample_) 
+              s32 prev_sample_)
 {
   if(is_delta_mode(curr_sample_))
     return (prev_sample_ + abs_s16_4x(curr_sample_));
@@ -89,12 +89,12 @@ decode_sample(s32 curr_sample_,
 static
 s8
 encode_sample(s32 curr_sample_,
-              s32 prev_sample_) 
+              s32 prev_sample_)
 {
   s8 exact;
   s8 delta;
   s32 temp;
-	
+
   exact = square_root(curr_sample_);
   exact = set_exact_mode(exact);
 
@@ -106,12 +106,12 @@ encode_sample(s32 curr_sample_,
 
   if(is_diff_clipping_s16(curr_sample_,prev_sample_))
     return exact;
-	 
+
   delta = square_root(curr_sample_-prev_sample_);
   delta = set_delta_mode(delta);
 
   temp = ABS(curr_sample_ - decode_sample(delta,prev_sample_));
-	 
+
   /* check for wraparound on the delta case */
   if (temp > 30000) {
     // we overflowed 16 bits on this delta.
@@ -119,7 +119,7 @@ encode_sample(s32 curr_sample_,
     delta = ((delta<0)?(delta+2):(delta-2));
     temp =  ABS(curr_sample_- decode_sample(delta,prev_sample_));
   }
-	 	
+
   if(ABS(curr_sample_ - decode_sample(delta+2,prev_sample_)) < temp)
     delta += 2;
   else if(ABS(curr_sample_ - decode_sample(delta-2,prev_sample_)) < temp)
@@ -135,18 +135,18 @@ static
 s32
 sdx2_encode_mono(const s16 *ibuf_,
                  const u32  ibuf_len_,
-                 s8        *obuf_)	
+                 s8        *obuf_)
 {
   s32 i;
   s16 curr_sample = 0;
-  s16 prev_sample = 0;  
+  s16 prev_sample = 0;
   s8  comp_sample = 0;
 
   curr_sample = ibuf_[0];
   comp_sample = square_root((s32)curr_sample);
   comp_sample = set_exact_mode(comp_sample);
   obuf_[0] = comp_sample;
-  
+
   for (i = 1; i < ibuf_len_; i++)
     {
       curr_sample = ibuf_[i];
@@ -154,7 +154,7 @@ sdx2_encode_mono(const s16 *ibuf_,
       comp_sample = encode_sample((s32)curr_sample,(s32)prev_sample);
 
       obuf_[i] = comp_sample;
-		
+
       prev_sample = (s32)decode_sample((s32)comp_sample,(s32)prev_sample);
     }
 
@@ -173,50 +173,50 @@ sdx2_encode_stereo(const s16 *ibuf_,
   s16 prev_left_sample  = 0;
   s16 curr_right_sample = 0;
   s16 prev_right_sample = 0;
-	
-  for (i = 0; i < ibuf_len_; i += 2) 
+
+  for (i = 0; i < ibuf_len_; i += 2)
     {
       curr_left_sample = ibuf_[i+0];
-		
+
       if(i)
         {
           comp_sample = encode_sample(curr_left_sample,
                                       prev_left_sample);
         }
-      else 
+      else
         {
           comp_sample = square_root(curr_left_sample);
-          comp_sample &= ~1;	
+          comp_sample &= ~1;
         }
 
       obuf_[i+0] = comp_sample;
 
       prev_left_sample = decode_sample(comp_sample,prev_left_sample);
-		
+
       curr_right_sample = ibuf_[i+1];
 
       if(i)
         {
           comp_sample = encode_sample(curr_right_sample,prev_right_sample);
         }
-      else 
+      else
         {
           comp_sample = square_root(curr_right_sample);
-          comp_sample &= ~1;	
+          comp_sample &= ~1;
         }
 
       obuf_[i+1] = comp_sample;
-		
+
       prev_right_sample = decode_sample(comp_sample,prev_right_sample);
     }
-			
+
   return 0;
 }
 
 s32
 sdx2_encode(const s16 *ibuf_,
             const u32  ibuf_len_,
-            const u8   num_channels_,            
+            const u8   num_channels_,
             s8        *obuf_)
 {
   switch(num_channels_)
@@ -231,5 +231,3 @@ sdx2_encode(const s16 *ibuf_,
 
   return -1;
 }
-
-
