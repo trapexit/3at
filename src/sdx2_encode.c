@@ -41,7 +41,8 @@ square_root(s32 sample_)
     }			
 		          
   EncSamp =  sqrt((float)(sample_ >> 1));
-  return (neg?-EncSamp:EncSamp);
+
+  return (neg ? -EncSamp : EncSamp);
 }
 
 static
