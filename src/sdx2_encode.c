@@ -57,8 +57,8 @@ is_delta_mode(const s32 v_)
 
 static
 int
-is_diff_clipping_s16(const s32 sample0_,
-                     const s32 sample1_)
+is_diff_clipping_s16(const s16 sample0_,
+                     const s16 sample1_)
 {
   s32 s0;
   s32 s1;
