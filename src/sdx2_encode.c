@@ -81,6 +81,13 @@ decode_sample(const s32 curr_sample_,
   return abs_s16_4x(curr_sample_);
 }
 
+static
+s16
+abs_s16_diff(const s16 v0_,
+             const s16 v1_)
+{
+
+}
 
 static
 s8
