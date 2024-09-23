@@ -74,7 +74,7 @@ decode_sample(s32 curr_sample_,
        s32 prev_sample_) 
 {
   if(is_delta_mode(curr_sample_))
-    return (prev_sample_ + abs_4x(curr_sample_));
+    return (prev_sample_ + abs_s16_4x(curr_sample_));
 
   return abs_4x(curr_sample_);
 }
