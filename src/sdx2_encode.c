@@ -134,7 +134,8 @@ encode_sample(s32 curr_sample_,
   else if(delta_sample(curr_sample_,delta-2,prev_sample_) < tmp)
     delta -= 2;
 
-  if(abs_s16(curr_sample_ - decode_sample(exact,prev_sample_)) < abs_s16(curr_sample_- decode_sample(delta,prev_sample_)))
+  if(delta_sample(curr_sample_,exact,prev_sample_) <
+     delta_sample(curr_sample_,delta,prev_sample_))
     return exact;
 
   return delta;
