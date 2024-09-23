@@ -89,8 +89,10 @@ encode_sample(s32 curr_sample_,
     temp =  ABS(curr_sample_- decode_sample(delta,prev_sample_));
   }
 	 	
-  if (ABS(curr_sample_- decode_sample(delta+2,prev_sample_)) < temp) delta+=2;
-  else if (ABS(curr_sample_- decode_sample(delta - 2,prev_sample_)) < temp) delta-=2;
+  if(ABS(curr_sample_ - decode_sample(delta+2,prev_sample_)) < temp)
+    delta += 2;
+  else if(ABS(curr_sample_ - decode_sample(delta-2,prev_sample_)) < temp)
+    delta -= 2;
   if (ABS(curr_sample_- decode_sample(exact,prev_sample_)) < ABS(curr_sample_- decode_sample(delta,prev_sample_))) return exact;
   else return delta;
 }
