@@ -21,7 +21,7 @@ static
 s16
 abs_s16_4x(const s16 v_)
 {
-  return ((v_ * abs(v_)) * 2);
+  return ((v_ * abs_s16(v_)) * 2);
 }
 
 static
