@@ -83,10 +83,15 @@ decode_sample(const s32 curr_sample_,
 
 static
 s16
-abs_s16_diff(const s16 v0_,
-             const s16 v1_)
+delta_sample(const s16 curr_,
+             const s8  curr_exact_,
+             const s16 prev_)
 {
+  s16 dec_sample;
 
+  dec_sample = decode_sample(
+  
+  return abs_s16(v0_ - decode_sample(
 }
 
 static
