@@ -9,6 +9,13 @@
 #define dc(v) ((((s16)v)*(s16)(ABS(v)))<<1)
 
 static
+s16
+abs_4x(const s16 v_)
+{
+  return ((v_ * abs(v_)) * 2);
+}
+
+static
 s8
 square_root(s16 sample_)
 {
