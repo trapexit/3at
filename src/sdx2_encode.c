@@ -100,12 +100,6 @@ encode_sample(s32 curr_sample_,
   return delta;
 }
 
-/*********************************************************************
- **		Encodes a block of sample data.
- **		If verbose mode is on, prints stats on encoding
- **
- **		On error: returns failure code  
- *********************************************************************/
 static
 s32
 sdx2_encode_mono(const s16 *ibuf_,
