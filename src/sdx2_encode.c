@@ -33,12 +33,9 @@ square_root(s32 sample_)
   s8 sample;  
   s32 neg;
 
-  neg = 0;
-  if (sample_ < 0)
-    {
-      neg = 1;
-      sample_ = -sample_;
-    }			
+  neg = (sample_ < 0);
+  if(neg)
+    sample_ = -sample_;
 		          
   EncSamp =  sqrt((float)(sample_ >> 1));
 
