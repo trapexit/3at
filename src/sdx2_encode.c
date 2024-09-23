@@ -68,9 +68,9 @@ encode_sample(s32 curr_sample_,
   exact = set_exact_mode(exact);
 
   temp = ABS(curr_sample_ - decode_sample(exact,prev_sample_));
-  if(ABS(curr_sample_-decode_sample(exact+2,prev_sample_)) < temp)
+  if(ABS(curr_sample_ - decode_sample(exact+2,prev_sample_)) < temp)
     exact += 2;
-  else if(ABS(curr_sample_-decode_sample(exact-2,prev_sample_)) < temp)
+  else if(ABS(curr_sample_ - decode_sample(exact-2,prev_sample_)) < temp)
     exact -= 2;
 
   if(is_clipping(curr_sample_,prev_sample_))
