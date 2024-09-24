@@ -74,7 +74,8 @@ namespace l
     sdx2_encode(input_data.data(),
                 input_data.size(),
                 SDX2_MONO,
-                output_data.data());
+                output_data.data(),
+                output_data.size());
     
     fwrite(&output_data[0],
            sizeof(u8),
