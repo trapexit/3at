@@ -243,6 +243,9 @@ sdx2_encode(const s16 *ibuf_,
             s8        *obuf_,
             const u32  obuf_len_)
 {
+  if(obuf_len_ < ibuf_len_)
+    return SDX2_ERR_INVALID_OBUF_LEN;
+  
   switch(num_channels_)
     {
     case 1:
