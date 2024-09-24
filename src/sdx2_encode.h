@@ -34,7 +34,8 @@ extern "C" {
 s32 sdx2_encode(const s16 *ibuf,
                 const u32  ibuf_len,
                 const u8   num_channels,                  
-                s8        *obuf);
+                s8        *obuf,
+                const u32  obuf_len);
 
 #ifdef __cplusplus
 }
