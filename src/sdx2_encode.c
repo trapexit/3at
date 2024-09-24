@@ -240,7 +240,8 @@ s32
 sdx2_encode(const s16 *ibuf_,
             const u32  ibuf_len_,
             const u8   num_channels_,
-            s8        *obuf_)
+            s8        *obuf_,
+            const u32  obuf_len_)
 {
   switch(num_channels_)
     {
