@@ -94,14 +94,14 @@ delta_sample(const s16 curr_,
   s16 dec_sample;
 
   dec_sample = decode_sample(curr_exact_,prev_);
-  
+
   return abs_s16(curr_ - dec_sample);
 }
 
 
 /*
   See FIG 5 on page 5 of US Patent US005617506A
-  
+
   This code doesn't exactly match but is inspired by the original
   MacOS SquashSnd app. It had some changes that are assumed to be
   relevant.
