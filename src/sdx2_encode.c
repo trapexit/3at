@@ -134,6 +134,7 @@ encode_sample(const s16 curr_sample_,
 
   tmp = delta_sample(curr_sample_,delta,prev_sample_);
 
+  /* This is straight from SquashSnd. Unclear what 30000 is chosen. */
   /* check for wraparound on the delta case */
   if(tmp > 30000)
     {
