@@ -99,6 +99,9 @@ delta_sample(const s16 curr_,
 }
 
 /* See FIG 5 on page 5 of US Patent US005617506A */
+/* This code doesn't *epxactly* match but is inspired by the original
+   MacOS SquashSnd app. */
+   
 static
 s8
 encode_sample(const s16 curr_sample_,
