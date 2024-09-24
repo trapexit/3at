@@ -1,4 +1,4 @@
-#include "types_ints.h"
+#include "sdx2_encode.h"
 
 #include <math.h>
 #include <stdint.h>
