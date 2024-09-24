@@ -159,7 +159,7 @@ encode_sample(const s16 curr_sample_,
 }
 
 static
-s32
+void
 sdx2_encode_mono(const s16 *ibuf_,
                  const u32  ibuf_len_,
                  s8        *obuf_)
@@ -184,12 +184,10 @@ sdx2_encode_mono(const s16 *ibuf_,
 
       prev_sample = decode_sample(comp_sample,prev_sample);
     }
-
-  return SDX2_SUCCESS;
 }
 
 static
-s32
+void
 sdx2_encode_stereo(const s16 *ibuf_,
                    const u32  ibuf_len_,
                    s8        *obuf_)
