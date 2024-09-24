@@ -98,6 +98,7 @@ delta_sample(const s16 curr_,
   return abs_s16(curr_ - dec_sample);
 }
 
+/* See FIG 5 on page 5 of US Patent US005617506A */
 static
 s8
 encode_sample(const s16 curr_sample_,
