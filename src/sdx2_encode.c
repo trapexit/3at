@@ -210,21 +210,9 @@ sdx2_encode_stereo(const s16 *ibuf_,
 
   for (i = 2; i < ibuf_len_; i += 2)
     {
-      curr_left_sample = ibuf_[i+0];
-
-      if(i)
-        {
-          comp_sample = encode_sample(curr_left_sample,
-                                      prev_left_sample);
-        }
-      else
-        {
-          comp_sample = square_root(curr_left_sample);
-          comp_sample &= ~1;
-        }
-
+      curr_sample = ibuf_[i+0];
+      comp_sample = encode_sample(curr_sample, prev_left_sample);
       obuf_[i+0] = comp_sample;
-
       prev_left_sample = decode_sample(comp_sample,prev_left_sample);
 
       curr_right_sample = ibuf_[i+1];
