@@ -256,5 +256,5 @@ sdx2_encode(const s16 *ibuf_,
       break;
     }
 
-  return -1;
+  return SDX2_ERR_UNSUPPORTED_CHANNELS;
 }
