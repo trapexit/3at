@@ -245,9 +245,11 @@ sdx2_encode(const s16 *ibuf_,
   switch(num_channels_)
     {
     case 1:
-      return sdx2_encode_mono(ibuf_,ibuf_len_,obuf_);
+      sdx2_encode_mono(ibuf_,ibuf_len_,obuf_);
+      return SDX2_SUCCESS;
     case 2:
-      return sdx2_encode_stereo(ibuf_,ibuf_len_,obuf_);
+      sdx2_encode_stereo(ibuf_,ibuf_len_,obuf_);
+      return SDX2_SUCCESS;
     default:
       break;
     }
