@@ -105,6 +105,8 @@ delta_sample(const s16 curr_,
   This code doesn't exactly match the patent but is inspired by the
   original MacOS SquashSnd app. It had some changes that are assumed
   to be relevant though unexplained.
+
+  TODO: Try an exact match to patent and compare.
 */
 static
 s8
