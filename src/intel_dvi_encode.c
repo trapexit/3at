@@ -88,7 +88,8 @@ intel_dvi_encode(IntelDVIEncodeState *state_,
       /* Step 1 - compute difference with previous value */
       diff = val - valpred;
       sign = (diff < 0) ? 8 : 0;
-      if ( sign ) diff = (-diff);
+      if(sign)
+        diff = -diff;
 
       /* Step 2 - Divide and clamp */
       /* Note:
