@@ -72,7 +72,7 @@ namespace l
           input_data.size(),
           in_file);
     
-    intel_dvi_encode(&state,
+    intel_dvi_encode2(&state,
                      input_data.data(),
                      input_data.size(),
                      output_data.data());
