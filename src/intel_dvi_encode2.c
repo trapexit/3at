@@ -182,7 +182,7 @@ _decode_delta(int step_,
 }
 
 static
-int
+s8
 _encode_sample(struct state_t *s_,
                const s16       input_sample_)
 {
