@@ -134,7 +134,7 @@ _encode_delta(int step_,
 static
 int
 _decode_delta(int step_,
-              s8 sample_)
+              s8  sample_)
 {
     long delta = 0;
     
