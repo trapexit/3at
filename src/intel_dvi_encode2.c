@@ -106,7 +106,16 @@ _encode_delta(int step_,
       sample = 8;
       delta_ = -delta_;
     }
+
+  if(delta_ >= step_)
+    {
+      sample |= 4;
+      delta_ += step_;
+    }
+
+  step_ >>= 1;
 }
+
 
 static
 int
