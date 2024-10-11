@@ -136,15 +136,21 @@ int
 _decode_delta(int step_,
               s8  sample_)
 {
-    long delta = 0;
+  int delta;
+
+  delta = 0;
     
-    if( encodedSample & 4) delta = stepSize;
-    if( encodedSample & 2) delta += (stepSize >> 1);
-    if( encodedSample & 1) delta += (stepSize >> 2);
-    delta += (stepSize >> 3);
-    if (encodedSample & 8) delta = -delta;
+  if(sample_ & 4)
+    delta = step_;
+  if(sample_ & 2)
+    delta += (step_ >> 1);
+  if(sample_ & 1)
+    delta += (step_ >> 2);
+  delta += (step_ >> 3);
+  if(sample_ & 8)
+    delta = -delta;
     
-    return( delta );
+  return delta;
 }
 
 
