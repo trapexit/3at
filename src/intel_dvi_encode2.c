@@ -190,7 +190,7 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
       if(step)
         output = (output << 4);
       else
-        *output_data_++ = (_encode_sample(&s,input_data_[i]) | sample);
+        *output_data_++ = (_encode_sample(&s,input_data_[i]) | output);
 
       step = !step;
     }
