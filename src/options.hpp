@@ -13,6 +13,7 @@ namespace Opts
   struct ToADP4
   {
     std::vector<std::filesystem::path> filepaths;
+    std::string encoder;
   };
 
   struct ToSDX2
