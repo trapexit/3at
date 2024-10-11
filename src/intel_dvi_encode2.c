@@ -220,7 +220,7 @@ ADDVIEncode(short shortOne,
   /* First sample or left sample to be packed in first nibble */
   /* calculate delta */
   delta = shortOne - lastEstimateL;
-  CLIP(delta, -32768L, 32767L);
+  delta = clip_int(delta, -32768L, 32767L);
 
   /* encode delta relative to the current stepsize */
   encodedSample = EncodeDelta(stepSizeL, delta);
