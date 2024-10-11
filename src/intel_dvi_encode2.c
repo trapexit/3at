@@ -173,7 +173,6 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
 {
   int i;
   u8 output;
-  u32 sample_count;
   state_t s;
   int step;
 
