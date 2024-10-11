@@ -114,6 +114,19 @@ _encode_delta(int step_,
     }
 
   step_ >>= 1;
+  if(delta_ >= step_)
+    {
+      sample |= 2;
+      delta_ -= step_;
+    }
+
+  step_ >>= 1;
+  if(delta_ >= step_)
+    {
+      sample |= 1;
+    }
+
+  return sample;
 }
 
 
