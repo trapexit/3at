@@ -96,6 +96,18 @@ struct state_t
   int stepsize;
 };
 
+static
+int
+clip_s16(const s64 v_,
+         const int l_,
+         const int h_)
+{
+  if(v_ < l_)
+    return l_;
+  if(v_ > h_)
+    return h_;
+  return v_;
+}
 
 static
 s16
