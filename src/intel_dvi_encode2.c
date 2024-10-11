@@ -203,6 +203,81 @@ _encode_sample(struct state_t *s_,
   return encoded_sample;
 }
 
+u8
+ADDVIEncode(short shortOne,
+            short shortTwo,
+            long channels)
+{
+  long            delta;
+  unsigned char    encodedSample, outputByte;
+
+  outputByte = 0;
+    
+  /* First sample or left sample to be packed in first nibble */
+  /* calculate delta */
+  delta = shortOne - lastEstimateL;
+  CLIP(delta, -32768L, 32767L);
+
+  /* encode delta relative to the current stepsize */
+  encodedSample = EncodeDelta(stepSizeL, delta);
+
+  /* pack first nibble */
+  outputByte = 0x00F0 & (encodedSample<<4);
+
+  /* decode ADPCM code value to reproduce delta and generate an estimated InputSample */
+  lastEstimateL += DecodeDelta(stepSizeL, encodedSample);
+  CLIP(lastEstimateL, -32768L, 32767L);
+
+  /* adapt stepsize */
+  stepIndexL += gIndexDeltas[encodedSample];
+  CLIP(stepIndexL, 0, 88);
+  stepSizeL = gStepSizes[stepIndexL];
+    
+  if(channels == 2L)
+    {
+      /* calculate delta for second sample */
+      delta = shortTwo - lastEstimateR;
+      CLIP(delta, -32768L, 32767L);
+
+      /* encode delta relative to the current stepsize */
+      encodedSample = EncodeDelta(stepSizeR, delta);
+
+      /* pack second nibble */
+      outputByte |= 0x000F & encodedSample;
+
+      /* decode ADPCM code value to reproduce delta and generate an estimated InputSample */
+      lastEstimateR += DecodeDelta(stepSizeR, encodedSample);
+      CLIP(lastEstimateR, -32768L, 32767L);
+
+      /* adapt stepsize */
+      stepIndexR += gIndexDeltas[encodedSample];
+      CLIP(stepIndexR, 0, 88);
+      stepSizeR = gStepSizes[stepIndexR];
+    }
+  else
+    {
+      /* calculate delta for second sample */
+      delta = shortTwo - lastEstimateL;
+      CLIP(delta, -32768L, 32767L);
+
+      /* encode delta relative to the current stepsize */
+      encodedSample = EncodeDelta(stepSizeL, delta);
+
+      /* pack second nibble */
+      outputByte |= 0x000F & encodedSample;
+
+      /* decode ADPCM code value to reproduce delta and generate an estimated InputSample */
+      lastEstimateL += DecodeDelta(stepSizeL, encodedSample);
+      CLIP(lastEstimateL, -32768L, 32767L);
+
+      /* adapt stepsize */
+      stepIndexL += gIndexDeltas[encodedSample];
+      CLIP(stepIndexL, 0, 88);
+      stepSizeL = gStepSizes[stepIndexL];
+    }
+  return(outputByte);
+}
+
 void
 intel_dvi_encode2(IntelDVIEncodeState *state_,
                   const s16           *input_data_,
