@@ -262,7 +262,7 @@ ADDVIEncode(short shortOne,
     {
       /* calculate delta for second sample */
       delta = shortTwo - lastEstimateL;
-      delta = clip_s16delta, -32768L, 32767L);
+      delta = clip_s16(delta, -32768L, 32767L);
 
       /* encode delta relative to the current stepsize */
       encodedSample = EncodeDelta(stepSizeL, delta);
