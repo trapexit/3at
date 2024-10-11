@@ -235,7 +235,7 @@ ADDVIEncode(short shortOne,
   /* adapt stepsize */
   stepIndexL += indexTable[encodedSample];
   stepIndexL = clip_int(stepIndexL, 0, 88);
-  stepSizeL = gStepSizes[stepIndexL];
+  stepSizeL = stepsizeTable[stepIndexL];
     
   if(channels == 2L)
     {
