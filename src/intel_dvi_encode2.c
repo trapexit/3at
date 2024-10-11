@@ -223,6 +223,7 @@ _encode_sample(struct state_t *s_,
   /* compute new sample estimate s_->predictedSample */
   /* calculate difference = (newSample + ½) * stepsize/4 */
   /* perform multiplication through repetitive addition */
+  difference = _encode_delta(s_->stepsize, newSample);
   difference = 0; 
   if(newSample & 4) 
     difference += s_->stepsize;
