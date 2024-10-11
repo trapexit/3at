@@ -215,7 +215,6 @@ ADDVIEncode(short shortOne,
   int delta;
   u8 encodedSample;
 
-    
   delta = shortOne - lastEstimateL;
   delta = clip_int(delta, -32768L, 32767L);
 
