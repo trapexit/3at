@@ -195,6 +195,8 @@ _encode_sample(struct state_t *s_,
   delta = (input_sample_ - s_->predictedSample);
   delta = clip_s16(delta,-32768,32767);
 
+  encoded_sample = _encode_delta(s_->stepsize,delta);
+
   s_->predictedSample += difference;
   s_->predictedSample = clip_s16(s_->predictedSample,-32768,32767);
   s_->index += indexTable[newSample];
