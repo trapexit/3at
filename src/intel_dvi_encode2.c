@@ -61,6 +61,7 @@
 
 #define INDEX_TABLE_SIZE 16
 #define STEPSIZE_TABLE_SIZE 89
+#define STEPSIZE_TABLE_MAX (STEPSIZE_TABLE_SIZE - 1)
 
 static
 const
