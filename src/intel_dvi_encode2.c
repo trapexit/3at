@@ -289,6 +289,19 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
                   const u32            sample_count_,
                   u8                  *output_data_)
 {
+  long i,j;
+
+  lastEstimateL = lastEstimateR = 0L;
+  stepSizeL = stepSizeR = 7L;
+  stepIndexL = stepIndexR = 0L;
+        
+  for(i = j = 0; i < numSamples; i += 2, j++)
+    {
+      buffer[j] = ADDVIEncode(samples[i + 0], samples[i + 1], channels);
+    }  
+
+
+  
   int i;
   u8 output;
   state_t s;
