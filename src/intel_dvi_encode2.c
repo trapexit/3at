@@ -124,11 +124,11 @@ clip_s16(const s64 v_,
          
 
 static
-s8
+u8
 _encode_delta(s32 step_,
               s32 delta_)
 {
-  s8 sample;
+  u8 sample;
 
   sample = 0;
   if(delta_ < 0)
