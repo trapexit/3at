@@ -153,7 +153,6 @@ _decode_delta(int step_,
   return delta;
 }
 
-
 static
 int
 _encode_sample(struct state_t *s_,
