@@ -246,11 +246,13 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
   stepSizeL = stepSizeR = 7L;
   stepIndexL = stepIndexR = 0L;
         
-  for(i = j = 0; i < sample_count_; i++, j++)
+  for(i = j = 0; i < sample_count_; i+=2, j++)
     {
       output_data_[j] = ADDVIEncode(input_data_[i + 0],
                                     input_data_[i + 1],
                                     1);
+      output_data_[j] =
+        (output_data_[j] << 4)
     }  
 
   return;
