@@ -223,7 +223,7 @@ ADDVIEncode(short shortOne,
   delta = clip_int(delta, -32768L, 32767L);
 
   /* encode delta relative to the current stepsize */
-  encodedSample = EncodeDelta(stepSizeL, delta);
+  encodedSample = _encode_delta(stepSizeL, delta);
 
   /* pack first nibble */
   outputByte = 0x00F0 & (encodedSample<<4);
