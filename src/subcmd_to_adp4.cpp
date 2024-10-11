@@ -73,11 +73,17 @@ namespace l
           input_data.size(),
           in_file);
 
-
-    intel_dvi_encode2(&state,
-                     input_data.data(),
-                     input_data.size(),
-                     output_data.data());
+    if(encoder_ == "foo")
+      intel_dvi_encode(&state,
+                       input_data.data(),
+                       input_data.size(),
+                       output_data.data());
+      
+    else if(encoder_ == "bar")
+      intel_dvi_encode2(&state,
+                        input_data.data(),
+                        input_data.size(),
+                        output_data.data());
 
     fwrite(&output_data[0],
            sizeof(u8),
