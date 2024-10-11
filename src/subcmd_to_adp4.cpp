@@ -78,7 +78,6 @@ namespace l
                        input_data.data(),
                        input_data.size(),
                        output_data.data());
-      
     else if(encoder_ == "bar")
       intel_dvi_encode2(&state,
                         input_data.data(),
