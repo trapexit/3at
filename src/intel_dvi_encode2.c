@@ -254,9 +254,9 @@ ADDVIEncode(short shortOne,
       lastEstimateR = clip_int(lastEstimateR, -32768L, 32767L);
 
       /* adapt stepsize */
-      stepIndexR += gIndexDeltas[encodedSample];
-      CLIP(stepIndexR, 0, 88);
-      stepSizeR = gStepSizes[stepIndexR];
+      stepIndexR += indexTable[encodedSample];
+      stepIndexR = clip_int(stepIndexR, 0, 88);      
+      stepSizeR = stepsizeTable[stepIndexR];
     }
   else
     {
