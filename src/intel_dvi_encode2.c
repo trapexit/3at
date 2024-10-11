@@ -162,7 +162,7 @@ _encode_delta(s32 step_,
 static
 int
 _decode_delta(int step_,
-              s8  sample_)
+              u8  sample_)
 {
   int delta;
 
@@ -222,7 +222,7 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
   step = 1;
   for(i = 0; i < sample_count_; i++)
     {
-      int newSample;
+      u8 newSample;
 
       newSample = _encode_sample(&s,input_data_[i]);
       if(step)
