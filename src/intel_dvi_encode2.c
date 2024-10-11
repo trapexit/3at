@@ -203,6 +203,9 @@ _encode_sample(struct state_t *s_,
   return encoded_sample;
 }
 
+long lastEstimateL, stepSizeL, stepIndexL;
+long lastEstimateR, stepSizeR, stepIndexR;
+
 u8
 ADDVIEncode(short shortOne,
             short shortTwo,
