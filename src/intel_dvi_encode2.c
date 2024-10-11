@@ -272,7 +272,7 @@ ADDVIEncode(short shortOne,
 
       /* decode ADPCM code value to reproduce delta and generate an estimated InputSample */
       lastEstimateL += _decode_delta(stepSizeL, encodedSample);
-      CLIP(lastEstimateL, -32768L, 32767L);
+      lastEstimateL = clip_int(lastEstimateL, -32768L, 32767L);
 
       /* adapt stepsize */
       stepIndexL += gIndexDeltas[encodedSample];
