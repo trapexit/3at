@@ -224,17 +224,7 @@ _encode_sample(struct state_t *s_,
   /* calculate difference = (newSample + ½) * stepsize/4 */
   /* perform multiplication through repetitive addition */
   difference = _encode_delta(s_->stepsize, newSample);
-  difference = 0; 
-  if(newSample & 4) 
-    difference += s_->stepsize;
-  if(newSample & 2)
-    difference += s_->stepsize >> 1;
-  if(newSample & 1)
-    difference += s_->stepsize >> 2;
-  difference += s_->stepsize >> 3;
-  /* (newSample + ½) * stepsize/4 = newSample * stepsize/4 + stepsize/8 */
-  if (newSample & 8) /* account for sign bit */
-    difference = -difference;
+
   /* adjust predicted sample based on calculated difference: */
   s_->predictedSample += difference;
   s_->predictedSample = clip_s16(s_->predictedSample,-32768,32767);
