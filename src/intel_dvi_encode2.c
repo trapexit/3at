@@ -297,7 +297,9 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
         
   for(i = j = 0; i < numSamples; i += 2, j++)
     {
-      buffer[j] = ADDVIEncode(samples[i + 0], samples[i + 1], channels);
+      output_data_[j] = ADDVIEncode(input_data_[i + 0],
+                                    input_data_[i + 1],
+                                    1);
     }  
 
 
