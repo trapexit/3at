@@ -45,7 +45,8 @@ namespace l
   }
   
   void
-  to_adp4(const std::filesystem::path &filepath_)
+  to_adp4(const std::filesystem::path &filepath_,
+          const std::string           &encoder_)
   {
     FILE *in_file;
     FILE *out_file;
@@ -71,7 +72,8 @@ namespace l
           sizeof(s16),
           input_data.size(),
           in_file);
-    
+
+
     intel_dvi_encode2(&state,
                      input_data.data(),
                      input_data.size(),
