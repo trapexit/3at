@@ -204,7 +204,7 @@ _encode_sample(struct state_t *s_,
   s_->index = clip_int(s_->index,0,STEPSIZE_TABLE_MAX);
   s_->stepsize = stepsizeTable[s_->index]; 
 
-  return newSample;
+  return encoded_sample;
 }
 
 void
