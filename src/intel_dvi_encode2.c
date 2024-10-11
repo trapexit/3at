@@ -276,7 +276,7 @@ ADDVIEncode(short shortOne,
 
       /* adapt stepsize */
       stepIndexL += indexTable[encodedSample];
-      CLIP(stepIndexL, 0, 88);
+      stepIndexL = clip_int(stepIndexL, 0, 88);
       stepSizeL = stepsizeTable[stepIndexL];
     }
   return(outputByte);
