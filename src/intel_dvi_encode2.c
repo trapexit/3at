@@ -302,7 +302,7 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
                                     1);
     }  
 
-
+  return;
   
   int i;
   u8 output;
