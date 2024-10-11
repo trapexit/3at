@@ -104,7 +104,7 @@ _encode_delta(int step_,
   if(delta_ < 0)
     {
       sample = 8;
-      delta_ = -delta;
+      delta_ = -delta_;
     }
 }
 
