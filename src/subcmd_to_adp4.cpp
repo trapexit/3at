@@ -93,5 +93,5 @@ void
 SubCmd::to_adp4(const Opts::ToADP4 &opts_)
 {
   for(auto &filepath : opts_.filepaths)
-    l::to_adp4(filepath);
+    l::to_adp4(filepath,opts_.encoder);
 }
