@@ -214,20 +214,14 @@ ADDVIEncode(short shortOne,
 {
   int delta;
   u8 encodedSample;
-  u8 outputByte;
 
-  outputByte = 0;
     
-  /* First sample or left sample to be packed in first nibble */
-  /* calculate delta */
   delta = shortOne - lastEstimateL;
   delta = clip_int(delta, -32768L, 32767L);
 
   /* encode delta relative to the current stepsize */
   encodedSample = _encode_delta(stepSizeL, delta);
-
   /* pack first nibble */
-  outputByte = 0x00F0 & (encodedSample<<4);
 
   /* decode ADPCM code value to reproduce delta and generate an estimated InputSample */
   lastEstimateL += _decode_delta(stepSizeL, encodedSample);
@@ -238,49 +232,26 @@ ADDVIEncode(short shortOne,
   stepIndexL = clip_int(stepIndexL, 0, 88);
   stepSizeL = stepsizeTable[stepIndexL];
     
-  if(channels == 2L)
-    {
-      /* calculate delta for second sample */
-      delta = shortTwo - lastEstimateR;
-      delta = clip_s16(delta, -32768L, 32767L);
+  /* calculate delta for second sample */
+  delta = shortTwo - lastEstimateL;
+  delta = clip_s16(delta, -32768L, 32767L);
 
-      /* encode delta relative to the current stepsize */
-      encodedSample = _encode_delta(stepSizeR, delta);
+  /* encode delta relative to the current stepsize */
+  encodedSample = _encode_delta(stepSizeL, delta);
 
-      /* pack second nibble */
-      outputByte |= 0x000F & encodedSample;
+  /* pack second nibble */
+  outputByte |= 0x000F & encodedSample;
 
-      /* decode ADPCM code value to reproduce delta and generate an estimated InputSample */
-      lastEstimateR += _decode_delta(stepSizeR, encodedSample);
-      lastEstimateR = clip_int(lastEstimateR, -32768L, 32767L);
+  /* decode ADPCM code value to reproduce delta and generate an estimated InputSample */
+  lastEstimateL += _decode_delta(stepSizeL, encodedSample);
+  lastEstimateL = clip_int(lastEstimateL, -32768L, 32767L);
 
-      /* adapt stepsize */
-      stepIndexR += indexTable[encodedSample];
-      stepIndexR = clip_int(stepIndexR, 0, 88);      
-      stepSizeR = stepsizeTable[stepIndexR];
-    }
-  else
-    {
-      /* calculate delta for second sample */
-      delta = shortTwo - lastEstimateL;
-      delta = clip_s16(delta, -32768L, 32767L);
+  /* adapt stepsize */
+  stepIndexL += indexTable[encodedSample];
+  stepIndexL = clip_int(stepIndexL, 0, 88);
+  stepSizeL = stepsizeTable[stepIndexL];
 
-      /* encode delta relative to the current stepsize */
-      encodedSample = _encode_delta(stepSizeL, delta);
-
-      /* pack second nibble */
-      outputByte |= 0x000F & encodedSample;
-
-      /* decode ADPCM code value to reproduce delta and generate an estimated InputSample */
-      lastEstimateL += _decode_delta(stepSizeL, encodedSample);
-      lastEstimateL = clip_int(lastEstimateL, -32768L, 32767L);
-
-      /* adapt stepsize */
-      stepIndexL += indexTable[encodedSample];
-      stepIndexL = clip_int(stepIndexL, 0, 88);
-      stepSizeL = stepsizeTable[stepIndexL];
-    }
-  return(outputByte);
+  return encodedSample;
 }
 
 void
