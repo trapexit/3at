@@ -184,7 +184,7 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
   step = 1;
   for(i = 0; i < sample_count; i++)
     {
-      int nample;
+      int newSample;
 
       newSample = _encode_sample(&s,input_data_[i]);
       if(step)
