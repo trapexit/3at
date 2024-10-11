@@ -188,10 +188,7 @@ _encode_sample(struct state_t *s_,
 {
   s32 delta;
   u8  encoded_sample;
-  u8  output_byte;
   
-  output_byte = 0;
-
   delta = (input_sample_ - s_->predictedSample);
   delta = clip_s16(delta,-32768,32767);
 
