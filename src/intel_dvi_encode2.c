@@ -186,6 +186,10 @@ int
 _encode_sample(struct state_t *s_,
                const s16       input_sample_)
 {
+  s32 delta;
+  u8  encoded_sample;
+  u8  output_byte;
+  
   int difference;
   int originalSample;
   int newSample;
