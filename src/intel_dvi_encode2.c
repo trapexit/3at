@@ -198,7 +198,6 @@ _encode_sample(struct state_t *s_,
   encoded_sample = _encode_delta(s_->stepsize,delta);
 
   s_->predictedSample += _decode_delta(s_->stepsize,encoded_sample);
-    
   s_->predictedSample = clip_s16(s_->predictedSample,-32768,32767);
   s_->index += indexTable[newSample];
   s_->index = clip_int(s_->index,0,STEPSIZE_TABLE_MAX);
