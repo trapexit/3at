@@ -56,7 +56,6 @@
 
 #include "intel_dvi_encode.h"
 #include "types_ints.h"
-#include <cstdint>
 #include <stdint.h>
 
 #define INDEX_TABLE_SIZE 16
