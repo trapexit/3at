@@ -197,47 +197,11 @@ _encode_sample(struct state_t *s_,
   int i;
   int mask;
 
-  originalSample = input_sample_;
 
-  /* find difference from predicted sample: */
-  difference = originalSample - s_->predictedSample;
-  if(difference >= 0) /* set sign bit and find absolute value of difference */
-    {
-      newSample = 0; /* set sign bit(newSample[3]) to 0 */
-    }
-  else
-    {
-      newSample = 8; /*set sign bit(newSample[3]) to one */
-      difference = -difference; /* absolute value of negative difference */
-    }
-
-  mask = 4; /* used to set bits in newSample*/
-  tempStepsize = s_->stepsize; /* store quantizer stepsize for later use */
-  for(i = 0; i < 3; i++) /* quantize difference down to four bits */
-    {
-      if(difference >= tempStepsize)
-        { /* newSample[2:0] = 4 * (difference/stepsize) */
-          newSample |= mask; /* perform division ... */
-          difference -= tempStepsize; /* ... through repeated subtraction */
-        }
-      tempStepsize >>=1; /* adjust comparator for next iteration */
-      mask >>=1; /* adjust bit-set mask for next iteration */
-    }
-
-  /* compute new sample estimate s_->predictedSample */
-  /* calculate difference = (newSample + ½) * stepsize/4 */
-  /* perform multiplication through repetitive addition */
-  difference = _encode_delta(s_->stepsize, newSample);
-
-  /* adjust predicted sample based on calculated difference: */
   s_->predictedSample += difference;
   s_->predictedSample = clip_s16(s_->predictedSample,-32768,32767);
-  /* compute new stepsize */
-  /* adjust s_->index into stepsize lookup table using newSample */
   s_->index += indexTable[newSample];
   s_->index = clip_int(s_->index,0,STEPSIZE_TABLE_MAX);
-
-  /* find new quantizer stepsize */  
   s_->stepsize = stepsizeTable[s_->index]; 
 
   return newSample;
