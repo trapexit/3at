@@ -56,6 +56,8 @@
 
 #include "intel_dvi_encode.h"
 #include "types_ints.h"
+#include <cstdint>
+#include <stdint.h>
 
 #define INDEX_TABLE_SIZE 16
 #define STEPSIZE_TABLE_SIZE 89
@@ -127,6 +129,22 @@ _encode_delta(int step_,
     }
 
   return sample;
+}
+
+static
+int
+_decode_delta(int step_,
+              s8 sample_)
+{
+    long delta = 0;
+    
+    if( encodedSample & 4) delta = stepSize;
+    if( encodedSample & 2) delta += (stepSize >> 1);
+    if( encodedSample & 1) delta += (stepSize >> 2);
+    delta += (stepSize >> 3);
+    if (encodedSample & 8) delta = -delta;
+    
+    return( delta );
 }
 
 
