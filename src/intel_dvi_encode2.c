@@ -98,7 +98,7 @@ struct state_t
 
 static
 int
-clip_s16(const s64 v_,
+clip_int(const s64 v_,
          const int l_,
          const int h_)
 {
