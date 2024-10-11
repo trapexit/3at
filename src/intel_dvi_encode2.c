@@ -224,10 +224,7 @@ _encode_sample(struct state_t *s_,
     difference = -difference;
   /* adjust predicted sample based on calculated difference: */
   s_->predictedSample += difference;
-  if(s_->predictedSample > 32767) /* check for overflow */
-    s_->predictedSample = 32767;
-  else if(s_->predictedSample < -32768)
-    s_->predictedSample = -32768;
+  s_->predictedSample = clip_s16(s_->predictedSample,-32768,32767);
   /* compute new stepsize */
   /* adjust s_->index into stepsize lookup table using newSample */
   s_->index += indexTable[newSample];
