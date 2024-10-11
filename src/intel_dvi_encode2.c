@@ -94,6 +94,21 @@ struct state_t
 };
 
 static
+s8
+_encode_delta(int step_,
+              int delta_)
+{
+  s8 sample;
+
+  sample = 0;
+  if(delta_ < 0)
+    {
+      sample = 8;
+      delta_ = -delta;
+    }
+}
+
+static
 int
 _encode_sample(struct state_t *s_,
                const s16       input_sample_)
