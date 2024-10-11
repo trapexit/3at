@@ -218,15 +218,11 @@ ADDVIEncode(short shortOne,
   delta = shortOne - lastEstimateL;
   delta = clip_int(delta, -32768L, 32767L);
 
-  /* encode delta relative to the current stepsize */
   encodedSample = _encode_delta(stepSizeL, delta);
-  /* pack first nibble */
 
-  /* decode ADPCM code value to reproduce delta and generate an estimated InputSample */
   lastEstimateL += _decode_delta(stepSizeL, encodedSample);
   lastEstimateL = clip_int(lastEstimateL, -32768L, 32767L);
 
-  /* adapt stepsize */
   stepIndexL += indexTable[encodedSample];
   stepIndexL = clip_int(stepIndexL, 0, 88);
   stepSizeL = stepsizeTable[stepIndexL];
