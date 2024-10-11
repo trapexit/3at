@@ -211,8 +211,9 @@ ADDVIEncode(short shortOne,
             short shortTwo,
             long channels)
 {
-  long            delta;
-  unsigned char    encodedSample, outputByte;
+  int delta;
+  u8 encodedSample;
+  u8 outputByte;
 
   outputByte = 0;
     
