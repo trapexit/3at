@@ -196,5 +196,5 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
     }
 
   if(!step)
-    
+    *output_data_++ = output;
 }
