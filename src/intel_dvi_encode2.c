@@ -304,29 +304,29 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
 
   return;
   
-  int i;
-  u8 output;
-  state_t s;
-  int step;
+  /* int i; */
+  /* u8 output; */
+  /* state_t s; */
+  /* int step; */
 
-  s.predictedSample = 0;
-  s.index = 0;
-  s.stepsize = 7;
+  /* s.predictedSample = 0; */
+  /* s.index = 0; */
+  /* s.stepsize = 7; */
 
-  step = 1;
-  for(i = 0; i < sample_count_; i++)
-    {
-      u8 newSample;
+  /* step = 1; */
+  /* for(i = 0; i < sample_count_; i++) */
+  /*   { */
+  /*     u8 newSample; */
 
-      newSample = _encode_sample(&s,input_data_[i]);
-      if(step)
-        output = (output << 4);
-      else
-        *output_data_++ = (output | newSample);
+  /*     newSample = _encode_sample(&s,input_data_[i]); */
+  /*     if(step) */
+  /*       output = (output << 4); */
+  /*     else */
+  /*       *output_data_++ = (output | newSample); */
 
-      step = !step;
-    }
+  /*     step = !step; */
+  /*   } */
 
-  if(!step)
-    *output_data_++ = output;
+  /* if(!step) */
+  /*   *output_data_++ = output; */
 }
