@@ -95,6 +95,21 @@ struct state_t
   int stepsize;
 };
 
+
+static
+s16
+clip_s16(const s64 v_,
+         const s16 l_,
+         const s16 h_)
+{
+  if(v_ < l_)
+    return l_;
+  if(v_ > h_)
+    return h_;
+  return v_;
+}
+         
+
 static
 s8
 _encode_delta(int step_,
