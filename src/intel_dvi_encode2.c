@@ -240,10 +240,8 @@ _encode_sample(struct state_t *s_,
   /* compute new stepsize */
   /* adjust s_->index into stepsize lookup table using newSample */
   s_->index += indexTable[newSample];
-  if(s_->index < 0) /* check for index underflow */
-    s_->index = 0;
-  else if(s_->index >= STEPSIZE_TABLE_SIZE) /* check for index overflow */
-    s_->index = (STEPSIZE_TABLE_SIZE - 1);
+  s_->index = clip_int(s_->index,0,STEPSIZE_TABLE_MAX);
+
   /* find new quantizer stepsize */  
   s_->stepsize = stepsizeTable[s_->index]; 
 
