@@ -190,13 +190,10 @@ _encode_sample(struct state_t *s_,
   u8  encoded_sample;
   u8  output_byte;
   
-  int difference;
-  int originalSample;
-  int newSample;
-  int tempStepsize;
-  int i;
-  int mask;
+  output_byte = 0;
 
+  delta = (input_sample_ - s_->predictedSample);
+  delta = clip_s16(delta,-32768,32767);
 
   s_->predictedSample += difference;
   s_->predictedSample = clip_s16(s_->predictedSample,-32768,32767);
