@@ -57,7 +57,7 @@ generate_to_sdx2_argparser(CLI::App      &app_,
     ->check(CLI::ExistingFile)
     ->required();
   subcmd->add_option("--channels",opts.output_channels)
-    ->description("Number of audio channels")
+    ->description("Number of output audio channels")
     ->check(CLI::IsMember({1,2}))
     ->required();
   subcmd->add_option("--freq",opts.output_freq)
