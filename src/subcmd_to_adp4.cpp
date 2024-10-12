@@ -75,7 +75,7 @@ namespace l
           in_file);
 
     if(encoder_ == "default")
-      intel_dvi_encode(&state,
+      adp4_encode(&state,
                        input_data.data(),
                        input_data.size(),
                        output_data.data());
