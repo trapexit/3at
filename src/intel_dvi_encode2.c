@@ -160,10 +160,9 @@ _encode_sample(adp4_state_t *s_,
 }
 
 void
-intel_dvi_encode2(IntelDVIEncodeState *state_,
-                  const s16           *input_data_,
-                  const u32            sample_count_,
-                  u8                  *output_data_)
+adp4_encode(const s16 *input_data_,
+            const u32  sample_count_,
+            u8        *output_data_)
 {
   u32 i;
   int shift;
