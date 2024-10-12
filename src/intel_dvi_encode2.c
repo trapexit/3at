@@ -237,6 +237,11 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
                   u8                  *output_data_)
 {
   long i,j;
+  state_t s;
+
+  s.index = 0;
+  s.stepsize = 7;
+  s.predictedSample = 0;
 
   lastEstimateL = lastEstimateR = 0L;
   stepSizeL = stepSizeR = 7L;
