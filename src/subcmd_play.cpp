@@ -40,6 +40,15 @@ namespace l
 
         FILE *stdoutf = subprocess_stdout(&subproc);
         FILE *stderrf = subprocess_stderr(&subproc);
+        std::vector<char> buf;
+
+        buf.resize(4097);
+        while(!feof(stdoutf))
+          {
+            fgets(&buf[0],buf.size()-1,stdoutf);
+            *buf.rbegin() = 0;
+            fmt::print
+          }
         
         fmt::print("rv = {}\n",rv);
         subprocess_destroy(&subproc);
