@@ -212,5 +212,5 @@ adp4_encode(const s16 *input_data_,
     }
 
   if(!shift)
-    *output_data_++ = output_byte;
+    output_data_[o_idx] = output_byte;
 }
