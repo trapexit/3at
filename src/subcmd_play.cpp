@@ -40,28 +40,19 @@ namespace l
         fmt::print("rv = {}\n",rv);
         subprocess_join(&subproc,&rv);
 
-        FILE *stdoutf = subprocess_stdout(&subproc);
-        FILE *stderrf = subprocess_stderr(&subproc);
+
         std::vector<char> buf;
 
         buf.resize(4097);
         while(true)
           {
-            if(!feof(stdoutf))
-              {
-                fgets(&buf[0],buf.size()-1,stdoutf);
-                *buf.rbegin() = 0;
-                fmt::print("{}",buf.data());
-              }
-            if(!feof(stderrf))
-              {
-                fgets(&buf[0],buf.size()-1,stderrf);
-                *buf.rbegin() = 0;
-                fmt::print("{}",buf.data());
-              }
+            int err;
 
-            if(feof(stdoutf) && feof(stderrf))
+            err = subprocess_read_stdout(&subproc,&buf[0],buf.size()-1);
+            if(err == 0)
               break;
+            *buf.rbegin() = 0;
+            fmt::print("{}",buf.data());
           }
         
         fmt::print("rv = {}\n",rv);
