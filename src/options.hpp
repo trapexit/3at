@@ -22,6 +22,11 @@ namespace Opts
     int channels;
   };
 
+  struct Play
+  {
+    std::vector<std::filesystem::path> filepaths;    
+  };
+
   struct Options
   {
     Example example;
