@@ -54,7 +54,6 @@ namespace l
           }
 
         subprocess_join(&subproc,&rv);
-        fmt::print("rv = {}\n",rv);
         subprocess_destroy(&subproc);
       }
   }
