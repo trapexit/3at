@@ -227,7 +227,7 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
       if(shift)
         output_byte <<= 4;
       else
-        *output_data_++ = (output | newSample);
+        *output_data_++ = (output_byte | adp4_sample);
 
       step = !step;
     }
