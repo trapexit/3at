@@ -10,7 +10,7 @@ namespace l
   {
     for(auto &filepath : opts_.filepaths)
       fmt::print("subcmd::play({});\n",
-                 opts_.filepath);
+                 filepath);
   }
 }
 
