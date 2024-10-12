@@ -72,7 +72,7 @@ struct adp4_state_t
 
 static
 s32
-_clip_s32(const s64 v_,
+_clamp_s32(const s64 v_,
           const s32 l_,
           const s32 h_)
 {
@@ -164,15 +164,15 @@ _adp4_encode_sample(adp4_state_t *s_,
   u8  encoded_sample;
   
   difference = (orig_sample_ - s_->predicted_sample);
-  difference = _clip_s32(difference,-32768,32767);
+  difference = _clamp_s32(difference,-32768,32767);
 
   encoded_sample = _adp4_encode_difference(s_->stepsize,difference);
 
   s_->predicted_sample += _adp4_decode_difference(s_->stepsize,encoded_sample);
-  s_->predicted_sample = _clip_s32(s_->predicted_sample,-32768,32767);
+  s_->predicted_sample = _clamp_s32(s_->predicted_sample,-32768,32767);
 
   s_->index += g_INDEX_TABLE[encoded_sample];
-  s_->index = _clip_s32(s_->index,0,STEPSIZE_TABLE_MAX);
+  s_->index = _clamp_s32(s_->index,0,STEPSIZE_TABLE_MAX);
   s_->stepsize = g_STEPSIZE_TABLE[s_->index]; 
 
   return encoded_sample;
