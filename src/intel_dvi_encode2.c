@@ -57,8 +57,8 @@ g_STEPSIZE_TABLE[STEPSIZE_TABLE_SIZE] =
     15289, 16818, 18500, 20350, 22385, 24623, 27086, 29794, 32767
   };
 
-typedef struct state_t state_t;
-struct state_t
+typedef struct adp4_state_t adp4_state_t;
+struct adp4_state_t
 {
   int predicted_sample;
   int index;
