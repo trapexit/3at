@@ -143,7 +143,7 @@ _adp4_decode_difference(const s32 stepsize_,
   difference = 0;
     
   if(sample_ & 0x4)
-    difference = stepsize_;
+    difference += stepsize_;
   if(sample_ & 0x2)
     difference += (stepsize_ >> 1);
   if(sample_ & 0x1)
