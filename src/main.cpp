@@ -51,6 +51,10 @@ generate_to_sdx2_argparser(CLI::App      &app_,
     ->type_name("PATH")
     ->check(CLI::ExistingFile)
     ->required();
+  subcmd->add_option("--channels",opts.channels)
+    ->description("Number of audio channels")
+    ->check(CLI::IsMember({1,2}))
+    ->required();
 
   auto func = std::bind(SubCmd::to_sdx2,
                         std::cref(opts));
