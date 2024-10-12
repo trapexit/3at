@@ -13,7 +13,7 @@ namespace l
   {
     for(auto const &filepath : opts_.filepaths)
       {
-        std::vector<char*> args;
+        std::vector<const char*> args;
         std::string filepath_str;
 
         filepath_str = filepath.string();
