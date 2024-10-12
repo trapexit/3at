@@ -31,7 +31,7 @@ namespace l
         args.push_back(filepath.string().c_str());
         args.push_back(NULL);
 
-        fmt::print("subcmd::play({});\n",filepath);
+        fmt::print("subcmd::play({});\n",filepath.string().c_str());
         struct subprocess_s subproc;
         int rv = subprocess_create(args.data(),
                                    subprocess_option_combined_stdout_stderr|
