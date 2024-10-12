@@ -175,6 +175,7 @@ _adp4_encode_sample(adp4_state_t *s_,
   /* adjust index into stepsize lookup table using new sample */  
   s_->index += g_INDEX_TABLE[encoded_sample];
   s_->index = _clamp_s32(s_->index,0,STEPSIZE_TABLE_MAX);
+  /* find new quantizer stepsize */  
   s_->stepsize = g_STEPSIZE_TABLE[s_->index]; 
 
   return encoded_sample;
