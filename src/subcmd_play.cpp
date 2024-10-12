@@ -37,6 +37,10 @@ namespace l
                                    &subproc);
         fmt::print("rv = {}\n",rv);
         subprocess_join(&subproc,&rv);
+
+        FILE *stdoutf = subprocess_stdout(&subproc);
+        FILE *stderrf = subprocess_stderr(&subproc);
+        
         fmt::print("rv = {}\n",rv);
         subprocess_destroy(&subproc);
       }
