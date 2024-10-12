@@ -16,6 +16,7 @@ namespace l
         std::vector<const char*> args;
 
         args.push_back("ffplay");
+        args.push_back("-hide_banner");
         args.push_back("-autoexit");
         args.push_back("-volume");
         args.push_back("25");
