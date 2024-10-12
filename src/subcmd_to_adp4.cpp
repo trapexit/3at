@@ -73,7 +73,7 @@ namespace l
     // https://3dodev.com/documentation/development/opera/pf25/ppgfldr/mgsfldr/mprfldr/01mpr021
     output_data.resize(((output_data.size() + 3) / 4) * 4);
 
-    convert_to_s16be(filepath_, 1, 22050, input_data)
+    convert_to_s16be(filepath_, 1, 22050, input_data);
     // fread(&input_data[0],
     //       sizeof(s16),
     //       input_data.size(),
