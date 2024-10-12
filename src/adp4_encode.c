@@ -112,27 +112,6 @@ _adp4_encode_difference(s32 stepsize_,
     }
 
   return sample;
-  
-  if(difference_ >= stepsize_)
-    {
-      sample |= 4;
-      difference_ += stepsize_;
-    }
-
-  stepsize_ >>= 1;
-  if(difference_ >= stepsize_)
-    {
-      sample |= 2;
-      difference_ -= stepsize_;
-    }
-
-  stepsize_ >>= 1;
-  if(difference_ >= stepsize_)
-    {
-      sample |= 1;
-    }
-
-  return sample;
 }
 
 static
