@@ -54,7 +54,7 @@ namespace l
     std::vector<s16> input_data;
     std::vector<u8> output_data;
     u32 sample_count;
-    std::filepath::path output_filepath;
+    std::filesystem::path output_filepath;
 
     output_filepath = filepath_ + ".adp4.raw"
     
