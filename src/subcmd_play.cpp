@@ -11,7 +11,7 @@ namespace l
   {
     for(auto &filepath : opts_.filepaths)
       {
-        std::vector<char*> args;
+        std::vector<const char*> args;
 
         args.push_back("ffplay");
         args.push_back("-volume");
