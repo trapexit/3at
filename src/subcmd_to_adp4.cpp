@@ -19,7 +19,7 @@
 #include "subcmd_to_adp4.hpp"
 
 #include "fmt.hpp"
-#include "intel_dvi_encode.h"
+#include "adp4_encode.h"
 #include "options.hpp"
 #include "types_ints.h"
 
