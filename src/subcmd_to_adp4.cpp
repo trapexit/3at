@@ -58,6 +58,12 @@ namespace l
     u32 sample_count;
     std::filesystem::path output_filepath;
 
+
+    if(ffmpeg_file_recognizable(filepath_))
+      fmt::print("ffmpeg understand file\n");
+    else
+      fmt::print("ffmpeg DOES NOT understand file\n");      
+    
     output_filepath = filepath_;
     output_filepath += ".adp4.1ch.raw";
     
