@@ -45,7 +45,7 @@ generate_to_sdx2_argparser(CLI::App      &app_,
   CLI::App *subcmd;
   auto &opts = opts_.to_sdx2;
 
-  subcmd = app_.add_subcommand("to-sdx2","");
+  subcmd = app_.add_subcommand("to-sdx2","Convert input to SDX2 codec");
   subcmd->add_option("filepaths",opts.filepaths)
     ->description("Path to source file")
     ->type_name("PATH")
