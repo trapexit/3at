@@ -144,7 +144,7 @@ _adp4_decode_delta(s32 stepsize_,
 static
 u8
 _adp4_encode_sample(adp4_state_t *s_,
-                    const s16     input_sample_)
+                    const s16     orig_sample_)
 {
   s32 delta;
   u8  encoded_sample;
