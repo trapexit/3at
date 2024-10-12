@@ -35,7 +35,7 @@
 static
 const
 s8
-g_INDEX_DELTA_TABLE[INDEX_TABLE_SIZE] =
+g_INDEX_TABLE[INDEX_TABLE_SIZE] =
   {
     -1, -1, -1, -1, 2, 4, 6, 8,
     -1, -1, -1, -1, 2, 4, 6, 8,
