@@ -85,10 +85,11 @@ _clip_s32(const s64 v_,
 
 static
 u8
-_adp4_encode_difference(s32 step_,
+_adp4_encode_difference(s32 stepsize_,
                         s32 difference_)
 {
   u8 sample;
+  u8 mask;
 
   sample = 0;
   if(difference_ < 0)
@@ -97,6 +98,34 @@ _adp4_encode_difference(s32 step_,
       difference_ = -difference_;
     }
 
+  mask = 4;
+  for(int i = 0; i < 3; i++)
+    {
+      if(difference_ >= stepsize_)
+        {
+          sample |= mask;
+          difference_ -= stepsize_;
+        }
+
+      stepsize_ >>= 1;
+      mask      >>= 1;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   if(difference_ >= step_)
     {
       sample |= 4;
