@@ -75,10 +75,9 @@ namespace l
           in_file);
 
     if(encoder_ == "default")
-      adp4_encode(&state,
-                       input_data.data(),
-                       input_data.size(),
-                       output_data.data());
+      adp4_encode(input_data.data(),
+                  input_data.size(),
+                  output_data.data());
     else if(encoder_ == "bar")
       intel_dvi_encode2(&state,
                         input_data.data(),
