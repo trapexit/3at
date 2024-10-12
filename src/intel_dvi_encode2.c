@@ -145,7 +145,7 @@ _encode_sample(struct state_t *s_,
   u8  encoded_sample;
   
   delta = (input_sample_ - s_->predicted_sample);
-  delta = clip_int(delta,-32768,32767);
+  delta = clip_s32(delta,-32768,32767);
 
   encoded_sample = _encode_delta(s_->stepsize,delta);
 
