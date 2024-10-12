@@ -31,6 +31,11 @@ generate_to_adp4_argparser(CLI::App      &app_,
     ->description("")
     ->check(CLI::IsMember({"default"}))
     ->default_val("default");
+  subcmd->add_option("--freq",opts.freq)
+    ->description("Output frequency")
+    ->check(CLI::IsMember({"default"}))
+    ->default_val("default");
+
 
   auto func = std::bind(SubCmd::to_adp4,
                         std::cref(opts));
