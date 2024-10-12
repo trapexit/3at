@@ -80,8 +80,8 @@ clip_s32(const s64 v_,
 
 static
 u8
-_encode_delta(s32 step_,
-              s32 delta_)
+_adp4_encode_delta(s32 step_,
+                   s32 delta_)
 {
   u8 sample;
 
