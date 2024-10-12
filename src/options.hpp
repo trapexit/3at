@@ -20,7 +20,9 @@ namespace Opts
   struct ToSDX2
   {
     std::vector<std::filesystem::path> filepaths;
+    std::string encoder;
     int channels;
+    std::filesystem::path output_path;    
   };
 
   struct Play
