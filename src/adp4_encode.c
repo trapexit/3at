@@ -124,21 +124,21 @@ s32
 _adp4_decode_difference(s32 stepsize_,
                         u8  sample_)
 {
-  s32 delta;
+  s32 difference;
 
-  delta = 0;
+  difference = 0;
     
   if(sample_ & 4)
-    delta = stepsize_;
+    difference = stepsize_;
   if(sample_ & 2)
-    delta += (stepsize_ >> 1);
+    difference += (stepsize_ >> 1);
   if(sample_ & 1)
-    delta += (stepsize_ >> 2);
-  delta += (stepsize_ >> 3);
+    difference += (stepsize_ >> 2);
+  difference += (stepsize_ >> 3);
   if(sample_ & 8)
-    delta = -delta;
+    difference = -difference;
     
-  return delta;
+  return difference;
 }
 
 static
