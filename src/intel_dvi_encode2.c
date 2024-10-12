@@ -231,7 +231,7 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
         {
           output_data_[i] = adp4_sample;
         }
-    }  
+    }
 
   return;
   /* u8 output; */
