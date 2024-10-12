@@ -223,19 +223,17 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
 
       adp4_sample = _encode_sample(&s,input_data_[i]);
       if(i & 1)
-        
-        
-      
-      output_data_[j] = _encode_sample(&s,input_data_[i + 0]);
-      output_data_[j] =
-        (output_data_[j] << 4) |
-        _encode_sample(&s,input_data_[i + 1]);
+        {
+          output_data_[i] <<= 4;
+          output_data_[i] |= adp4_sample;
+        }
+      else
+        {
+          output_data_[i] = adp4_sample;
+        }
     }  
 
   return;
-
-  
-  /* int i; */
   /* u8 output; */
   /* state_t s; */
   /* int step; */
