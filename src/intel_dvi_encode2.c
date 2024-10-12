@@ -27,7 +27,6 @@
 
 #include "intel_dvi_encode.h"
 #include "types_ints.h"
-#include <stdint.h>
 
 #define INDEX_TABLE_SIZE 16
 #define STEPSIZE_TABLE_SIZE 89
