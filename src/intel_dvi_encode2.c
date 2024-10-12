@@ -116,10 +116,10 @@ _encode_delta(s32 step_,
 
 static
 s32
-_decode_delta(int step_,
+_decode_delta(s32 step_,
               u8  sample_)
 {
-  int delta;
+  s32 delta;
 
   delta = 0;
     
