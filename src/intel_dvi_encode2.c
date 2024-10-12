@@ -43,7 +43,7 @@ g_INDEX_TABLE[INDEX_TABLE_SIZE] =
 
 static
 const
-u32
+u16
 g_STEPSIZE_TABLE[STEPSIZE_TABLE_SIZE] = 
   {
     7, 8, 9, 10, 11, 12, 13, 14, 16, 17,
