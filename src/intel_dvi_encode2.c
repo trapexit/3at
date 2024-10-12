@@ -138,8 +138,8 @@ _decode_delta(s32 step_,
 
 static
 u8
-_encode_sample(struct state_t *s_,
-               const s16       input_sample_)
+_encode_sample(adp4_state_t *s_,
+               const s16     input_sample_)
 {
   s32 delta;
   u8  encoded_sample;
