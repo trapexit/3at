@@ -104,6 +104,8 @@ _adp4_quantize_difference(s32 stepsize_,
       stepsize_ >>= 1;
       mask      >>= 1;
     }
+
+  return sample_;
 }
 
 static
