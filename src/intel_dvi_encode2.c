@@ -60,7 +60,7 @@ g_STEPSIZE_TABLE[STEPSIZE_TABLE_SIZE] =
 typedef struct state_t state_t;
 struct state_t
 {
-  int predictedSample;
+  int predicted_sample;
   int index;
   int stepsize;
 };
