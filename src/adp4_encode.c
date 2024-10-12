@@ -85,14 +85,20 @@ _clip_s32(const s64 v_,
 
 static
 u8
-_adp4_quantize_difference(s32 stepsize_,
-                          s32 difference_,
-                          u8  sample_)
+_adp4_quantize_difference(const s32 stepsize_,
+                          const s32 difference_,
+                          const u8  sample_)
 {
   int i;  
   u8 mask;
-
-  mask = 4;
+  u8 sample;
+  s32 stepsize;
+  s32 difference;
+  
+  sample     = sample_;
+  stepsize   = stepsize_;
+  difference = difference_;
+  mask       = 4;
   for(i = 0; i < 3; i++)
     {
       if(difference_ >= stepsize_)
