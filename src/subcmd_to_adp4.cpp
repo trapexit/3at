@@ -56,7 +56,7 @@ namespace l
     u32 sample_count;
     std::filepath::path output_filepath;
 
-    output_filepath = filepath_ + "adp4.raw"
+    output_filepath = filepath_ + ".adp4.raw"
     
     in_file  = fopen(filepath_.string().c_str(),"rb");
     out_file = fopen(output_filepath.string().c_str(),"wb");
