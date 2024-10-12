@@ -60,6 +60,10 @@ generate_to_sdx2_argparser(CLI::App      &app_,
     ->description("Number of audio channels")
     ->check(CLI::IsMember({1,2}))
     ->required();
+  subcmd->add_option("--freq",opts.freq)
+    ->description("Output frequency")
+    ->check(CLI::IsMember({22050,44100}))
+    ->default_val(22050);  
 
   auto func = std::bind(SubCmd::to_sdx2,
                         std::cref(opts));
