@@ -67,7 +67,20 @@ void
 generate_play_argparser(CLI::App      &app_,
                         Opts::Options &opts_)
 {
+  CLI::App *subcmd;
+  auto &opts = opts_.play;
 
+  subcmd = app_.add_subcommand("play","Play file using ffplay if available");
+  subcmd->add_option("filepaths",opts.filepaths)
+    ->description("Path to source file")
+    ->type_name("PATH")
+    ->check(CLI::ExistingFile)
+    ->required();
+
+  auto func = std::bind(SubCmd::play,
+                        std::cref(opts));
+
+  subcmd->callback(func);
 }
 
 static
