@@ -115,7 +115,7 @@ _encode_delta(s32 step_,
 }
 
 static
-int
+s32
 _decode_delta(int step_,
               u8  sample_)
 {
