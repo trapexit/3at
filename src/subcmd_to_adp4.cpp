@@ -25,7 +25,6 @@
 #include "types_ints.h"
 
 #include <vector>
-
 #include <cstdio>
 
 namespace l
