@@ -43,7 +43,8 @@ namespace l
                                    &subproc);
         //        if(rv != 0)
           {
-            fmt::print("Error running {}\n",std::vector{"foo","bar"});
+            args.pop_back();
+            fmt::print("Error running {}\n",args);
             continue;
           }
         
