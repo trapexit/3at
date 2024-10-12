@@ -124,7 +124,7 @@ _adp4_encode_difference(s32 stepsize_,
   sample = 0;
   if(difference_ < 0)
     {
-      sample = 8;
+      sample = 0x08;
       difference_ = -difference_;
     }
 
