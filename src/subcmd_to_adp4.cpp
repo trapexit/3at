@@ -19,6 +19,8 @@
 #include "subcmd_to_adp4.hpp"
 
 #include "adp4_encode.h"
+#include "convert_to_s16be.hpp"
+
 #include "fmt.hpp"
 
 #include "options.hpp"
