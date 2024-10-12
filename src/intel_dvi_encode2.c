@@ -65,7 +65,7 @@
 static
 const
 s8
-indexTable[INDEX_TABLE_SIZE] =
+g_index_delta_table[INDEX_TABLE_SIZE] =
   {
     -1, -1, -1, -1, 2, 4, 6, 8,
     -1, -1, -1, -1, 2, 4, 6, 8,
