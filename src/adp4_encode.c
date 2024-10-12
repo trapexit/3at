@@ -146,15 +146,15 @@ u8
 _adp4_encode_sample(adp4_state_t *s_,
                     const s16     orig_sample_)
 {
-  s32 delta;
+  s32 difference;
   u8  encoded_sample;
   
-  delta = (orig_sample_ - s_->predicted_sample);
-  delta = _clip_s32(delta,-32768,32767);
+  difference = (orig_sample_ - s_->predicted_sample);
+  difference = _clip_s32(difference,-32768,32767);
 
-  encoded_sample = _adp4_encode_delta(s_->stepsize,delta);
+  encoded_sample = _adp4_encode_difference(s_->stepsize,difference);
 
-  s_->predicted_sample += _adp4_decode_delta(s_->stepsize,encoded_sample);
+  s_->predicted_sample += _adp4_decode_difference(s_->stepsize,encoded_sample);
   s_->predicted_sample = _clip_s32(s_->predicted_sample,-32768,32767);
 
   s_->index += g_INDEX_TABLE[encoded_sample];
