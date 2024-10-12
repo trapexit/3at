@@ -67,9 +67,9 @@ struct adp4_state_t
 
 static
 s32
-clip_s32(const s64 v_,
-         const s32 l_,
-         const s32 h_)
+_clip_s32(const s64 v_,
+          const s32 l_,
+          const s32 h_)
 {
   if(v_ < l_)
     return l_;
