@@ -44,11 +44,20 @@ namespace l
         std::vector<char> buf;
 
         buf.resize(4097);
-        while(!feof(stdoutf))
+        while(true)
           {
-            fgets(&buf[0],buf.size()-1,stdoutf);
-            *buf.rbegin() = 0;
-            fmt::print("{}",buf.data());
+            if(!feof(stdoutf))
+              {
+                fgets(&buf[0],buf.size()-1,stdoutf);
+                *buf.rbegin() = 0;
+                fmt::print("{}",buf.data());
+              }
+            if(!feof(stderrf))
+              {
+                fgets(&buf[0],buf.size()-1,stdoutf);
+                *buf.rbegin() = 0;
+                fmt::print("{}",buf.data());
+              }            
           }
         
         fmt::print("rv = {}\n",rv);
