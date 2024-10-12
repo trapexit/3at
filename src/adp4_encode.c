@@ -198,7 +198,7 @@ adp4_encode(const s16 *input_data_,
   s.stepsize = 7;
 
   shift = 1;
-  for(i = 0; i < sample_count_; i++)
+  for(i_idx = 0; i_idx < sample_count_; i_idx++)
     {
       u8 adp4_sample;
 
