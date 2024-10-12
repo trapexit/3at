@@ -57,7 +57,10 @@ namespace l
                 fgets(&buf[0],buf.size()-1,stderrf);
                 *buf.rbegin() = 0;
                 fmt::print("{}",buf.data());
-              }            
+              }
+
+            if(feof(stdoutf) && feof(stderrf))
+              break;
           }
         
         fmt::print("rv = {}\n",rv);
