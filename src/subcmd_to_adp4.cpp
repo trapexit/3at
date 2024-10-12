@@ -18,8 +18,9 @@
 
 #include "subcmd_to_adp4.hpp"
 
-#include "fmt.hpp"
 #include "adp4_encode.h"
+#include "fmt.hpp"
+
 #include "options.hpp"
 #include "types_ints.h"
 
