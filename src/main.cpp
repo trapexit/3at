@@ -28,7 +28,7 @@ generate_to_adp4_argparser(CLI::App      &app_,
     ->required();
   subcmd->add_option("--encoder",opts.encoder)
     ->description("")
-    ->check(CLI::IsMember({"foo","bar"}))
+    ->check(CLI::IsMember({"default"}))
     ->default_val("foo");
 
   auto func = std::bind(SubCmd::to_adp4,
