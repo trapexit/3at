@@ -47,7 +47,7 @@ namespace l
           {
             fgets(&buf[0],buf.size()-1,stdoutf);
             *buf.rbegin() = 0;
-            fmt::print
+            fmt::print("{}",buf.data());
           }
         
         fmt::print("rv = {}\n",rv);
