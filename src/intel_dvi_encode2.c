@@ -182,7 +182,7 @@ _encode_sample(struct state_t *s_,
   s_->predictedSample += _decode_delta(s_->stepsize,encoded_sample);
   s_->predictedSample = clip_int(s_->predictedSample,-32768,32767);
 
-  s_->index += indexTable[encoded_sample];
+  s_->index += g_index_delta_table[encoded_sample];
   s_->index = clip_int(s_->index,0,STEPSIZE_TABLE_MAX);
   s_->stepsize = stepsizeTable[s_->index]; 
 
