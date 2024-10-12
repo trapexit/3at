@@ -116,8 +116,8 @@ _encode_delta(s32 step_,
 
 static
 s32
-_decode_delta(s32 step_,
-              u8  sample_)
+_adp4_decode_delta(s32 step_,
+                   u8  sample_)
 {
   s32 delta;
 
