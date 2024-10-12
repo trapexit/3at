@@ -14,7 +14,7 @@ namespace l
     for(auto const &filepath : opts_.filepaths)
       {
         std::vector<const char*> args;
-        std::string filename;
+        std::string filepath_str;
 
         args.push_back("ffplay");
         args.push_back("-hide_banner");
