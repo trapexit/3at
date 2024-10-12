@@ -11,7 +11,7 @@ namespace l
   void
   play(Opts::Play const &opts_)
   {
-    for(auto &filepath : opts_.filepaths)
+    for(auto const &filepath : opts_.filepaths)
       {
         std::vector<const char*> args;
 
