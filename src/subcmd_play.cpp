@@ -39,6 +39,9 @@ namespace l
         fmt::print("rv = {}\n",rv);
         subprocess_join(&subproc,&rv);
 
+        subprocess_destroy(&subproc);
+        continue;
+        
         FILE *stdoutf = subprocess_stdout(&subproc);
         FILE *stderrf = subprocess_stderr(&subproc);
         std::vector<char> buf;
