@@ -67,7 +67,7 @@ namespace l
     sample_count = l::file_size(in_file);
     sample_count >>= 1;
     
-    input_data.resize(sample_count);
+    //    input_data.resize(sample_count);
     // 4bits per sample, 2 samples per byte
     output_data.resize(sample_count >> 1); 
 
