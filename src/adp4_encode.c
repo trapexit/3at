@@ -172,7 +172,7 @@ _adp4_encode_sample(adp4_state_t *s_,
   s_->predicted_sample = _clamp_s32(s_->predicted_sample,-32768,32767);
 
   /* compute new stepsize */
-  /* adjust index into stepsize lookup table using newSample */  
+  /* adjust index into stepsize lookup table using new sample */  
   s_->index += g_INDEX_TABLE[encoded_sample];
   s_->index = _clamp_s32(s_->index,0,STEPSIZE_TABLE_MAX);
   s_->stepsize = g_STEPSIZE_TABLE[s_->index]; 
