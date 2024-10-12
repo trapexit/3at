@@ -38,9 +38,6 @@ namespace l
                                    subprocess_option_search_user_path,
                                    &subproc);
         fmt::print("rv = {}\n",rv);
-        subprocess_join(&subproc,&rv);
-
-
         std::vector<char> buf;
 
         buf.resize(4097);
@@ -55,7 +52,8 @@ namespace l
             buf[err] = 0;
             fmt::print("{}",buf.data());
           }
-        
+
+        subprocess_join(&subproc,&rv);
         fmt::print("rv = {}\n",rv);
         subprocess_destroy(&subproc);
       }
