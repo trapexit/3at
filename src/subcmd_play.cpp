@@ -29,7 +29,10 @@ namespace l
         args.push_back(filepath.string().c_str());
 
         fmt::print("subcmd::play({});\n",filepath);
-                
+        struct subprocess_s subproc;
+        int rv = subprocess_create(args.data(),
+                                   0,
+                                   &subproc);
       }
   }
 }
