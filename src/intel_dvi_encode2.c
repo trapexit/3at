@@ -233,5 +233,5 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
     }
 
   if(!shift)
-    *output_data_++ = output;
+    *output_data_++ = output_byte;
 }
