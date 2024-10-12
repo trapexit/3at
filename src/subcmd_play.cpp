@@ -43,7 +43,7 @@ namespace l
 
         std::vector<char> buf;
 
-        buf.resize(4097);
+        buf.resize(80 * 2 + 1);
         while(true)
           {
             int err;
