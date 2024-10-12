@@ -144,13 +144,13 @@ _encode_sample(struct state_t *s_,
   s32 delta;
   u8  encoded_sample;
   
-  delta = (input_sample_ - s_->predictedSample);
+  delta = (input_sample_ - s_->predicted_sample);
   delta = clip_int(delta,-32768,32767);
 
   encoded_sample = _encode_delta(s_->stepsize,delta);
 
-  s_->predictedSample += _decode_delta(s_->stepsize,encoded_sample);
-  s_->predictedSample = clip_int(s_->predictedSample,-32768,32767);
+  s_->predicted_sample += _decode_delta(s_->stepsize,encoded_sample);
+  s_->predicted_sample = clip_int(s_->predicted_sample,-32768,32767);
 
   s_->index += g_INDEX_TABLE[encoded_sample];
   s_->index = clip_int(s_->index,0,STEPSIZE_TABLE_MAX);
@@ -171,7 +171,7 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
   u8 output_byte;
 
   s.index = 0;
-  s.predictedSample = 0;
+  s.predicted_sample = 0;
   s.stepsize = 7;
 
   shift = 1;
