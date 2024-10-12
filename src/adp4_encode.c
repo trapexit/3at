@@ -85,33 +85,33 @@ _clip_s32(const s64 v_,
 
 static
 u8
-_adp4_encode_delta(s32 step_,
-                   s32 delta_)
+_adp4_encode_difference(s32 step_,
+                        s32 difference_)
 {
   u8 sample;
 
   sample = 0;
-  if(delta_ < 0)
+  if(difference_ < 0)
     {
       sample = 8;
-      delta_ = -delta_;
+      difference_ = -difference_;
     }
 
-  if(delta_ >= step_)
+  if(difference_ >= step_)
     {
       sample |= 4;
-      delta_ += step_;
+      difference_ += step_;
     }
 
   step_ >>= 1;
-  if(delta_ >= step_)
+  if(difference_ >= step_)
     {
       sample |= 2;
-      delta_ -= step_;
+      difference_ -= step_;
     }
 
   step_ >>= 1;
-  if(delta_ >= step_)
+  if(difference_ >= step_)
     {
       sample |= 1;
     }
