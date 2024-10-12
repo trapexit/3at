@@ -53,7 +53,7 @@ namespace l
     FILE *out_file;
     std::vector<s16> input_data;
     std::vector<u8> output_data;
-    u32  sample_count;
+    u32 sample_count;
 
     in_file  = fopen(filepath_.string().c_str(),"rb");
     out_file = fopen("adp4.test.raw","wb");
