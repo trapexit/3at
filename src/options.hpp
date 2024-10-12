@@ -19,6 +19,7 @@ namespace Opts
   struct ToSDX2
   {
     std::vector<std::filesystem::path> filepaths;
+    int channels;
   };
 
   struct Options
