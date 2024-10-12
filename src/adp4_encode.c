@@ -25,7 +25,6 @@
   OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
 
-#include "adp4_encode.h"
 #include "types_ints.h"
 
 #define INDEX_TABLE_SIZE 16
