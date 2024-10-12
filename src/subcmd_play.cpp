@@ -26,7 +26,7 @@ namespace l
         args.push_back("22050");
         args.push_back(filepath.string().c_str());
 
-        fmt::print(args);
+        fmt::print("{}\n",args);
         fmt::print("subcmd::play({});\n",filepath);
         
       }
