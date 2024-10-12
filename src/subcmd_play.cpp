@@ -33,8 +33,7 @@ namespace l
         struct subprocess_s subproc;
         int rv = subprocess_create(args.data(),
                                    subprocess_option_inherit_environment|
-                                   subprocess_option_search_user_path
-                                   0,
+                                   subprocess_option_search_user_path,
                                    &subproc);
         fmt::print("rv = {}\n",rv);
         subprocess_join(&subproc,&rv);
