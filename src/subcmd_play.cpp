@@ -1,5 +1,7 @@
 #include "subcmd_play.hpp"
 
+#include "subprocess.h"
+
 #include "fmt.hpp"
 
 #include <vector>
@@ -27,7 +29,7 @@ namespace l
         args.push_back(filepath.string().c_str());
 
         fmt::print("subcmd::play({});\n",filepath);
-        
+                
       }
   }
 }
