@@ -154,7 +154,7 @@ _adp4_encode_sample(adp4_state_t *s_,
 
   encoded_sample = _adp4_encode_delta(s_->stepsize,delta);
 
-  s_->predicted_sample += _decode_delta(s_->stepsize,encoded_sample);
+  s_->predicted_sample += _adp4_decode_delta(s_->stepsize,encoded_sample);
   s_->predicted_sample = _clip_s32(s_->predicted_sample,-32768,32767);
 
   s_->index += g_INDEX_TABLE[encoded_sample];
