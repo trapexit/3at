@@ -145,6 +145,9 @@ static
 s32
 _adp4_decode_difference(s32 stepsize_,
                         u8  sample_)
+{
+  
+}
 
 static
 u8
