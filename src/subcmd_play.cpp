@@ -34,7 +34,7 @@ namespace l
         int rv = subprocess_create(args.data(),
                                    0,
                                    &subproc);
-        
+        subprocess_join(&subproc,&rv);
       }
   }
 }
