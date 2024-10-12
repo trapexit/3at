@@ -51,7 +51,7 @@ namespace l
             err = subprocess_read_stdout(&subproc,&buf[0],buf.size()-1);
             if(err == 0)
               break;
-            *buf.rbegin() = 0;
+            buf[err] = 0;
             fmt::print("{}",buf.data());
           }
         
