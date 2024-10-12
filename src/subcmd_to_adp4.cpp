@@ -51,7 +51,6 @@ namespace l
   {
     FILE *in_file;
     FILE *out_file;
-
     std::vector<s16> input_data;
     std::vector<u8> output_data;
     u32  sample_count;
