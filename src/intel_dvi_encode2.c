@@ -60,16 +60,16 @@ g_STEPSIZE_TABLE[STEPSIZE_TABLE_SIZE] =
 typedef struct adp4_state_t adp4_state_t;
 struct adp4_state_t
 {
-  int predicted_sample;
-  int index;
-  int stepsize;
+  s32 predicted_sample;
+  s32 index;
+  s32 stepsize;
 };
 
 static
-int
-clip_int(const s64 v_,
-         const int l_,
-         const int h_)
+s32
+clip_s32(const s64 v_,
+         const s32 l_,
+         const s32 h_)
 {
   if(v_ < l_)
     return l_;
@@ -150,10 +150,10 @@ _encode_sample(struct state_t *s_,
   encoded_sample = _encode_delta(s_->stepsize,delta);
 
   s_->predicted_sample += _decode_delta(s_->stepsize,encoded_sample);
-  s_->predicted_sample = clip_int(s_->predicted_sample,-32768,32767);
+  s_->predicted_sample = clip_s32(s_->predicted_sample,-32768,32767);
 
   s_->index += g_INDEX_TABLE[encoded_sample];
-  s_->index = clip_int(s_->index,0,STEPSIZE_TABLE_MAX);
+  s_->index = clip_s32(s_->index,0,STEPSIZE_TABLE_MAX);
   s_->stepsize = g_STEPSIZE_TABLE[s_->index]; 
 
   return encoded_sample;
