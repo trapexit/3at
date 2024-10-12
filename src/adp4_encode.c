@@ -206,7 +206,7 @@ adp4_encode(const s16 *input_data_,
       if(shift)
         output_byte = (adp4_sample << 4);
       else
-        *output_data_++ = (output_byte | adp4_sample);
+        output_data_[o_idx++] = (output_byte | adp4_sample);
 
       shift = !shift;
     }
