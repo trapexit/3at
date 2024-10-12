@@ -38,6 +38,7 @@ namespace l
                                    subprocess_option_search_user_path,
                                    &subproc);
         fmt::print("rv = {}\n",rv);
+
         std::vector<char> buf;
 
         buf.resize(4097);
