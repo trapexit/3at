@@ -27,12 +27,14 @@ namespace l
         args.push_back("-ar");
         args.push_back("22050");
         args.push_back(filepath.string().c_str());
+        args.push_back(NULL);
 
         fmt::print("subcmd::play({});\n",filepath);
         struct subprocess_s subproc;
         int rv = subprocess_create(args.data(),
                                    0,
                                    &subproc);
+        
       }
   }
 }
