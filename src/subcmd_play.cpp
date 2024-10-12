@@ -43,7 +43,7 @@ namespace l
                                    &subproc);
         if(rv != 0)
           {
-            fmt::print("error\n");
+            fmt::print("Error running {}\n",args);
             continue;
           }
         
