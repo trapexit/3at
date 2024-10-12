@@ -39,8 +39,6 @@ namespace l
                                    subprocess_option_inherit_environment|
                                    subprocess_option_search_user_path,
                                    &subproc);
-        fmt::print("rv = {}\n",rv);
-
         std::vector<char> buf;
 
         buf.resize(80 * 2 + 1);
