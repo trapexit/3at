@@ -14,6 +14,7 @@ namespace Opts
   {
     std::vector<std::filesystem::path> filepaths;
     std::string encoder;
+    int freq;
     std::filesystem::path output_path;
   };
 
