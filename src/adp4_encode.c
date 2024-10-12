@@ -128,7 +128,7 @@ _adp4_encode_difference(s32 stepsize_,
       difference_ = -difference_;
     }
 
-  return _adp4_quantize_difference(stepsize_,difference_,sample_);
+  return _adp4_quantize_difference(stepsize_,difference_,sample);
 }
 
 static
