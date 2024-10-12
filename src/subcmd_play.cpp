@@ -46,7 +46,7 @@ namespace l
           {
             int err;
 
-            err = subprocess_read_stdout(&subproc,&buf[0],buf.size()-1);
+            err = subprocess_read_stderr(&subproc,&buf[0],buf.size()-1);
             fmt::print("{}\n",err);
             if(err == 0)
               break;
