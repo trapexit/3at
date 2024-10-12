@@ -135,8 +135,8 @@ _adp4_encode_difference(const s32 stepsize_,
 
 static
 s32
-_adp4_decode_difference(s32 stepsize_,
-                        u8  sample_)
+_adp4_decode_difference(const s32 stepsize_,
+                        const u8  sample_)
 {
   s32 difference;
 
