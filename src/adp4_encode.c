@@ -98,7 +98,7 @@ _adp4_quantize_difference(const s32 stepsize_,
   sample     = sample_;
   stepsize   = stepsize_;
   difference = difference_;
-  mask       = 4;
+  mask       = 0x04;
   for(i = 0; i < 3; i++)
     {
       if(difference >= stepsize)
