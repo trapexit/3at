@@ -66,8 +66,9 @@ namespace l
     sample_count >>= 1;
 
     input_data.resize(sample_count);
-    output_data.resize(sample_count >> 1); // 4bits per sample, 2
-                                           // samples per byte
+    // 4bits per sample, 2 samples per byte
+    output_data.resize(sample_count >> 1); 
+
     // Pad to word / 4 byte alignment for use with 3DO
     // https://3dodev.com/documentation/development/opera/pf25/ppgfldr/mgsfldr/mprfldr/01mpr021
     output_data.resize(((output_data.size() + 3) / 4) * 4);
