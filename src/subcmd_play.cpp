@@ -41,7 +41,7 @@ namespace l
                                    subprocess_option_inherit_environment|
                                    subprocess_option_search_user_path,
                                    &subproc);
-#        if(rv != 0)
+        //        if(rv != 0)
           {
             fmt::print("Error running {}\n",args);
             continue;
