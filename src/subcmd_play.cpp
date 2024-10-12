@@ -16,6 +16,7 @@ namespace l
         std::vector<const char*> args;
         std::string filepath_str;
 
+        filepath_str = filepath.string();
         args.push_back("ffplay");
         args.push_back("-hide_banner");
         args.push_back("-autoexit");
@@ -29,7 +30,7 @@ namespace l
         args.push_back("1");
         args.push_back("-ar");
         args.push_back("22050");
-        args.push_back(filepath.string().c_str());
+        args.push_back(filepath_str.c_str());
         args.push_back(NULL);
 
         fmt::print("subcmd::play({});\n",filepath.string().c_str());
