@@ -19,7 +19,7 @@ namespace l
         args.push_back("-hide_banner");
         args.push_back("-autoexit");
         args.push_back("-volume");
-        args.push_back("25");
+        args.push_back("5");
         args.push_back("-f");
         args.push_back("u8");
         args.push_back("-acodec");
