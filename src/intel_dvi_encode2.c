@@ -212,6 +212,7 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
   int i;
   int shift;
   state_t s;
+  u8 output_byte;
 
   s.index = 0;
   s.stepsize = 7;
@@ -223,7 +224,7 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
       u8 newSample;
 
       newSample = _encode_sample(&s,input_data_[i]);
-      if(step)
+      if(shift)
         output = (output << 4);
       else
         *output_data_++ = (output | newSample);
