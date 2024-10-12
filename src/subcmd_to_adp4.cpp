@@ -46,7 +46,7 @@ namespace l
 
     return size;
   }
-  
+
   void
   to_adp4(const std::filesystem::path &filepath_,
           const std::string           &encoder_)
