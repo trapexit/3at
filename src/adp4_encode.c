@@ -8,6 +8,11 @@
 
   ========================================================================
 
+  Other implementations:
+    * https://github.com/XProger/OpenLara/blob/master/src/platform/gba/packer/IMA.h
+    * https://github.com/Kalmalyzer/adpcm-68k/blob/master/Codec/codec.cpp
+  ========================================================================
+
   ISC License
 
   Copyright (c) 2024, Antonio SJ Musumeci <trapexit@spawn.link>
