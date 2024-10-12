@@ -2,6 +2,8 @@
 
 #include "fmt.hpp"
 
+#include <vector>
+
 
 namespace l
 {
@@ -9,8 +11,19 @@ namespace l
   play(Opts::Play const &opts_)
   {
     for(auto &filepath : opts_.filepaths)
-      fmt::print("subcmd::play({});\n",
-                 filepath);
+      {
+        std::vector<char*> args;
+
+        args.push_back("ffplay");
+        args.push_back("-volume");
+        args.push_back("-volume");
+        args.push_back("-volume");
+        args.push_back("-volume");
+        args.push_back("-volume");
+        
+          
+          fmt::print("subcmd::play({});\n",
+                     filepath);
   }
 }
 
