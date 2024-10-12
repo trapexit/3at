@@ -32,6 +32,8 @@ namespace l
         fmt::print("subcmd::play({});\n",filepath);
         struct subprocess_s subproc;
         int rv = subprocess_create(args.data(),
+                                   subprocess_option_inherit_environment|
+                                   subprocess_option_search_user_path
                                    0,
                                    &subproc);
         fmt::print("rv = {}\n",rv);
