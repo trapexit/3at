@@ -54,7 +54,7 @@ namespace l
               }
             if(!feof(stderrf))
               {
-                fgets(&buf[0],buf.size()-1,stdoutf);
+                fgets(&buf[0],buf.size()-1,stderrf);
                 *buf.rbegin() = 0;
                 fmt::print("{}",buf.data());
               }            
