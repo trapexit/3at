@@ -142,14 +142,6 @@ _adp4_decode_difference(s32 stepsize_,
 }
 
 static
-s32
-_adp4_decode_difference(s32 stepsize_,
-                        u8  sample_)
-{
-  
-}
-
-static
 u8
 _adp4_encode_sample(adp4_state_t *s_,
                     const s16     orig_sample_)
