@@ -4,7 +4,7 @@
   Multimedia Systems" by the IMA Digital Audio Focus and Technical
   Working Groups Revision 3.00 from 1992-10-21. Specifically Appendix
   D: Reference Algorithms section 6 "ADPCM Reference Algorithms" on
-  page 28.
+  page 28. See docs/IMA_ADPCM.pdf
 
   ========================================================================
 
