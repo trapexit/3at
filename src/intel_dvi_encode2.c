@@ -217,7 +217,7 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
   s.stepsize = 7;
   s.predictedSample = 0;
 
-  step = 1;
+  shift = 1;
   for(i = 0; i < sample_count_; i++)
     {
       u8 newSample;
