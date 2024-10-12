@@ -183,7 +183,7 @@ adp4_encode(const s16 *input_data_,
     {
       u8 adp4_sample;
 
-      adp4_sample = _encode_sample(&s,input_data_[i]);
+      adp4_sample = _adp4_encode_sample(&s,input_data_[i]);
       if(shift)
         output_byte = (adp4_sample << 4);
       else
