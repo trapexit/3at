@@ -31,7 +31,7 @@ generate_to_adp4_argparser(CLI::App      &app_,
     ->description("")
     ->check(CLI::IsMember({"default"}))
     ->default_val("default");
-  subcmd->add_option("--freq",opts.freq)
+  subcmd->add_option("--freq",opts.output_freq)
     ->description("Output frequency")
     ->check(CLI::IsMember({22050,44100}))
     ->default_val(22050);
