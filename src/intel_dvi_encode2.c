@@ -203,9 +203,6 @@ _encode_sample(struct state_t *s_,
   return encoded_sample;
 }
 
-long lastEstimateL, stepSizeL, stepIndexL;
-long lastEstimateR, stepSizeR, stepIndexR;
-
 void
 intel_dvi_encode2(IntelDVIEncodeState *state_,
                   const s16           *input_data_,
