@@ -3,6 +3,7 @@
 #include "options.hpp"
 #include "subcmd_to_adp4.hpp"
 #include "subcmd_to_sdx2.hpp"
+#include "subcmd_play.hpp"
 
 #include <unistd.h>
 
