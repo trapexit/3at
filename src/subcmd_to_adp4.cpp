@@ -62,7 +62,9 @@ namespace l
     if(ffmpeg_file_recognizable(filepath_))
       fmt::print("ffmpeg understand file\n");
     else
-      fmt::print("ffmpeg DOES NOT understand file\n");      
+      fmt::print("ffmpeg DOES NOT understand file\n");
+
+    return;
     
     output_filepath = filepath_;
     output_filepath += ".adp4.1ch.raw";
