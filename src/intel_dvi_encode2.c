@@ -210,52 +210,27 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
                   u8                  *output_data_)
 {
   int i;
+  int shift;
   state_t s;
-  
 
   s.index = 0;
   s.stepsize = 7;
   s.predictedSample = 0;
 
-  for(i = 0; i < sample_count_; i+=1)
+  step = 1;
+  for(i = 0; i < sample_count_; i++)
     {
-      u8 adp4_sample;
+      u8 newSample;
 
-      adp4_sample = _encode_sample(&s,input_data_[i]);
-      if(i & 1)
-        {
-          output_data_[i] <<= 4;
-          output_data_[i] |= adp4_sample;
-        }
+      newSample = _encode_sample(&s,input_data_[i]);
+      if(step)
+        output = (output << 4);
       else
-        {
-          output_data_[i] = adp4_sample;
-        }
+        *output_data_++ = (output | newSample);
+
+      step = !step;
     }
 
-  return;
-  /* u8 output; */
-  /* state_t s; */
-  /* int step; */
-
-  /* s.predictedSample = 0; */
-  /* s.index = 0; */
-  /* s.stepsize = 7; */
-
-  /* step = 1; */
-  /* for(i = 0; i < sample_count_; i++) */
-  /*   { */
-  /*     u8 newSample; */
-
-  /*     newSample = _encode_sample(&s,input_data_[i]); */
-  /*     if(step) */
-  /*       output = (output << 4); */
-  /*     else */
-  /*       *output_data_++ = (output | newSample); */
-
-  /*     step = !step; */
-  /*   } */
-
-  /* if(!step) */
-  /*   *output_data_++ = output; */
+  if(!step)
+    *output_data_++ = output;
 }
