@@ -238,6 +238,7 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
 {
   int i;
   state_t s;
+  
 
   s.index = 0;
   s.stepsize = 7;
@@ -245,6 +246,13 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
 
   for(i = 0; i < sample_count_; i+=1)
     {
+      u8 adp4_sample;
+
+      adp4_sample = _encode_sample(&s,input_data_[i]);
+      if(i & 1)
+        
+        
+      
       output_data_[j] = _encode_sample(&s,input_data_[i + 0]);
       output_data_[j] =
         (output_data_[j] << 4) |
