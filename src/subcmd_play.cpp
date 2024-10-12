@@ -30,7 +30,7 @@ namespace l
         args.push_back("1");
         args.push_back("-ar");
         args.push_back("22050");
-        args.push_back(filepath_str.c_str());
+        args.push_back(filepath.c_str());
         args.push_back(NULL);
 
         fmt::print("subcmd::play({});\n",filepath.string().c_str());
