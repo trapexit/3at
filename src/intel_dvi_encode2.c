@@ -35,7 +35,7 @@
 static
 const
 s8
-g_index_delta_table[INDEX_TABLE_SIZE] =
+g_INDEX_DELTA_TABLE[INDEX_TABLE_SIZE] =
   {
     -1, -1, -1, -1, 2, 4, 6, 8,
     -1, -1, -1, -1, 2, 4, 6, 8,
@@ -44,7 +44,7 @@ g_index_delta_table[INDEX_TABLE_SIZE] =
 static
 const
 u32
-g_stepsize_table[STEPSIZE_TABLE_SIZE] = 
+g_STEPSIZE_TABLE[STEPSIZE_TABLE_SIZE] = 
   {
     7, 8, 9, 10, 11, 12, 13, 14, 16, 17,
     19, 21, 23, 25, 28, 31, 34, 37, 41, 45,
