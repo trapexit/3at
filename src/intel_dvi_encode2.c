@@ -236,14 +236,14 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
                   const u32            sample_count_,
                   u8                  *output_data_)
 {
-  long i,j;
+  long i;
   state_t s;
 
   s.index = 0;
   s.stepsize = 7;
   s.predictedSample = 0;
 
-  for(i = j = 0; i < sample_count_; i+=2, j++)
+  for(i = 0; i < sample_count_; i+=1)
     {
       output_data_[j] = _encode_sample(&s,input_data_[i + 0]);
       output_data_[j] =
@@ -252,6 +252,7 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
     }  
 
   return;
+
   
   /* int i; */
   /* u8 output; */
