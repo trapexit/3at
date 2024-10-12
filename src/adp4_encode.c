@@ -152,7 +152,7 @@ _adp4_encode_sample(adp4_state_t *s_,
   delta = (input_sample_ - s_->predicted_sample);
   delta = _clip_s32(delta,-32768,32767);
 
-  encoded_sample = _encode_delta(s_->stepsize,delta);
+  encoded_sample = _adp4_encode_delta(s_->stepsize,delta);
 
   s_->predicted_sample += _decode_delta(s_->stepsize,encoded_sample);
   s_->predicted_sample = _clip_s32(s_->predicted_sample,-32768,32767);
