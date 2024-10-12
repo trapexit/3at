@@ -51,7 +51,7 @@ namespace l
   {
     FILE *in_file;
     FILE *out_file;
-    IntelDVIEncodeState state = {0};
+
     std::vector<s16> input_data;
     std::vector<u8> output_data;
     u32  sample_count;
