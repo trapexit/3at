@@ -145,15 +145,15 @@ _adp4_encode_sample(adp4_state_t *s_,
   u8  encoded_sample;
   
   delta = (input_sample_ - s_->predicted_sample);
-  delta = clip_s32(delta,-32768,32767);
+  delta = _clip_s32(delta,-32768,32767);
 
   encoded_sample = _encode_delta(s_->stepsize,delta);
 
   s_->predicted_sample += _decode_delta(s_->stepsize,encoded_sample);
-  s_->predicted_sample = clip_s32(s_->predicted_sample,-32768,32767);
+  s_->predicted_sample = _clip_s32(s_->predicted_sample,-32768,32767);
 
   s_->index += g_INDEX_TABLE[encoded_sample];
-  s_->index = clip_s32(s_->index,0,STEPSIZE_TABLE_MAX);
+  s_->index = _clip_s32(s_->index,0,STEPSIZE_TABLE_MAX);
   s_->stepsize = g_STEPSIZE_TABLE[s_->index]; 
 
   return encoded_sample;
