@@ -167,7 +167,7 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
 {
   u32 i;
   int shift;
-  adp_tstate_t s;
+  adp_state_t s;
   u8 output_byte;
 
   s.index = 0;
