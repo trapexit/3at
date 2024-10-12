@@ -124,10 +124,10 @@ _adp4_encode_difference(const s32 stepsize_,
 
   sample = 0;
   difference = difference_;
-  if(difference_ < 0)
+  if(difference < 0)
     {
       sample = 0x08;
-      difference_ = -difference_;
+      difference = -difference;
     }
 
   return _adp4_quantize_difference(stepsize_,difference_,sample);
