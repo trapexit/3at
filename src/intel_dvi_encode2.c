@@ -206,30 +206,6 @@ _encode_sample(struct state_t *s_,
 long lastEstimateL, stepSizeL, stepIndexL;
 long lastEstimateR, stepSizeR, stepIndexR;
 
-static
-u8
-ADDVIEncode(short shortOne,
-            short shortTwo,
-            long channels)
-{
-  int delta;
-  u8 encodedSample;
-
-  delta = shortOne - lastEstimateL;
-  delta = clip_int(delta, -32768L, 32767L);
-
-  encodedSample = _encode_delta(stepSizeL, delta);
-
-  lastEstimateL += _decode_delta(stepSizeL, encodedSample);
-  lastEstimateL = clip_int(lastEstimateL, -32768L, 32767L);
-
-  stepIndexL += indexTable[encodedSample];
-  stepIndexL = clip_int(stepIndexL, 0, 88);
-  stepSizeL = stepsizeTable[stepIndexL];
-
-  return encodedSample;
-}
-
 void
 intel_dvi_encode2(IntelDVIEncodeState *state_,
                   const s16           *input_data_,
