@@ -34,7 +34,9 @@ namespace l
         int rv = subprocess_create(args.data(),
                                    0,
                                    &subproc);
+        fmt::print("rv = {}\n",rv);
         subprocess_join(&subproc,&rv);
+        fmt::print("rv = {}\n",rv);        
       }
   }
 }
