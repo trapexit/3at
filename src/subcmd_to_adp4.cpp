@@ -57,7 +57,7 @@ namespace l
     std::filesystem::path output_filepath;
 
     output_filepath = filepath_;
-    output_filepath += ".adp4.raw";
+    output_filepath += ".adp4.1ch.raw";
     
     in_file  = fopen(filepath_.string().c_str(),"rb");
     out_file = fopen(output_filepath.string().c_str(),"wb");
