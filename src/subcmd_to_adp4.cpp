@@ -59,8 +59,7 @@ namespace l
     output_filepath = filepath_ + "adp4.raw"
     
     in_file  = fopen(filepath_.string().c_str(),"rb");
-    
-    out_file = fopen("adp4.test.raw","wb");
+    out_file = fopen(output_filepath.string().c_str(),"wb");
 
     sample_count = l::file_size(in_file);
     sample_count >>= 1;
