@@ -20,10 +20,10 @@
 
 #include "adp4_encode.h"
 #include "convert_to_s16be.hpp"
+#include "options.hpp"
 
 #include "fmt.hpp"
 
-#include "options.hpp"
 #include "types_ints.h"
 
 #include <vector>
