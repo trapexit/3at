@@ -14,6 +14,7 @@ namespace Opts
   {
     std::vector<std::filesystem::path> filepaths;
     std::string encoder;
+    std::filesystem::path output_path;
   };
 
   struct ToSDX2
