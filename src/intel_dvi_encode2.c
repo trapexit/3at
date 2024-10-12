@@ -221,11 +221,11 @@ intel_dvi_encode2(IntelDVIEncodeState *state_,
   shift = 1;
   for(i = 0; i < sample_count_; i++)
     {
-      u8 newSample;
+      u8 adp4_sample;
 
-      newSample = _encode_sample(&s,input_data_[i]);
+      adp4_sample = _encode_sample(&s,input_data_[i]);
       if(shift)
-        output = (output << 4);
+        output_byte <<= 4;
       else
         *output_data_++ = (output | newSample);
 
