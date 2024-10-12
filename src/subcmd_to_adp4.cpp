@@ -78,11 +78,6 @@ namespace l
       adp4_encode(input_data.data(),
                   input_data.size(),
                   output_data.data());
-    else if(encoder_ == "bar")
-      intel_dvi_encode2(&state,
-                        input_data.data(),
-                        input_data.size(),
-                        output_data.data());
 
     fwrite(&output_data[0],
            sizeof(u8),
