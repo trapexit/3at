@@ -15,7 +15,7 @@ namespace l
       {
         std::vector<const char*> args;
 
-        args.push_back("ffplay");
+        args.push_back("/usr/bin/ffplay");
         args.push_back("-volume");
         args.push_back("25");
         args.push_back("-f");
