@@ -116,12 +116,14 @@ _adp4_quantize_difference(const s32 stepsize_,
 
 static
 u8
-_adp4_encode_difference(s32 stepsize_,
-                        s32 difference_)
+_adp4_encode_difference(const s32 stepsize_,
+                        const s32 difference_)
 {
   u8 sample;
+  s32 difference;
 
   sample = 0;
+  difference = difference_;
   if(difference_ < 0)
     {
       sample = 0x08;
