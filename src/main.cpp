@@ -64,6 +64,14 @@ generate_to_sdx2_argparser(CLI::App      &app_,
 
 static
 void
+generate_play_argparser(CLI::App      &app_,
+                        Opts::Options &opts_)
+{
+
+}
+
+static
+void
 generate_argparser(CLI::App      &app_,
                    Opts::Options &opts_)
 {
