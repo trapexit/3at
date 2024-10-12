@@ -22,7 +22,8 @@ namespace Opts
   {
     std::vector<std::filesystem::path> filepaths;
     std::string encoder;
-    int channels;
+    int output_channels;
+    int output_freq;
     std::filesystem::path output_path;    
   };
 
