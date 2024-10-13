@@ -117,7 +117,10 @@ SubCmd::to_adp4(const Opts::ToADP4 &opts_)
       
       try
         {
-          l::to_adp4(filepath,opts_.encoder);        
+          l::to_adp4(filepath,
+                     opts_.input_type,
+                     opts_.encoder,
+                     opts_.output_freq);        
         }
       catch(const std::system_error &e_)
         {
