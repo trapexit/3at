@@ -51,7 +51,8 @@ namespace l
   void
   to_sdx2(const std::filesystem::path &filepath_,
           const std::string           &encoder_,
-          const int                    channels_)
+          const int                    channels_,
+          const int                    freq_)
   {
     FILE *out_file;
     std::vector<s16> input_data;
