@@ -36,33 +36,6 @@
 namespace l
 {
   std::vector<s16>
-  load_file_raw_s16(const std::filesystem::path &filepath_)
-  {
-    FILE *input;
-    std::vector<s16> buf;
-    std::array<s16,2048> tmpbuf;
-
-    input = fopen(filepath_.string().c_str(),"rb");
-    if(input == NULL)
-      return {};
-
-    while(!feof(input))
-      {
-        size_t n;
-        
-        n = fread(tmpbuf.data(),2,tmpbuf.size(),input);
-        buf.reserve(buf.size() + n);
-        buf.insert(buf.end(),
-                   tmpbuf.begin(),
-                   tmpbuf.begin() + n);
-      }
-
-    fclose(input);
-    
-    return buf;
-  }
-
-  std::vector<s16>
   load_file(const std::filesystem::path &filepath_)
   {
     std::vector<s16> buf;
