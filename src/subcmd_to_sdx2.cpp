@@ -34,7 +34,8 @@
 namespace l
 {
   std::vector<s16>
-  load_file(const std::filesystem::path &filepath_)
+  load_file(const std::filesystem::path &filepath_,
+            const int channels_)
   {
     std::vector<s16> buf;
 
