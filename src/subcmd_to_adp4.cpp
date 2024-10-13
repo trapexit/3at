@@ -48,15 +48,19 @@ namespace l
   }
 
   std::vector<s16>
+  load_file_raw_s16(const std::filesystem::path &filepath_)
+  {
+    return {};
+  }
+
+  std::vector<s16>
   load_file(const std::filesystem::path &filepath_)
   {
     std::vector<s16> buf;
 
     buf = ffmpeg_to_s16le(filepath_,1,22050);
     if(buf.empty())
-      {
-        FILE *
-      }
+      buf = l::load_file_raw_s16(filepath_);
 
     return buf;
   }
