@@ -108,5 +108,22 @@ ffmpeg_write_aifc(const void                  *data_,
                   const int                    channels_,
                   const int                    freq_)
 {
+  std::string filepath_str;
+  std::vector<const char*> args;
+
+  filepath_str = filepath_.string();
+  args =
+    {
+      "ffmpeg",
+      "-hide_banner",
+      "-acodec",codec_.c_str(),
+      "-ac","",
+      "-ar","",
+      "-i","pipe:0",
+      "-c:a","copy",
+      filepath_str.c_str(),
+      NULL
+    };
+  
   return 0;
 }
