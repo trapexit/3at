@@ -71,7 +71,6 @@ namespace l
     output_data.resize(input_data.size());
     
     // Pad to word / 4 byte alignment for use with 3DO
-    // https://3dodev.com/documentation/development/opera/pf25/ppgfldr/mgsfldr/mprfldr/01mpr021
     output_data.resize(((output_data.size() + 3) / 4) * 4);
 
     fread(&input_data[0],
