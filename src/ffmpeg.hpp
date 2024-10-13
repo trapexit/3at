@@ -25,7 +25,7 @@
 
 namespace ffmpeg
 {
-  bool ffmpeg_avilable(void);
+  bool ffmpeg_available(void);
   bool ffplay_available(void);
   bool ffprobe_available(void);
   
