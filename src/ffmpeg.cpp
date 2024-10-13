@@ -108,6 +108,7 @@ ffmpeg_write_aifc(const void                  *data_,
                   const int                    channels_,
                   const int                    freq_)
 {
+  int rv;
   std::string filepath;
   std::string channels;
   std::string freq;
