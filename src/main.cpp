@@ -109,13 +109,29 @@ generate_argparser(CLI::App      &app_,
   generate_play_argparser(app_,opts_);
 }
 
+static
+void
+set_locale()
+{
+  try
+    {
+      std::locale::global(std::locale(""));
+    }
+  catch(const std::runtime_error &e)
+    {
+      std::locale::global(std::locale("C"));
+    }
+}
+
 
 int
 main(int    argc_,
      char **argv_)
 {
+  Opts::Options opts;  
   CLI::App app("3at: 3DO Audio Tool");
-  Opts::Options opts;
+
+  set_locale();
 
   generate_argparser(app,opts);
 
