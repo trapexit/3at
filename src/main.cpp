@@ -67,7 +67,9 @@ generate_to_sdx2_argparser(CLI::App      &app_,
   subcmd->add_option("--freq",opts.output_freq)
     ->description("Output frequency")
     ->check(CLI::IsMember({22050,44100}))
-    ->default_val(22050);  
+    ->default_val(22050);
+
+  subcmd->footer("NOTE: Currently only outputs raw files.");
 
   auto func = std::bind(SubCmd::to_sdx2,
                         std::cref(opts));
@@ -101,7 +103,8 @@ void
 generate_argparser(CLI::App      &app_,
                    Opts::Options &opts_)
 {
-  app_.set_help_all_flag("--help-all","List help for all subcommands");
+  app_.set_help_all_flag("--help-all",
+                         "List help for all subcommands");
   app_.require_subcommand();
 
   generate_to_adp4_argparser(app_,opts_);
