@@ -56,7 +56,7 @@ namespace l
     std::vector<u8> output_data;
     std::filesystem::path output_filepath;
 
-    input_data = l::load_file_raw_s16(filepath_);
+    input_data = l::load_file(filepath_);
     if(input_data.empty())
       throw fmt::exception("failed to load {}",filepath_);
 
