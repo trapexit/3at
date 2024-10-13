@@ -47,14 +47,16 @@ namespace l
   }
   
   void
-  to_sdx2(const std::filesystem::path &filepath_)
+  to_sdx2(const std::filesystem::path &filepath_,
+          const int                    channels_)
   {
     FILE *in_file;
     FILE *out_file;
     std::vector<s16> input_data;
     std::vector<s8>  output_data;
 
-    input_data = l::load_file(filepath_)
+    input_data = l::load_file(filepath_,channels_);
+      
     
     in_file  = fopen(filepath_.string().c_str(),"rb");
     out_file = fopen("sdx2.test.raw","wb");
