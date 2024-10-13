@@ -36,6 +36,8 @@ generate_to_adp4_argparser(CLI::App      &app_,
     ->check(CLI::IsMember({22050,44100}))
     ->default_val(22050);
 
+  subcmd->footer("NOTE: Currently only outputs raw files.");  
+
   auto func = std::bind(SubCmd::to_adp4,
                         std::cref(opts));
 
