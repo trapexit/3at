@@ -56,6 +56,10 @@ generate_to_sdx2_argparser(CLI::App      &app_,
     ->type_name("PATH")
     ->check(CLI::ExistingFile)
     ->required();
+  subcmd->add_option("--encoder",opts.encoder)
+    ->description("Encoder to use")
+    ->check(CLI::IsMember({"default"}))
+    ->default_val("default");  
   subcmd->add_option("--channels",opts.output_channels)
     ->description("Number of output audio channels")
     ->check(CLI::IsMember({1,2}))
