@@ -62,6 +62,8 @@ namespace l
 
     while(!feof(input))
       {
+        size_t n;
+        
         n = fread(tmpbuf.data(),2,tmpbuf.size(),input);
         buf.reserve(buf.size() + n);
         buf.insert(buf.end(),
