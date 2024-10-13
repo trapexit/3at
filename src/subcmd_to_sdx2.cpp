@@ -107,5 +107,4 @@ SubCmd::to_sdx2(const Opts::ToSDX2 &opts_)
           fmt::print(" - ERROR - {} - {}\n",filepath,e_.what());
         }
     }
-
 }
