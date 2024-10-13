@@ -93,7 +93,9 @@ namespace l
     out_file = fopen(output_filepath.string().c_str(),"wb");
     if(out_file == NULL)
       {
-        throw fmt::exception("unable to open {}",output_filepath);
+        fmt::print(stderr,
+                   "{}\n",
+                   fmt::format("unable to open {}",output_filepath));
         return;
       }
     
