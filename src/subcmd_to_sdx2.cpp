@@ -44,7 +44,7 @@ namespace l
     buf = ffmpeg::to_s16le(filepath_,channels_,freq_);
     if(buf.empty())
       {
-        fmt::print(stderr,"warning: unable to load using ffmpeg, loading as raw\n");
+        //fmt::print(stderr,"warning: unable to load using ffmpeg, loading as raw\n");
         buf = file::load_s16(filepath_);
       }
 
