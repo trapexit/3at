@@ -35,6 +35,7 @@
 
 namespace l
 {
+  static
   std::vector<s16>
   load_file(const std::string           &input_type_,
             const std::filesystem::path &filepath_,
@@ -56,6 +57,7 @@ namespace l
     return {};
   }
 
+  static
   void
   to_adp4(const std::filesystem::path &filepath_,
           const std::string           &input_type_,
