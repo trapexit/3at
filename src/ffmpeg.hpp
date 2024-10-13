@@ -23,9 +23,11 @@
 #include <filesystem>
 #include <vector>
 
-bool ffmpeg_file_recognizable(const std::filesystem::path &path);
+namespace ffmpeg
+{
+  bool file_recognizable(const std::filesystem::path &path);
 
-std::vector<s16>
-ffmpeg_to_s16le(const std::filesystem::path &path,
-                const int                    channels,
-                const int                    freq);
+  std::vector<s16>
+  to_s16le(const std::filesystem::path &path,
+           const int                    channels,
+           const int                    freq);
