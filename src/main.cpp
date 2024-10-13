@@ -111,7 +111,7 @@ generate_argparser(CLI::App      &app_,
 
 static
 void
-set_locale()
+set_locale(void)
 {
   try
     {
@@ -122,7 +122,6 @@ set_locale()
       std::locale::global(std::locale("C"));
     }
 }
-
 
 int
 main(int    argc_,
