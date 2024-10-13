@@ -5,6 +5,7 @@
 
 #include "fmt.hpp"
 
+#include <cstdint>
 #include <filesystem>
 #include <string>
 #include <vector>
@@ -97,4 +98,15 @@ ffmpeg_to_s16le(const std::filesystem::path &filepath_,
   subprocess_destroy(&subproc);
 
   return buf;
+}
+
+int
+ffmpeg_write_aifc(const void                  *data_,
+                  const int                    data_size_,
+                  const std::filesystem::path &filepath_,
+                  const std::string           &codec_,
+                  const int                    channels_,
+                  const int                    freq_)
+{
+  return 0;
 }
