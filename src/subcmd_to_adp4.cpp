@@ -112,6 +112,12 @@ namespace l
            out_file);
 
     fclose(out_file);
+
+    fmt::print(" - output file name: {}\n"
+               " - input file size: {}\n"
+               " - output file size: {}\n"               
+               " - sample count: {}\n"
+               " - 
   }
 }
 
