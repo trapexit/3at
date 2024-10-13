@@ -78,7 +78,7 @@ namespace l
                   input_data.size(),
                   output_data.data());
 
-    fwrite(&output_data[0],
+    fwrite(output_data.data(),
            sizeof(decltype(output_data)::value_type),
            output_data.size(),
            out_file);
