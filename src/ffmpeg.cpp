@@ -10,27 +10,30 @@
 #include <string>
 #include <vector>
 
-static
-bool
-executable_exists(const std::string &executable_)
+namespace l
 {
-  int rv;
-  struct subprocess_s subproc;
-  std::vector<const char*> args;
+  static
+  bool
+  executable_exists(const std::string &executable_)
+  {
+    int rv;
+    struct subprocess_s subproc;
+    std::vector<const char*> args;
 
-  args = {executable_.c_str(),NULL};
+    args = {executable_.c_str(),NULL};
 
-  rv = subprocess_create(args.data(),
-                         subprocess_option_inherit_environment|
-                         subprocess_option_search_user_path,
-                         &subproc);
-  if(rv != 0)
-    return false;
+    rv = subprocess_create(args.data(),
+                           subprocess_option_inherit_environment|
+                           subprocess_option_search_user_path,
+                           &subproc);
+    if(rv != 0)
+      return false;
 
-  subprocess_join(&subproc,&rv);
-  subprocess_destroy(&subproc);
+    subprocess_join(&subproc,&rv);
+    subprocess_destroy(&subproc);
 
-  return true;
+    return true;
+  }
 }
 
 bool
