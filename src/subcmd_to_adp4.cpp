@@ -28,6 +28,7 @@
 
 #include <iterator>
 #include <array>
+#include <unistd.h>
 #include <vector>
 #include <cstdio>
 
@@ -96,9 +97,8 @@ namespace l
         return;
       }
     
-    //    input_data.resize(sample_count);
     // 4bits per sample, 2 samples per byte
-    output_data.resize(sample_count >> 1); 
+    output_data.resize(input_data.size() >> 1); 
 
     // Pad to word / 4 byte alignment for use with 3DO
     // https://3dodev.com/documentation/development/opera/pf25/ppgfldr/mgsfldr/mprfldr/01mpr021
