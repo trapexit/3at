@@ -35,20 +35,24 @@
 namespace l
 {
   std::vector<s16>
-  load_file(const std::filesystem::path &filepath_,
+  load_file(const std::string           &input_type_,
+            const std::filesystem::path &filepath_,
             const int                    channels_,
             const int                    freq_)
   {
     std::vector<s16> buf;
 
-    buf = ffmpeg::to_s16le(filepath_,channels_,freq_);
-    if(buf.empty())
+    if(input_type_ == "raw")
+      return file::load_s16(filepath_);        
+
+    if(input_type_ == "auto")
       {
-        //fmt::print(stderr,"warning: unable to load using ffmpeg, loading as raw\n");
-        buf = file::load_s16(filepath_);
+        buf = ffmpeg::to_s16le(filepath_,channels_,freq_);
+        if(buf.empty())
+          return file::load_s16(filepath_);
       }
 
-    return buf;
+    return {};
   }
 
   void
