@@ -10,6 +10,42 @@
 #include <string>
 #include <vector>
 
+static
+bool
+executable_exists(const std::string &executable_)
+{
+  int rv;
+  std::string path;
+  struct subprocess_s subproc;
+  std::vector<const char*> args;
+
+  path = path_.string();
+  args =
+    {
+      "ffmpeg",
+      "-hide_banner",
+      "-loglevel","fatal",
+      "-i",path.c_str(),
+      "-f","null",
+      "-",
+      NULL
+    };
+
+  rv = subprocess_create(args.data(),
+                         subprocess_option_inherit_environment|
+                         subprocess_option_search_user_path,
+                         &subproc);
+  if(rv != 0)
+    return false;
+
+  subprocess_join(&subproc,&rv);
+  subprocess_destroy(&subproc);
+
+  if(rv == 0)
+    return true;
+  return false;
+}
+
 bool
 ffmpeg::file_recognizable(const std::filesystem::path &path_)
 {
