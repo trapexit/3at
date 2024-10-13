@@ -27,6 +27,7 @@
 
 #include "types_ints.h"
 
+#include <unistd.h>
 #include <vector>
 
 #include <cstdio>
@@ -67,11 +68,7 @@ namespace l
     if(out_file == NULL)
       throw fmt::exception("failed to open output {}",output_filepath);
 
-    sample_count = l::file_size(in_file);
-    sample_count /= 2;
-
-    input_data.resize(sample_count);
-    output_data.resize(sample_count);
+    output_data.resize(input_data.size());
     
     // Pad to word / 4 byte alignment for use with 3DO
     // https://3dodev.com/documentation/development/opera/pf25/ppgfldr/mgsfldr/mprfldr/01mpr021
