@@ -30,7 +30,7 @@ namespace l
             "-ar","22050",
             filepath_str.c_str(),
             NULL
-          }
+          };
 
         fmt::print("subcmd::play({});\n",filepath_str);
         struct subprocess_s subproc = {0};
