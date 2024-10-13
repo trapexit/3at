@@ -80,7 +80,6 @@ namespace l
     FILE *out_file;
     std::vector<s16> input_data;
     std::vector<u8> output_data;
-    u32 sample_count;
     std::filesystem::path output_filepath;
 
     input_data = l::load_file_raw_s16(filepath_);
