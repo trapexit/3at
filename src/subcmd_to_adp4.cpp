@@ -51,7 +51,6 @@ namespace l
   std::vector<s16>
   load_file_raw_s16(const std::filesystem::path &filepath_)
   {
-    size_t n;
     FILE *input;
     std::vector<s16> buf;
     std::array<s16,4096> tmpbuf;
