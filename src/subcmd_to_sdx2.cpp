@@ -52,7 +52,6 @@ namespace l
           const std::string           &encoder_,
           const int                    channels_)
   {
-    FILE *in_file;
     FILE *out_file;
     std::vector<s16> input_data;
     std::vector<s8>  output_data;
