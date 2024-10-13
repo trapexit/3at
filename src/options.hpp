@@ -13,6 +13,7 @@ namespace Opts
   struct ToADP4
   {
     std::vector<std::filesystem::path> filepaths;
+    std::string input_type;    
     std::string encoder;
     int output_freq;
     std::filesystem::path output_path;
