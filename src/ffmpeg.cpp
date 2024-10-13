@@ -81,12 +81,13 @@ ffmpeg_to_s16le(const std::filesystem::path &filepath_,
 
   outputf = subprocess_stdout(&subproc);
 
-  std::vector<s16> tmpbuf(64);  
+  std::array<s16,2048> tmpbuf;
   while(!feof(outputf))
     {
       size_t n;
 
       n = fread(&tmpbuf[0],2,tmpbuf.size(),outputf);
+      
       for(size_t i = 0; i < n; i++)
         buf.push_back(tmpbuf[i]);
     }
