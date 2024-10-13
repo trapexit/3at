@@ -83,8 +83,7 @@ namespace l
     u32 sample_count;
     std::filesystem::path output_filepath;
 
-    input_data = l::load_file(filepath_);
-    fmt::print("size input_data: {}\n",input_data.size());
+    input_data = l::load_file_raw_s16(filepath_);
     if(input_data.empty())
       return;
 
