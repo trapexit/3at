@@ -57,7 +57,8 @@ namespace l
     subprocess_join(&subproc,&rv);
     subprocess_destroy(&subproc);
   }
-  
+
+  static
   void
   play(Opts::Play const &opts_)
   {
