@@ -34,7 +34,7 @@ file::load_s16(const std::filesystem::path &filepath_)
   if(input == NULL)
     return {};
 
-  while(!feof(input))
+  while(!feof(input) && !ferror(input))
     {
       size_t n;
         
