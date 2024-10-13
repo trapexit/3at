@@ -53,6 +53,10 @@ namespace l
     std::vector<s16> buf;
 
     buf = ffmpeg_to_s16le(filepath_,1,22050);
+    if(buf.empty())
+      {
+        FILE *
+      }
 
     return buf;
   }
