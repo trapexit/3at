@@ -11,6 +11,7 @@
 
 namespace l
 {
+  static
   void
   play_adp4(const std::filesystem::path &filepath_)
   {
