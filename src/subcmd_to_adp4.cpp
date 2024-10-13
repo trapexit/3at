@@ -50,6 +50,11 @@ namespace l
   std::vector<s16>
   load_file_raw_s16(const std::filesystem::path &filepath_)
   {
+    FILE *input;
+
+    input = fopen(filepath_.string().c_str(),"rb");
+                  
+    
     return {};
   }
 
