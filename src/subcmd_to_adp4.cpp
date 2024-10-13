@@ -52,7 +52,7 @@ namespace l
         buf.reserve(buf.size() + n);
         buf.insert(buf.end(),
                    tmpbuf.begin(),
-                   tmpbuf.end());
+                   tmpbuf.begin() + n);
       }
 
     fclose(input);
