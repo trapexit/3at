@@ -62,7 +62,11 @@ namespace l
 
     while(!feof(input))
       {
-        
+        n = fread(tmpbuf.data(),2,tmpbuf.size(),input);
+        buf.reserve(buf.size() + n);
+        buf.insert(buf.end(),
+                   tmpbuf.begin(),
+                   tmpbuf.end());
       }
 
     fclose(input);
