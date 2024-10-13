@@ -87,7 +87,6 @@ ffmpeg_to_s16le(const std::filesystem::path &filepath_,
       size_t n;
 
       n = fread(tmpbuf.data(),2,tmpbuf.size(),outputf);
-      fmt::print("{}\n",n);
       buf.reserve(buf.size() + n);
       buf.insert(buf.end(),
                  tmpbuf.begin(),
