@@ -48,8 +48,9 @@ namespace l
     if(input_type_ == "auto")
       {
         buf = ffmpeg::to_s16le(filepath_,channels_,freq_);
-        if(buf.empty())
-          return file::load_s16(filepath_);
+        if(!buf.empty())
+          return buf;
+        return file::load_s16(filepath_);
       }
 
     return {};
