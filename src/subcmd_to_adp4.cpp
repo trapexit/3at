@@ -96,7 +96,6 @@ namespace l
         fmt::print(stderr,
                    "{}\n",
                    fmt::format("unable to open {}",output_filepath));
-        return;
       }
     
     // 4bits per sample, 2 samples per byte
