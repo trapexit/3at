@@ -66,7 +66,6 @@ namespace l
     std::vector<s16> buf;
 
     buf = ffmpeg_to_s16le(filepath_,1,22050);
-    fmt::print("{}\n",(const char*)buf.data());
     if(buf.empty())
       buf = l::load_file_raw_s16(filepath_);
 
