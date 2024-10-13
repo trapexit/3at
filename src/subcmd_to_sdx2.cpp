@@ -56,7 +56,8 @@ namespace l
     std::vector<s8>  output_data;
 
     input_data = l::load_file(filepath_,channels_);
-      
+    if(input_data.empty())
+      throw fmt::exception("failed to load {}",filepath_);      
     
     in_file  = fopen(filepath_.string().c_str(),"rb");
     out_file = fopen("sdx2.test.raw","wb");
