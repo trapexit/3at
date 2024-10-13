@@ -59,14 +59,15 @@ namespace l
   void
   to_adp4(const std::filesystem::path &filepath_,
           const std::string           &input_type_,
-          const std::string           &encoder_)
+          const std::string           &encoder_,
+          const int                    freq_)
   {
     FILE *out_file;
     std::vector<s16> input_data;
     std::vector<u8> output_data;
     std::filesystem::path output_filepath;
 
-    input_data = l::load_file(filepath_);
+    input_data = l::load_file(input_type_,filepath_,1,);
     if(input_data.empty())
       throw fmt::exception("failed to load {}",filepath_);
 
