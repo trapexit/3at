@@ -23,7 +23,6 @@
 #include "file.hpp"
 #include "sdx2_encode.h"
 
-
 #include "types_ints.h"
 #include "fmt.hpp"
 
