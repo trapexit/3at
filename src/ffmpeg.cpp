@@ -34,6 +34,12 @@ executable_exists(const std::string &executable_)
 }
 
 bool
+ffmpeg::ffmpeg_avilable(void)
+{
+  return l::executable_exists("ffmpeg");
+}
+
+bool
 ffmpeg::file_recognizable(const std::filesystem::path &path_)
 {
   int rv;
