@@ -101,7 +101,9 @@ SubCmd::to_sdx2(const Opts::ToSDX2 &opts_)
 
       try
         {
-          l::to_sdx2(filepath,opts_.encoder);
+          l::to_sdx2(filepath,
+                     opts_.encoder,
+                     opts_.channels);
         }
       catch(const std::system_error &e_)
         {
