@@ -54,7 +54,7 @@ namespace l
           return file::load_s16(filepath_);
       }
 
-    return {};
+    return buf;
   }
 
   static
