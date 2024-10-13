@@ -89,8 +89,6 @@ namespace l
     output_filepath = filepath_;
     output_filepath += ".adp4.1ch.raw";
     
-    sample_count = input_data.size();
-
     out_file = fopen(output_filepath.string().c_str(),"wb");
     
     //    input_data.resize(sample_count);
