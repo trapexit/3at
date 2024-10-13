@@ -16,7 +16,7 @@ namespace l
     std::vector<const char*> args;
     std::string filepath_str;
 
-    filepath_str = filepath.string();
+    filepath_str = filepath_.string();
     args =
       {
         "ffplay",
@@ -31,6 +31,7 @@ namespace l
         NULL
       };
 
+    
   }
   
   void
