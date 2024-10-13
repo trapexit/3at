@@ -127,6 +127,8 @@ SubCmd::to_adp4(const Opts::ToADP4 &opts_)
 {
   for(auto &filepath : opts_.filepaths)
     {
+      fmt::print("{}:\n",filepath);      
+      
       try
         {
           l::to_adp4(filepath,opts_.encoder);        
