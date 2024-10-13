@@ -51,10 +51,7 @@ namespace l
   std::vector<s16>
   load_file(const std::filesystem::path &filepath_)
   {
-    std::vector<s16> buf;
-
-    if(ffmpeg_file_recognizable(filepath_))
-      
+    return ffmpeg_to_s16le(filepath_,1,22050);
   }
 
   void
