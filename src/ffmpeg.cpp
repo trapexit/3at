@@ -11,7 +11,7 @@
 #include <vector>
 
 bool
-ffmpeg_file_recognizable(const std::filesystem::path &path_)
+ffmpeg::file_recognizable(const std::filesystem::path &path_)
 {
   int rv;
   std::string path;
