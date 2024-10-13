@@ -68,6 +68,7 @@ namespace l
     if(out_file == NULL)
       throw fmt::exception("failed to open output {}",output_filepath);
 
+    // 8bits per sample
     output_data.resize(input_data.size());
     
     // Pad to word / 4 byte alignment for use with 3DO
