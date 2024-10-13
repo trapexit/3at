@@ -42,6 +42,7 @@ namespace l
     std::vector<s16> buf;
 
     buf = ffmpeg::to_s16le(filepath_,channels_,freq_);
+    fmt::print(stderr,"warning: unable to load using ffmpeg");
     if(buf.empty())
       buf = file::load_s16(filepath_);
 
