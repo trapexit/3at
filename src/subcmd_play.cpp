@@ -39,7 +39,8 @@ namespace l
                            subprocess_option_inherit_environment|
                            subprocess_option_search_user_path,
                            &subproc);
-    
+
+    std::array<char,1024> buf;
     while(true)
       {
         int err;
