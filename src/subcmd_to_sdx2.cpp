@@ -49,6 +49,7 @@ namespace l
 
   void
   to_sdx2(const std::filesystem::path &filepath_,
+          const std::string           &encoder_,
           const int                    channels_)
   {
     FILE *in_file;
