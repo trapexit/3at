@@ -33,6 +33,18 @@
 
 namespace l
 {
+  std::vector<s16>
+  load_file(const std::filesystem::path &filepath_)
+  {
+    std::vector<s16> buf;
+
+    buf = ffmpeg::to_s16le(filepath_,1,22050);
+    if(buf.empty())
+      buf = file::load_s16(filepath_);
+
+    return buf;
+  }
+  
   void
   to_sdx2(const std::filesystem::path &filepath_)
   {
@@ -41,6 +53,8 @@ namespace l
     std::vector<s16> input_data;
     std::vector<s8>  output_data;
 
+    input_data = l::load_file(filepath_)
+    
     in_file  = fopen(filepath_.string().c_str(),"rb");
     out_file = fopen("sdx2.test.raw","wb");
 
