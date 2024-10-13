@@ -31,3 +31,4 @@ namespace ffmpeg
   to_s16le(const std::filesystem::path &path,
            const int                    channels,
            const int                    freq);
+}
