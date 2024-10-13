@@ -33,21 +33,6 @@
 
 namespace l
 {
-  static
-  u32
-  file_size(FILE *f_)
-  {
-    long orig_off;
-    long size;
-
-    orig_off = ftell(f_);
-    fseek(f_,0,SEEK_END);
-    size = ftell(f_);
-    fseek(f_,orig_off,SEEK_SET);
-
-    return size;
-  }
-
   std::vector<s16>
   load_file_raw_s16(const std::filesystem::path &filepath_)
   {
