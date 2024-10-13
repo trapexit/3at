@@ -65,7 +65,6 @@ namespace l
     u32 sample_count;
     std::filesystem::path output_filepath;
 
-
     output_filepath = filepath_;
     output_filepath += ".adp4.1ch.raw";
     
