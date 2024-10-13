@@ -37,13 +37,13 @@ namespace l
 }
 
 bool
-ffmpeg::ffmpeg_avilable(void)
+ffmpeg::ffmpeg_available(void)
 {
   return l::executable_exists("ffmpeg");
 }
 
 bool
-ffmpeg::ffplay_avilable(void)
+ffmpeg::ffplay_available(void)
 {
   return l::executable_exists("ffplay");
 }
