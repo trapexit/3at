@@ -74,19 +74,15 @@ namespace l
     // Pad to word / 4 byte alignment for use with 3DO
     output_data.resize(((output_data.size() + 3) / 4) * 4);
 
-    fread(&input_data[0],
-          sizeof(s16),
-          input_data.size(),
-          in_file);
-
-    sdx2_encode(input_data.data(),
-                input_data.size(),
-                SDX2_MONO,
-                output_data.data(),
-                output_data.size());
+    if(encoder_ == "default")
+      sdx2_encode(input_data.data(),
+                  input_data.size(),
+                  SDX2_MONO,
+                  output_data.data(),
+                  output_data.size());
     
-    fwrite(&output_data[0],
-           sizeof(u8),
+    fwrite(output_data.data(),
+           sizeof(decltype(output_data)::value_type),
            output_data.size(),
            out_file);
 
