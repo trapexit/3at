@@ -39,7 +39,7 @@ namespace l
   {
     FILE *input;
     std::vector<s16> buf;
-    std::array<s16,4096> tmpbuf;
+    std::array<s16,2048> tmpbuf;
 
     input = fopen(filepath_.string().c_str(),"rb");
     if(input == NULL)
