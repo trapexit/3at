@@ -43,16 +43,16 @@ namespace l
             const int                    freq_)
   {
     if(input_type_ == "raw")
-      return file::load_s16(filepath_);        
+      return file::load_s16(filepath_);
 
     if(input_type_ == "auto")
       {
         std::vector<s16> buf;
-        
+
         buf = ffmpeg::to_s16le(filepath_,channels_,freq_);
         if(!buf.empty())
           return buf;
-        
+
         return file::load_s16(filepath_);
       }
 
@@ -77,11 +77,11 @@ namespace l
 
     output_filepath = filepath_;
     output_filepath += ".adp4.1ch.raw";
-    
+
     out_file = fopen(output_filepath.string().c_str(),"wb");
     if(out_file == NULL)
       throw fmt::exception("failed to open output {}",output_filepath);
-    
+
     // 4bits per sample, 2 samples per byte
     output_data.resize(input_data.size() >> 1);
 
@@ -101,9 +101,9 @@ namespace l
     fclose(out_file);
 
     fmt::print(" - output file name: {}\n"
-               " - sample count: {}\n"               
+               " - sample count: {}\n"
                " - input file size: {}b\n"
-               " - output file size: {}b\n"               
+               " - output file size: {}b\n"
                ,
                output_filepath,
                input_data.size(),
@@ -117,14 +117,14 @@ SubCmd::to_adp4(const Opts::ToADP4 &opts_)
 {
   for(auto &filepath : opts_.filepaths)
     {
-      fmt::print("{}:\n",filepath);      
-      
+      fmt::print("{}:\n",filepath);
+
       try
         {
           l::to_adp4(filepath,
                      opts_.input_type,
                      opts_.encoder,
-                     opts_.output_freq);        
+                     opts_.output_freq);
         }
       catch(const std::system_error &e_)
         {
