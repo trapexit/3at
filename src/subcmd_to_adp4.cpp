@@ -85,9 +85,7 @@ namespace l
 
     input_data = l::load_file_raw_s16(filepath_);
     if(input_data.empty())
-      {
-        return;
-      }
+      throw fmt::exception("failed to load {}",filepath_);
 
     output_filepath = filepath_;
     output_filepath += ".adp4.1ch.raw";
