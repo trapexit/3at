@@ -17,12 +17,11 @@
 */
 
 #include "subcmd_to_adp4.hpp"
+#include "options.hpp"
 
 #include "file.hpp"
 #include "ffmpeg.hpp"
 #include "adp4_encode.h"
-
-#include "options.hpp"
 
 #include "fmt.hpp"
 
