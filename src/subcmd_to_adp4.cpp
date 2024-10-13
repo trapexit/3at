@@ -42,13 +42,13 @@ namespace l
             const int                    channels_,
             const int                    freq_)
   {
-    std::vector<s16> buf;
-
     if(input_type_ == "raw")
       return file::load_s16(filepath_);        
 
     if(input_type_ == "auto")
       {
+        std::vector<s16> buf;
+        
         buf = ffmpeg::to_s16le(filepath_,channels_,freq_);
         if(!buf.empty())
           return buf;
