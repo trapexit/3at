@@ -90,6 +90,11 @@ namespace l
     output_filepath += ".adp4.1ch.raw";
     
     out_file = fopen(output_filepath.string().c_str(),"wb");
+    if(out_file == NULL)
+      {
+        
+        return;
+      }
     
     //    input_data.resize(sample_count);
     // 4bits per sample, 2 samples per byte
