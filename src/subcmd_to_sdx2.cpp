@@ -17,11 +17,15 @@
 */
 
 #include "subcmd_to_sdx2.hpp"
-
-#include "fmt.hpp"
-#include "sdx2_encode.h"
 #include "options.hpp"
+
+#include "ffmpeg.hpp"
+#include "file.hpp"
+#include "sdx2_encode.h"
+
+
 #include "types_ints.h"
+#include "fmt.hpp"
 
 #include <vector>
 
