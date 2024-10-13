@@ -127,7 +127,7 @@ ffmpeg_write_aifc(const void                  *data_,
       "-ar",freq.c_str(),
       "-i","pipe:0",
       "-c:a","copy",
-      filepath_str.c_str(),
+      filepath.c_str(),
       NULL
     };
   
