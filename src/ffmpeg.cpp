@@ -46,9 +46,9 @@ ffmpeg::file_recognizable(const std::filesystem::path &path_)
 }
 
 std::vector<s16>
-ffmpeg_to_s16le(const std::filesystem::path &filepath_,
-                const int                    channels_,
-                const int                    freq_)
+ffmpeg::to_s16le(const std::filesystem::path &filepath_,
+                 const int                    channels_,
+                 const int                    freq_)
 {
   int rv;
   FILE *outputf;
