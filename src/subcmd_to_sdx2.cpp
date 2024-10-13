@@ -54,6 +54,7 @@ namespace l
     FILE *out_file;
     std::vector<s16> input_data;
     std::vector<s8>  output_data;
+    std::filesystem::path output_filepath;
 
     input_data = l::load_file(filepath_,channels_);
     if(input_data.empty())
