@@ -91,5 +91,21 @@ void
 SubCmd::to_sdx2(const Opts::ToSDX2 &opts_)
 {
   for(auto &filepath : opts_.filepaths)
-    l::to_sdx2(filepath);
+    {
+      fmt::print("{}:\n",filepath);      
+      
+      try
+        {
+          l::to_sdx2(filepath);          
+        }
+      catch(const std::system_error &e_)
+        {
+          fmt::print(" - ERROR - {} - {} ({})\n",filepath,e_.what(),e_.code().message());
+        }
+      catch(const std::runtime_error &e_)
+        {
+          fmt::print(" - ERROR - {} - {}\n",filepath,e_.what());
+        }
+    }
+
 }
