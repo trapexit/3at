@@ -58,6 +58,7 @@ namespace l
 
   void
   to_adp4(const std::filesystem::path &filepath_,
+          const std::string           &input_type_,
           const std::string           &encoder_)
   {
     FILE *out_file;
