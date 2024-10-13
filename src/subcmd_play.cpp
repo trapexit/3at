@@ -62,7 +62,7 @@ namespace l
   {
     for(auto const &filepath : opts_.filepaths)
       {
-        l::play_adp4(filepath_);
+        l::play_adp4(filepath);
       }
   }
 }
