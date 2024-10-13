@@ -53,7 +53,7 @@ namespace l
         buf.reserve(buf.size() + n);
         buf.insert(buf.end(),
                    tmpbuf.begin(),
-                   std::advance(std::begin(tmpbuf),n));
+                   tmpbuf.begin() + n);
       }
 
     fclose(input);
