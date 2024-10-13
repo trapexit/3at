@@ -85,10 +85,6 @@ namespace l
 
     convert_to_s16be(filepath_, 1, 22050, input_data);
     fmt::print("size input_data: {}\n",input_data.size());
-    // fread(&input_data[0],
-    //       sizeof(s16),
-    //       input_data.size(),
-    //       in_file);
 
     if(encoder_ == "default")
       adp4_encode(input_data.data(),
@@ -101,7 +97,6 @@ namespace l
            out_file);
 
     fclose(out_file);
-    fclose(in_file);
   }
 }
 
