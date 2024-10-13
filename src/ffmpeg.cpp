@@ -135,7 +135,15 @@ ffmpeg_write_aifc(const void                  *data_,
   subprocess_create(args.data(),
                     subprocess_option_inherit_environment|
                     subprocess_option_search_user_path,
-                    &subproc);                    
+                    &subproc);
+
+  FILE *stdinf;
+
+  stdinf = subprocess_stdin(&subproc);
+
+  fwrite(data_,1,data_size_,stdinf);
+
+  fclose(stdinf);
 
   subprocess_join(&subproc,&rv);
   subprocess_destroy(&subproc);
