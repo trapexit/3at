@@ -62,10 +62,10 @@ namespace l
 
     output_filepath = filepath_;
     output_filepath += fmt::format(".sdx2.{}ch.raw",channels_);
-
     
-    in_file  = fopen(filepath_.string().c_str(),"rb");
-    out_file = fopen("sdx2.test.raw","wb");
+    out_file = fopen(output_filepath.string().c_str(),"wb");
+    if(out_file == NULL)
+      throw fmt::exception("failed to open output {}",output_filepath);
 
     sample_count = l::file_size(in_file);
     sample_count /= 2;
