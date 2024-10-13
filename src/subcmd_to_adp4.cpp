@@ -42,7 +42,7 @@ namespace l
 
     buf = ffmpeg_to_s16le(filepath_,1,22050);
     if(buf.empty())
-      buf = l::load_file_raw_s16(filepath_);
+      buf = file::load_s16(filepath_);
 
     return buf;
   }
