@@ -90,7 +90,7 @@ ffmpeg_to_s16le(const std::filesystem::path &filepath_,
       buf.reserve(buf.size() + n);
       buf.insert(buf.end(),
                  tmpbuf.begin(),
-                 tmpbuf.end());
+                 tmpbuf.begin() + n);
     }
 
   subprocess_join(&subproc,&rv);
