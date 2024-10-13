@@ -72,7 +72,7 @@ void
 SubCmd::play(Opts::Play const &opts_)
 {
   if(!ffmpeg::ffplay_available())
-    throw fmt::exception("ffplay was not found");
+    throw fmt::exception("error: ffplay was not found");
   
   l::play(opts_);
 }
