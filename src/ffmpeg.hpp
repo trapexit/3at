@@ -25,6 +25,10 @@
 
 namespace ffmpeg
 {
+  bool ffmpeg_avilable(void);
+  bool ffplay_available(void);
+  bool ffprobe_available(void);
+  
   bool file_recognizable(const std::filesystem::path &path);
 
   std::vector<s16>
