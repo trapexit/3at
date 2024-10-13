@@ -48,8 +48,7 @@ namespace l
         err = subprocess_read_stdout(&subproc,&buf[0],buf.size()-1);
         if(err == 0)
           break;
-        buf[err] = 0;
-        fmt::print("{}",buf.data());
+        fwrite(buf.data(),1,err,stdout);
       }
 
     subprocess_join(&subproc,&rv);
