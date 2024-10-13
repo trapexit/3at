@@ -88,7 +88,16 @@ namespace l
            out_file);
 
     fclose(out_file);
-    fclose(in_file);
+
+    fmt::print(" - output file name: {}\n"
+               " - sample count: {}\n"               
+               " - input file size: {}b\n"
+               " - output file size: {}b\n"               
+               ,
+               output_filepath,
+               input_data.size(),
+               input_data.size() * 2,
+               output_data.size());
   }
 }
 
