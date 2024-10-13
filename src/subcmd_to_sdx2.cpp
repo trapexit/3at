@@ -113,7 +113,8 @@ SubCmd::to_sdx2(const Opts::ToSDX2 &opts_)
         {
           l::to_sdx2(filepath,
                      opts_.encoder,
-                     opts_.output_channels);
+                     opts_.output_channels,
+                     opts_.output_freq);
         }
       catch(const std::system_error &e_)
         {
