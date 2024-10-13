@@ -45,7 +45,7 @@ ffmpeg::ffmpeg_available(void)
 bool
 ffmpeg::ffplay_available(void)
 {
-  return l::executable_exists("ffpla1y");
+  return l::executable_exists("ffplay");
 }
 
 bool
