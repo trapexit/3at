@@ -46,7 +46,7 @@ namespace l
 
     return buf;
   }
-  
+
   void
   to_sdx2(const std::filesystem::path &filepath_,
           const int                    channels_)
@@ -59,18 +59,18 @@ namespace l
 
     input_data = l::load_file(filepath_,channels_);
     if(input_data.empty())
-      throw fmt::exception("failed to load {}",filepath_);      
+      throw fmt::exception("failed to load {}",filepath_);
 
     output_filepath = filepath_;
     output_filepath += fmt::format(".sdx2.{}ch.raw",channels_);
-    
+
     out_file = fopen(output_filepath.string().c_str(),"wb");
     if(out_file == NULL)
       throw fmt::exception("failed to open output {}",output_filepath);
 
     // 8bits per sample
     output_data.resize(input_data.size());
-    
+
     // Pad to word / 4 byte alignment for use with 3DO
     output_data.resize(((output_data.size() + 3) / 4) * 4);
 
@@ -80,7 +80,7 @@ namespace l
                   SDX2_MONO,
                   output_data.data(),
                   output_data.size());
-    
+
     fwrite(output_data.data(),
            sizeof(decltype(output_data)::value_type),
            output_data.size(),
@@ -96,11 +96,11 @@ SubCmd::to_sdx2(const Opts::ToSDX2 &opts_)
 {
   for(auto &filepath : opts_.filepaths)
     {
-      fmt::print("{}:\n",filepath);      
-      
+      fmt::print("{}:\n",filepath);
+
       try
         {
-          l::to_sdx2(filepath);          
+          l::to_sdx2(filepath,opts_.encoder);
         }
       catch(const std::system_error &e_)
         {
