@@ -27,6 +27,11 @@ generate_to_adp4_argparser(CLI::App      &app_,
     ->type_name("PATH")
     ->check(CLI::ExistingFile)
     ->required();
+  subcmd->add_option("--input-type",opts.input_type)
+    ->description("raw: Load file as raw data. Channels and freq ignored.\n"
+                  "auto: Try to use ffmpeg to load file and fall back to raw.")
+    ->check(CLI::IsMember({"raw","auto"}))
+    ->default_val("auto");  
   subcmd->add_option("--encoder",opts.encoder)
     ->description("Encoder to use\n"
                   "default: Standard Intel/DVI encoder ported by trapexit")    
