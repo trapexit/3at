@@ -50,7 +50,11 @@ namespace l
   std::vector<s16>
   load_file(const std::filesystem::path &filepath_)
   {
-    return ffmpeg_to_s16le(filepath_,1,22050);
+    std::vector<s16> buf;
+
+    buf = ffmpeg_to_s16le(filepath_,1,22050);
+
+    return buf;
   }
 
   void
