@@ -96,7 +96,7 @@ namespace l
     if(out_file == NULL)
       {
         fmt::print(stderr,
-                   "{}\n",
+                   "error:{}\n",
                    fmt::format("unable to open {}",output_filepath));
         return;
       }
@@ -126,5 +126,18 @@ void
 SubCmd::to_adp4(const Opts::ToADP4 &opts_)
 {
   for(auto &filepath : opts_.filepaths)
-    l::to_adp4(filepath,opts_.encoder);
+    {
+      try
+        {
+          l::to_adp4(filepath,opts_.encoder);        
+        }
+      catch(const std::system_error &e_)
+        {
+          fmt::print(" - ERROR - {} - {} ({})\n",filepath_,e_.what(),e_.code().message());
+        }
+      catch(const std::runtime_error &e_)
+        {
+          fmt::print(" - ERROR - {} - {}\n",filepath_,e_.what());
+        }
+    }
 }
