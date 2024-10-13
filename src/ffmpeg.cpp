@@ -118,7 +118,6 @@ ffmpeg_write_aifc(const void                  *data_,
   channels = fmt::format("{}",channels_);
   freq     = fmt::format("{}",freq_);
   
-  filepath_str = filepath_.string();
   args =
     {
       "ffmpeg",
