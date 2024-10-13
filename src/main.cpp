@@ -64,7 +64,8 @@ generate_to_sdx2_argparser(CLI::App      &app_,
     ->check(CLI::IsMember({"raw","auto"}))
     ->default_val("auto");
   subcmd->add_option("--encoder",opts.encoder)
-    ->description("Encoder to use")
+    ->description("Encoder to use\n"
+                  "default: Standard 3DO encoder ported by trapexit")
     ->check(CLI::IsMember({"default"}))
     ->default_val("default");  
   subcmd->add_option("--channels",opts.output_channels)
