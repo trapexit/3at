@@ -65,6 +65,7 @@ namespace l
     std::filesystem::path output_filepath;
 
     input_data = l::load_file(filepath_);
+    fmt::print("size input_data: {}\n",input_data.size());
     if(input_data.empty())
       return;
 
@@ -82,8 +83,6 @@ namespace l
     // Pad to word / 4 byte alignment for use with 3DO
     // https://3dodev.com/documentation/development/opera/pf25/ppgfldr/mgsfldr/mprfldr/01mpr021
     output_data.resize(((output_data.size() + 3) / 4) * 4);
-
-    fmt::print("size input_data: {}\n",input_data.size());
 
     if(encoder_ == "default")
       adp4_encode(input_data.data(),
