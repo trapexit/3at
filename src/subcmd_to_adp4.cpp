@@ -48,6 +48,15 @@ namespace l
     return size;
   }
 
+  std::vector<s16>
+  load_file(const std::filesystem::path &filepath_)
+  {
+    std::vector<s16> buf;
+
+    if(ffmpeg_file_recognizable(filepath_))
+      
+  }
+
   void
   to_adp4(const std::filesystem::path &filepath_,
           const std::string           &encoder_)
@@ -60,13 +69,6 @@ namespace l
     std::filesystem::path output_filepath;
 
 
-    if(ffmpeg_file_recognizable(filepath_))
-      fmt::print("ffmpeg understand file\n");
-    else
-      fmt::print("ffmpeg DOES NOT understand file\n");
-
-    return;
-    
     output_filepath = filepath_;
     output_filepath += ".adp4.1ch.raw";
     
