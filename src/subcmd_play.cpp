@@ -39,6 +39,8 @@ namespace l
                            subprocess_option_inherit_environment|
                            subprocess_option_search_user_path,
                            &subproc);
+    if(rv != 0)
+      return;
 
     std::array<char,1024> buf;
     while(true)
@@ -60,14 +62,6 @@ namespace l
   {
     for(auto const &filepath : opts_.filepaths)
       {
-        fmt::print("subcmd::play({});\n",filepath_str);
-        struct subprocess_s subproc = {0};
-        int rv = subprocess_create(args.data(),
-                                   subprocess_option_combined_stdout_stderr|
-                                   subprocess_option_enable_async|
-                                   subprocess_option_inherit_environment|
-                                   subprocess_option_search_user_path,
-                                   &subproc);
         if(rv != 0)
           {
             args.pop_back();
