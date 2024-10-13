@@ -59,7 +59,7 @@ generate_to_sdx2_argparser(CLI::App      &app_,
     ->check(CLI::ExistingFile)
     ->required();
   subcmd->add_option("--input-type",opts.input_type)
-    ->description("raw = foo; auto = bar;")
+    ->description("raw = foo;\nauto = bar;")
     ->check(CLI::IsMember({"raw","auto"}))
     ->default_val("auto");
   subcmd->add_option("--encoder",opts.encoder)
