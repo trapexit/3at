@@ -28,7 +28,7 @@ generate_to_adp4_argparser(CLI::App      &app_,
     ->check(CLI::ExistingFile)
     ->required();
   subcmd->add_option("--encoder",opts.encoder)
-    ->description("")
+    ->description("Encoder to use")
     ->check(CLI::IsMember({"default"}))
     ->default_val("default");
   subcmd->add_option("--freq",opts.output_freq)
