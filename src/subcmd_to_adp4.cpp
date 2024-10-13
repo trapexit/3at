@@ -85,7 +85,9 @@ namespace l
 
     input_data = l::load_file_raw_s16(filepath_);
     if(input_data.empty())
-      return;
+      {
+        return;
+      }
 
     output_filepath = filepath_;
     output_filepath += ".adp4.1ch.raw";
@@ -96,6 +98,7 @@ namespace l
         fmt::print(stderr,
                    "{}\n",
                    fmt::format("unable to open {}",output_filepath));
+        return;
       }
     
     // 4bits per sample, 2 samples per byte
