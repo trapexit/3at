@@ -77,7 +77,7 @@ namespace l
     if(encoder_ == "default")
       sdx2_encode(input_data.data(),
                   input_data.size(),
-                  SDX2_MONO,
+                  channels_,
                   output_data.data(),
                   output_data.size());
 
