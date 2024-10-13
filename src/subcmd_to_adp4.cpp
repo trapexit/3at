@@ -52,7 +52,6 @@ namespace l
         buf = ffmpeg::to_s16le(filepath_,channels_,freq_);
         if(!buf.empty())
           return buf;
-
         return file::load_s16(filepath_);
       }
 
