@@ -1,6 +1,7 @@
 #include "subcmd_play.hpp"
 
 #include "CLI11.hpp"
+#include "ffmpeg.hpp"
 #include "subprocess.h"
 
 #include "fmt.hpp"
@@ -70,5 +71,8 @@ namespace l
 void
 SubCmd::play(Opts::Play const &opts_)
 {
+  if(!ffmpeg::ffplay_available())
+    throw fmt::exception("ffplay was not found");
+  
   l::play(opts_);
 }
