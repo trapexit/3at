@@ -28,7 +28,8 @@ generate_to_adp4_argparser(CLI::App      &app_,
     ->check(CLI::ExistingFile)
     ->required();
   subcmd->add_option("--encoder",opts.encoder)
-    ->description("Encoder to use")
+    ->description("Encoder to use\n"
+                  "default: Standard Intel/DVI encoder ported by trapexit")    
     ->check(CLI::IsMember({"default"}))
     ->default_val("default");
   subcmd->add_option("--freq",opts.output_freq)
