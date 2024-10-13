@@ -59,6 +59,10 @@ namespace l
     input_data = l::load_file(filepath_,channels_);
     if(input_data.empty())
       throw fmt::exception("failed to load {}",filepath_);      
+
+    output_filepath = filepath_;
+    output_filepath += fmt::format(".sdx2.{}ch.raw",channels_);
+
     
     in_file  = fopen(filepath_.string().c_str(),"rb");
     out_file = fopen("sdx2.test.raw","wb");
