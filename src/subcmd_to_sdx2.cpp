@@ -59,7 +59,7 @@ namespace l
     std::vector<s8>  output_data;
     std::filesystem::path output_filepath;
 
-    input_data = l::load_file(filepath_,channels_);
+    input_data = l::load_file(filepath_,channels_,freq_);
     if(input_data.empty())
       throw fmt::exception("failed to load {}",filepath_);
 
