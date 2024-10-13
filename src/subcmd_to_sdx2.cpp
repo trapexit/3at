@@ -53,6 +53,7 @@ namespace l
 
   void
   to_sdx2(const std::filesystem::path &filepath_,
+          const std::string           &input_type_,
           const std::string           &encoder_,
           const int                    channels_,
           const int                    freq_)
@@ -62,7 +63,7 @@ namespace l
     std::vector<s8>  output_data;
     std::filesystem::path output_filepath;
 
-    input_data = l::load_file(filepath_,channels_,freq_);
+    input_data = l::load_file(input_type_,filepath_,channels_,freq_);
     if(input_data.empty())
       throw fmt::exception("failed to load {}",filepath_);
 
