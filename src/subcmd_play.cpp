@@ -62,29 +62,7 @@ namespace l
   {
     for(auto const &filepath : opts_.filepaths)
       {
-        if(rv != 0)
-          {
-            args.pop_back();
-            fmt::print("Error running {}\n",args);
-            continue;
-          }
-        
-        std::vector<char> buf;
-
-        buf.resize(80 * 2 + 1);
-        while(true)
-          {
-            int err;
-
-            err = subprocess_read_stdout(&subproc,&buf[0],buf.size()-1);
-            if(err == 0)
-              break;
-            buf[err] = 0;
-            fmt::print("{}",buf.data());
-          }
-
-        subprocess_join(&subproc,&rv);
-        subprocess_destroy(&subproc);
+        l::play_adp4(filepath_);
       }
   }
 }
