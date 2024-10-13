@@ -1,5 +1,6 @@
 #include "subcmd_play.hpp"
 
+#include "CLI11.hpp"
 #include "subprocess.h"
 
 #include "fmt.hpp"
@@ -9,6 +10,29 @@
 
 namespace l
 {
+  void
+  play_adp4(const std::filesystem::path &filepath_)
+  {
+    std::vector<const char*> args;
+    std::string filepath_str;
+
+    filepath_str = filepath.string();
+    args =
+      {
+        "ffplay",
+        "-hide_banner",
+        "-autoexit",
+        "-volume","100",
+        "-f","u8",
+        "-acodec","adpcm_ima_ws",
+        //"-ac","1",
+        "-ar","22050",
+        filepath_str.c_str(),
+        NULL
+      };
+
+  }
+  
   void
   play(Opts::Play const &opts_)
   {
