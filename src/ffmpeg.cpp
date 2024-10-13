@@ -43,6 +43,18 @@ ffmpeg::ffmpeg_avilable(void)
 }
 
 bool
+ffmpeg::ffplay_avilable(void)
+{
+  return l::executable_exists("ffplay");
+}
+
+bool
+ffmpeg::ffprobe_available(void)
+{
+  return l::executable_exists("ffprobe");
+}
+
+bool
 ffmpeg::file_recognizable(const std::filesystem::path &path_)
 {
   int rv;
