@@ -67,7 +67,7 @@ namespace l
     std::vector<u8> output_data;
     std::filesystem::path output_filepath;
 
-    input_data = l::load_file(input_type_,filepath_,1,);
+    input_data = l::load_file(input_type_,filepath_,1,freq_);
     if(input_data.empty())
       throw fmt::exception("failed to load {}",filepath_);
 
