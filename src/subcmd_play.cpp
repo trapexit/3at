@@ -33,13 +33,26 @@ namespace l
         NULL
       };
 
-    int rv = subprocess_create(args.data(),
-                               subprocess_option_combined_stdout_stderr|
-                               subprocess_option_enable_async|
-                               subprocess_option_inherit_environment|
-                               subprocess_option_search_user_path,
-                               &subproc);
+    rv = subprocess_create(args.data(),
+                           subprocess_option_combined_stdout_stderr|
+                           subprocess_option_enable_async|
+                           subprocess_option_inherit_environment|
+                           subprocess_option_search_user_path,
+                           &subproc);
     
+    while(true)
+      {
+        int err;
+
+        err = subprocess_read_stdout(&subproc,&buf[0],buf.size()-1);
+        if(err == 0)
+          break;
+        buf[err] = 0;
+        fmt::print("{}",buf.data());
+      }
+
+    subprocess_join(&subproc,&rv);
+    subprocess_destroy(&subproc);
   }
   
   void
