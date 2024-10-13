@@ -135,7 +135,7 @@ main(int    argc_,
   Opts::Options opts;  
   CLI::App app("3at: 3DO Audio Tool");
 
-  set_locale();
+  //  set_locale();
 
   generate_argparser(app,opts);
 
