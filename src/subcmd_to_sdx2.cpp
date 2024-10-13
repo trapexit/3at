@@ -36,11 +36,12 @@ namespace l
 {
   std::vector<s16>
   load_file(const std::filesystem::path &filepath_,
-            const int                    channels_)
+            const int                    channels_,
+            const int                    freq_)
   {
     std::vector<s16> buf;
 
-    buf = ffmpeg::to_s16le(filepath_,channels_,22050);
+    buf = ffmpeg::to_s16le(filepath_,channels_,freq_);
     if(buf.empty())
       buf = file::load_s16(filepath_);
 
