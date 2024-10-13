@@ -64,7 +64,7 @@ namespace l
       throw fmt::exception("failed to load {}",filepath_);
 
     output_filepath = filepath_;
-    output_filepath += fmt::format(".sdx2.{}ch.{}Hz.raw",channels_,freq_);
+    output_filepath += fmt::format(".sdx2.{}ch.{}hz.raw",channels_,freq_);
 
     out_file = fopen(output_filepath.string().c_str(),"wb");
     if(out_file == NULL)
