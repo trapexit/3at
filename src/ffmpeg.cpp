@@ -50,6 +50,7 @@ ffmpeg_to_s16le(const std::filesystem::path &filepath_,
                 const int                    freq_)
 {
   int rv;
+  FILE *outputf;
   std::string filepath;
   std::string channels;
   std::string freq;
@@ -77,8 +78,6 @@ ffmpeg_to_s16le(const std::filesystem::path &filepath_,
                          &subproc);
   if(rv != 0)
     return {};
-
-  FILE *outputf;
 
   outputf = subprocess_stdout(&subproc);
 
