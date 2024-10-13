@@ -135,11 +135,11 @@ SubCmd::to_adp4(const Opts::ToADP4 &opts_)
         }
       catch(const std::system_error &e_)
         {
-          fmt::print(" - ERROR - {} - {} ({})\n",filepath_,e_.what(),e_.code().message());
+          fmt::print(" - ERROR - {} - {} ({})\n",filepath,e_.what(),e_.code().message());
         }
       catch(const std::runtime_error &e_)
         {
-          fmt::print(" - ERROR - {} - {}\n",filepath_,e_.what());
+          fmt::print(" - ERROR - {} - {}\n",filepath,e_.what());
         }
     }
 }
