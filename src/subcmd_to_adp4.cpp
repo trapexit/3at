@@ -17,7 +17,6 @@
 */
 
 #include "subcmd_to_adp4.hpp"
-#include "options.hpp"
 
 #include "file.hpp"
 #include "ffmpeg.hpp"
