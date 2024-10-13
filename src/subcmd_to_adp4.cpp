@@ -65,6 +65,8 @@ namespace l
     std::filesystem::path output_filepath;
 
     input_data = l::load_file(filepath_);
+    if(input_data.empty())
+      continue;
 
     output_filepath = filepath_;
     output_filepath += ".adp4.1ch.raw";
