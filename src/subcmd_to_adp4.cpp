@@ -58,7 +58,6 @@ namespace l
   to_adp4(const std::filesystem::path &filepath_,
           const std::string           &encoder_)
   {
-    FILE *in_file;
     FILE *out_file;
     std::vector<s16> input_data;
     std::vector<u8> output_data;
@@ -68,11 +67,10 @@ namespace l
     output_filepath = filepath_;
     output_filepath += ".adp4.1ch.raw";
     
-    in_file  = fopen(filepath_.string().c_str(),"rb");
+
     out_file = fopen(output_filepath.string().c_str(),"wb");
 
-    sample_count = l::file_size(in_file);
-    sample_count >>= 1;
+    sample_count = input_data.size();
     
     //    input_data.resize(sample_count);
     // 4bits per sample, 2 samples per byte
