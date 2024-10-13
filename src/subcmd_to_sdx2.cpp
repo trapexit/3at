@@ -40,7 +40,6 @@ namespace l
     FILE *out_file;
     std::vector<s16> input_data;
     std::vector<s8>  output_data;
-    u32  sample_count;
 
     in_file  = fopen(filepath_.string().c_str(),"rb");
     out_file = fopen("sdx2.test.raw","wb");
