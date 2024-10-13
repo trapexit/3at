@@ -21,7 +21,7 @@ namespace Opts
   struct ToSDX2
   {
     std::vector<std::filesystem::path> filepaths;
-    bool raw;
+    std::string input_type;
     std::string encoder;
     int output_channels;
     int output_freq;
