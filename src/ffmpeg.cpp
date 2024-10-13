@@ -130,6 +130,14 @@ ffmpeg_write_aifc(const void                  *data_,
       filepath.c_str(),
       NULL
     };
+
+  subprocess_create(args.data(),
+                    subprocess_option_inherit_environment|
+                    subprocess_option_search_user_path,
+                    &subproc);                    
+
+  subprocess_join(&subproc,&rv);
+  subprocess_destroy(&subproc);
   
   return 0;
 }
