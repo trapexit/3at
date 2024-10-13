@@ -26,6 +26,7 @@
 
 #include "types_ints.h"
 
+#include <array>
 #include <vector>
 #include <cstdio>
 
