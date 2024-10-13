@@ -4,6 +4,7 @@
 
 #include "fmt.hpp"
 
+#include <cstddef>
 #include <vector>
 
 namespace l
@@ -17,21 +18,19 @@ namespace l
         std::string filepath_str;
 
         filepath_str = filepath.string();
-        args.push_back("ffplay");
-        args.push_back("-hide_banner");
-        args.push_back("-autoexit");
-        args.push_back("-volume");
-        args.push_back("100");
-        args.push_back("-f");
-        args.push_back("u8");
-        args.push_back("-acodec");
-        args.push_back("adpcm_ima_ws");
-        //        args.push_back("-ac");
-        //        args.push_back("1");
-        args.push_back("-ar");
-        args.push_back("22050");
-        args.push_back(filepath_str.c_str());
-        args.push_back(NULL);
+        args =
+          {
+            "ffplay",
+            "-hide_banner",
+            "-autoexit",
+            "-volume","100",
+            "-f","u8",
+            "-acodec","adpcm_ima_ws",
+            //"-ac","1",
+            "-ar","22050",
+            filepath_str.c_str(),
+            NULL
+          }
 
         fmt::print("subcmd::play({});\n",filepath_str);
         struct subprocess_s subproc = {0};
