@@ -39,7 +39,7 @@ namespace l
   {
     std::vector<s16> buf;
 
-    buf = ffmpeg::to_s16le(filepath_,1,22050);
+    buf = ffmpeg::to_s16le(filepath_,channels_,22050);
     if(buf.empty())
       buf = file::load_s16(filepath_);
 
