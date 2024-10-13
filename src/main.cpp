@@ -60,7 +60,7 @@ generate_to_sdx2_argparser(CLI::App      &app_,
     ->check(CLI::ExistingFile)
     ->required();
   subcmd->add_option("--input-type",opts.input_type)
-    ->description("raw: Force load as raw data. Channels and freq ignored.\n"
+    ->description("raw: Load file as raw data. Channels and freq ignored.\n"
                   "auto: Try to use ffmpeg to load file and fall back to raw.")
     ->check(CLI::IsMember({"raw","auto"}))
     ->default_val("auto");
