@@ -13,9 +13,11 @@ namespace l
   void
   play_adp4(const std::filesystem::path &filepath_)
   {
+    int rv;
     std::vector<const char*> args;
     std::string filepath_str;
-
+    struct subprocess_s subproc;
+    
     filepath_str = filepath_.string();
     args =
       {
@@ -31,6 +33,12 @@ namespace l
         NULL
       };
 
+    int rv = subprocess_create(args.data(),
+                               subprocess_option_combined_stdout_stderr|
+                               subprocess_option_enable_async|
+                               subprocess_option_inherit_environment|
+                               subprocess_option_search_user_path,
+                               &subproc);
     
   }
   
@@ -39,24 +47,6 @@ namespace l
   {
     for(auto const &filepath : opts_.filepaths)
       {
-        std::vector<const char*> args;
-        std::string filepath_str;
-
-        filepath_str = filepath.string();
-        args =
-          {
-            "ffplay",
-            "-hide_banner",
-            "-autoexit",
-            "-volume","100",
-            "-f","u8",
-            "-acodec","adpcm_ima_ws",
-            //"-ac","1",
-            "-ar","22050",
-            filepath_str.c_str(),
-            NULL
-          };
-
         fmt::print("subcmd::play({});\n",filepath_str);
         struct subprocess_s subproc = {0};
         int rv = subprocess_create(args.data(),
