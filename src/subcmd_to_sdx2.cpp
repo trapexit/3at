@@ -55,6 +55,7 @@ namespace l
     return {};
   }
 
+  static
   void
   to_sdx2(const std::filesystem::path &filepath_,
           const std::string           &input_type_,
