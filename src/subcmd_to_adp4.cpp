@@ -71,7 +71,7 @@ namespace l
 
     fclose(input);
     
-    return {};
+    return buf;
   }
 
   std::vector<s16>

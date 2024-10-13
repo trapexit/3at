@@ -8,10 +8,10 @@ CC    := $(COMPILER_PREFIX)-gcc
 CXX   := $(COMPILER_PREFIX)-g++
 STRIP := $(COMPILER_PREFIX)-strip
 
-ifeq ($(DEBUG),1)
-OPT := -O0 -ggdb -ftrapv
-else
+ifeq ($(NDEBUG),1)
 OPT := -O3 -flto -static
+else
+OPT := -O0 -ggdb -ftrapv
 endif
 
 ifeq ($(SANITIZE),1)
@@ -52,9 +52,9 @@ builddir:
 	mkdir -p $(BUILDDIR)
 
 release-base: clean
-	$(MAKE) -f Makefile -j$(JOBS) strip
-	$(MAKE) -f Makefile.win32 -j$(JOBS) strip
-	$(MAKE) -f Makefile.win64 -j$(JOBS) strip
+	$(MAKE) -f Makefile NDEBUG=1 -j$(JOBS) strip
+	$(MAKE) -f Makefile.win32 NDEBUG=1 -j$(JOBS) strip
+	$(MAKE) -f Makefile.win64 NDEBUG=1 -j$(JOBS) strip
 
 release:
 	docker run --rm -it -e PUID=$(PUID) -e PGID=$(PGID) -v ${PWD}:/src alpine:edge "/src/buildtools/docker-make-release"
