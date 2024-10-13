@@ -49,7 +49,8 @@ namespace l
 
   void
   to_adp4(const std::filesystem::path &filepath_,
-          const std::string           &encoder_)
+          const std::string           &encoder_,
+          const int                    channels_)
   {
     FILE *out_file;
     std::vector<s16> input_data;
