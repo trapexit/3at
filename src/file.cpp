@@ -36,17 +36,23 @@ file::load_u8(const std::filesystem::path &filepath_)
 
   while(!feof(input) && !ferror(input))
     {
-      size_t n;
-        
-      n = fread(tmpbuf.data(),sizeof(u8),tmpbuf.size(),input);
-      buf.reserve(buf.size() + n);
+      const size_t n = fread(tmpbuf.data(),sizeof(u8),tmpbuf.size(),input);
+
+      // Let insert() grow geometrically: reserving size + n on every chunk
+      // reallocates and copies the entire buffer once per read.
       buf.insert(buf.end(),
                  tmpbuf.begin(),
                  tmpbuf.begin() + n);
     }
 
+  if(ferror(input))
+    {
+      fclose(input);
+      return {};
+    }
+
   fclose(input);
-    
+
   return buf;
 }
 
@@ -63,16 +69,22 @@ file::load_s16(const std::filesystem::path &filepath_)
 
   while(!feof(input) && !ferror(input))
     {
-      size_t n;
-        
-      n = fread(tmpbuf.data(),sizeof(s16),tmpbuf.size(),input);
-      buf.reserve(buf.size() + n);
+      const size_t n = fread(tmpbuf.data(),sizeof(s16),tmpbuf.size(),input);
+
+      // Let insert() grow geometrically: reserving size + n on every chunk
+      // reallocates and copies the entire buffer once per read.
       buf.insert(buf.end(),
                  tmpbuf.begin(),
                  tmpbuf.begin() + n);
     }
 
+  if(ferror(input))
+    {
+      fclose(input);
+      return {};
+    }
+
   fclose(input);
-    
+
   return buf;
 }

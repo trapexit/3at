@@ -21,13 +21,15 @@
 
 #include "file.hpp"
 #include "ffmpeg.hpp"
-#include "adp4_decode.h"
+#include "adpcm-lib.h"
+#include "adp4_stereo_layout.hpp"
 
 #include "fmt.hpp"
 
 #include "types_ints.h"
 
 #include <iterator>
+#include <limits>
 #include <array>
 #include <unistd.h>
 #include <vector>
@@ -40,25 +42,76 @@ namespace l
   void
   from_adp4(const std::filesystem::path &filepath_,
             const std::string           &output_type_,
+            const std::string           &stereo_layout_,
+            const int                    channels_,
             const int                    freq_)
   {
     std::vector<u8> input_data;
     std::vector<s16> output_data;
     std::filesystem::path output_filepath;
+    size_t max_input_size;
+    size_t padding;
+    size_t source_size;
+    void *context;
+    int expected_frame_count;
+    int frames;
 
     input_data = file::load_u8(filepath_);
     if(input_data.empty())
       throw fmt::exception("failed to load {}",filepath_);
 
+    source_size = input_data.size();
+    if(source_size % channels_)
+      throw fmt::exception("input byte count is not channel-aligned");
+
+    max_input_size =
+      (static_cast<size_t>(std::numeric_limits<int>::max()) * channels_) / 2;
+    if(source_size > max_input_size)
+      throw fmt::exception("input contains too many ADP4 frames");
+
+    if((channels_ == 2) && (stereo_layout_ == "portfolio"))
+      {
+        if(source_size & 3)
+          throw fmt::exception("Portfolio stereo ADP4 is not word aligned");
+
+        padding = ((8 - (source_size % 8)) % 8);
+        if(padding > (max_input_size - source_size))
+          throw fmt::exception("input contains too many ADP4 frames");
+
+        expected_frame_count = static_cast<int>(source_size);
+        adp4_stereo_layout::portfolio_to_xq(input_data);
+      }
+    else
+      {
+        if((channels_ == 2) && (source_size % 8))
+          throw fmt::exception("XQ stereo ADP4 is not 8-frame aligned");
+
+        expected_frame_count = static_cast<int>((source_size * 2) / channels_);
+      }
+
     output_filepath = filepath_;
     output_filepath += fmt::format(".{}",output_type_);
 
-    // ADP4 is 4bits per sample, 2 samples per byte
+    // ADP4 is 4 bits per sample, 2 samples per byte.
     output_data.resize(input_data.size() * 2);
 
-    adp4_decode(input_data.data(),
-                input_data.size(),
-                output_data.data());
+    context = adpcm_create_context(channels_,
+                                   freq_,
+                                   0,
+                                   NOISE_SHAPING_OFF,
+                                   FORMAT_NO_HEADERS | FORMAT_INTEL_DVI4);
+    if(context == NULL)
+      throw fmt::exception("failed to create ADP4 decoder context");
+
+    frames = adpcm_decode_block(context,
+                                output_data.data(),
+                                input_data.data(),
+                                input_data.size(),
+                                channels_);
+    adpcm_free_context(context);
+    if(frames < expected_frame_count)
+      throw fmt::exception("failed to decode complete ADP4 stream");
+    output_data.resize(static_cast<size_t>(expected_frame_count) * channels_);
 
     if(output_type_ == "raw")
       {
@@ -76,13 +129,15 @@ namespace l
         
         fclose(out_file);
         if(rv != output_data.size())
-          fmt::print(" - ERROR: short write {}/{}\n",rv,output_data.size());
+          throw fmt::exception("failed to write all data to file {} / {}",
+                               rv,
+                               output_data.size());
       }
     else if((output_type_ == "aiff") ||
             (output_type_ == "wav"))
       {
         u64 rv;
-        const int channels = 1;
+        const int channels = channels_;
 
         rv = ffmpeg::write(output_data.data(),
                            output_data.size() * 2, // 2 bytes per sample
@@ -92,7 +147,9 @@ namespace l
                            channels,
                            freq_);
         if(rv != (output_data.size() * sizeof(decltype(output_data)::value_type)))
-          fmt::print(" - ERROR: short write {}/{}\n",rv,output_data.size());
+          throw fmt::exception("failed to write all data to file {} / {}",
+                               rv,
+                               output_data.size());
       }
     else
       {
@@ -105,8 +162,8 @@ namespace l
                " - output data size: {}b\n"
                ,
                output_filepath,
-               input_data.size() * 2,
-               input_data.size(),
+               output_data.size(),
+               source_size,
                output_data.size() * sizeof(s16));
   }
 }
@@ -114,6 +171,8 @@ namespace l
 void
 SubCmd::from_adp4(const Opts::FromADP4 &opts_)
 {
+  std::size_t failures = 0;
+
   if(opts_.output_type != "raw")
     {
       if(!ffmpeg::ffmpeg_available())
@@ -128,15 +187,24 @@ SubCmd::from_adp4(const Opts::FromADP4 &opts_)
         {
           l::from_adp4(filepath,
                        opts_.output_type,
+                       opts_.stereo_layout,
+                       opts_.channels,
                        opts_.freq);
         }
       catch(const std::system_error &e_)
         {
           fmt::print(" - ERROR - {} - {} ({})\n",filepath,e_.what(),e_.code().message());
+          failures++;
         }
       catch(const std::runtime_error &e_)
         {
           fmt::print(" - ERROR - {} - {}\n",filepath,e_.what());
+          failures++;
         }
     }
+
+  if(failures != 0)
+    throw std::runtime_error(fmt::format("{} of {} file(s) failed",
+                                         failures,
+                                         opts_.filepaths.size()));
 }

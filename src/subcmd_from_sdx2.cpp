@@ -46,6 +46,7 @@ namespace l
     std::vector<u8> input_data;
     std::vector<s16> output_data;
     std::filesystem::path output_filepath;
+    s32 result;
 
     input_data = file::load_u8(filepath_);
     if(input_data.empty())
@@ -56,11 +57,13 @@ namespace l
 
     output_data.resize(input_data.size());
 
-    sdx2_decode(input_data.data(),
-                input_data.size(),
-                channels_,
-                output_data.data(),
-                output_data.size());
+    result = sdx2_decode(input_data.data(),
+                         input_data.size(),
+                         channels_,
+                         output_data.data(),
+                         output_data.size());
+    if(result != SDX2_SUCCESS)
+      throw fmt::exception("SDX2 decoder failed with error {}",result);
 
     if(output_type_ == "raw")
       {
@@ -78,7 +81,9 @@ namespace l
 
         fclose(out_file);
         if(rv != output_data.size())
-          fmt::print(" - ERROR: short write {}/{}\n",rv,output_data.size());
+          throw fmt::exception("failed to write all data to file {} / {}",
+                               rv,
+                               output_data.size());
       }
     else if((output_type_ == "aiff") ||
             (output_type_ == "wav"))
@@ -92,8 +97,10 @@ namespace l
                            "pcm_s16le",
                            channels_,
                            freq_);
-        if(rv != (output_data.size() * sizeof(decltype(output_data)::value_type)))        
-          fmt::print(" - ERROR: short write {}/{}\n",rv,output_data.size());
+        if(rv != (output_data.size() * sizeof(decltype(output_data)::value_type)))
+          throw fmt::exception("failed to write all data to file {} / {}",
+                               rv,
+                               output_data.size());
       }
     else
       {
@@ -106,7 +113,7 @@ namespace l
                " - output data size: {}b\n"
                ,
                output_filepath,
-               input_data.size(),
+               output_data.size(),
                input_data.size(),
                output_data.size() * sizeof(s16));
   }
@@ -115,6 +122,8 @@ namespace l
 void
 SubCmd::from_sdx2(const Opts::FromSDX2 &opts_)
 {
+  std::size_t failures = 0;
+
   if(opts_.output_type != "raw")
     {
       if(!ffmpeg::ffmpeg_available())
@@ -135,10 +144,17 @@ SubCmd::from_sdx2(const Opts::FromSDX2 &opts_)
       catch(const std::system_error &e_)
         {
           fmt::print(" - ERROR - {} - {} ({})\n",filepath,e_.what(),e_.code().message());
+          failures++;
         }
       catch(const std::runtime_error &e_)
         {
           fmt::print(" - ERROR - {} - {}\n",filepath,e_.what());
+          failures++;
         }
     }
+
+  if(failures != 0)
+    throw std::runtime_error(fmt::format("{} of {} file(s) failed",
+                                         failures,
+                                         opts_.filepaths.size()));
 }
