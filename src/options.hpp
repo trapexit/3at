@@ -11,6 +11,13 @@ namespace Opts
     std::string input_type;
     std::string output_type;
     std::string encoder;
+    int lookahead;
+    std::string noise_shaping;
+    std::string stereo_layout;
+    std::string search_effort;
+    std::string selection_metric;
+    int threads;
+    int output_channels;
     int output_freq;
     std::filesystem::path output_path;
   };
@@ -20,7 +27,13 @@ namespace Opts
     std::vector<std::filesystem::path> filepaths;
     std::string input_type;
     std::string output_type;    
+    int beam_width;
     std::string encoder;
+    int lookahead;
+    std::string noise_shaping;
+    std::string search_effort;
+    std::string selection_metric;
+    int threads;
     int output_channels;
     int output_freq;
     std::filesystem::path output_path;    
@@ -30,6 +43,8 @@ namespace Opts
   {
     std::vector<std::filesystem::path> filepaths;
     std::string output_type;
+    std::string stereo_layout;
+    int channels;
     int freq;
   };
 

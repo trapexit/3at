@@ -44,7 +44,7 @@ _sdx2_decode_mono(const u8  *ibuf_,
                   s16       *obuf_,
                   const u32  obuf_len_)
 {
-  s32 sample;
+  s32 sample = 0;
   s16 lookup_table[256];
 
   _build_lookup_table(lookup_table);
@@ -72,8 +72,8 @@ _sdx2_decode_stereo(const u8  *ibuf_,
                     s16       *obuf_,
                     const u32  obuf_len_)
 {
-  s32 l_sample;
-  s32 r_sample;  
+  s32 l_sample = 0;
+  s32 r_sample = 0;
   s16 lookup_table[256];
 
   _build_lookup_table(lookup_table);
@@ -107,6 +107,11 @@ sdx2_decode(const u8  *ibuf_,
             s16       *obuf_,
             const u32  obuf_len_)
 {
+  if(obuf_len_ < ibuf_len_)
+    return SDX2_ERR_INVALID_OBUF_LEN;
+  if((num_channels_ == SDX2_STEREO) && (ibuf_len_ & 1))
+    return SDX2_ERR_INVALID_OBUF_LEN;
+
   switch(num_channels_)
     {
     case SDX2_MONO:
@@ -115,5 +120,5 @@ sdx2_decode(const u8  *ibuf_,
       return _sdx2_decode_stereo(ibuf_,ibuf_len_,obuf_,obuf_len_);
     }
   
-  return SDX2_SUCCESS;
+  return SDX2_ERR_UNSUPPORTED_CHANNELS;
 }

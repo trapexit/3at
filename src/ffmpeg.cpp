@@ -73,6 +73,8 @@ ffmpeg::file_recognizable(const std::filesystem::path &path_)
       "-hide_banner",
       "-loglevel","fatal",
       "-i",path.c_str(),
+      "-map","0:a:0",
+      "-frames:a","0",
       "-f","null",
       "-"
     };
@@ -85,12 +87,11 @@ ffmpeg::file_recognizable(const std::filesystem::path &path_)
   if(rv != 0)
     return false;
 
-  subprocess_join(&subproc,&rv);
+  const bool join_error = (subprocess_join(&subproc,&rv) != 0);
+
   subprocess_destroy(&subproc);
 
-  if(rv == 0)
-    return true;
-  return false;
+  return (!join_error && (rv == 0));
 }
 
 std::vector<s16>
@@ -132,26 +133,32 @@ ffmpeg::to_s16le(const std::filesystem::path &filepath_,
                          subprocess_option_search_user_path,
                          &subproc);
   if(rv != 0)
-    return {};
+    throw fmt::exception("failed to start ffmpeg for {}",filepath_);
 
   outputf = subprocess_stdout(&subproc);
 
   std::vector<s16> tmpbuf;
 
   tmpbuf.resize(1024 * 64);
-  while(!feof(outputf))
+  while(!feof(outputf) && !ferror(outputf))
     {
-      size_t n;
+      const size_t n = fread(tmpbuf.data(),2,tmpbuf.size(),outputf);
 
-      n = fread(tmpbuf.data(),2,tmpbuf.size(),outputf);
-      buf.reserve(buf.size() + n);
+      // Let insert() grow geometrically rather than reallocating per chunk.
       buf.insert(buf.end(),
                  tmpbuf.begin(),
                  tmpbuf.begin() + n);
     }
 
-  subprocess_join(&subproc,&rv);
+  // Join before deciding: a failed or partial decode must not pass as complete.
+  const bool read_error = (ferror(outputf) != 0);
+  const bool join_error = (subprocess_join(&subproc,&rv) != 0);
+  const bool failed = (read_error || join_error || (rv != 0));
+
   subprocess_destroy(&subproc);
+
+  if(failed)
+    throw fmt::exception("ffmpeg failed to decode {}",filepath_);
 
   return buf;
 }
@@ -160,6 +167,8 @@ int
 ffmpeg::freq(const std::filesystem::path &filepath_)
 {
   int rv;
+  int value;
+  int proc_rv;
   FILE *outputf;
   std::string filepath;
   std::vector<const char*> args;
@@ -186,18 +195,23 @@ ffmpeg::freq(const std::filesystem::path &filepath_)
 
   outputf = subprocess_stdout(&subproc);
 
-  fscanf(outputf,"%i",&rv);
+  const bool parsed = (fscanf(outputf,"%i",&value) == 1);
+  const bool join_error = (subprocess_join(&subproc,&proc_rv) != 0);
 
-  subprocess_join(&subproc,NULL);
   subprocess_destroy(&subproc);
 
-  return rv;
+  if(!parsed || join_error || (proc_rv != 0))
+    return -1;
+
+  return value;
 }
 
 int
 ffmpeg::channels(const std::filesystem::path &filepath_)
 {
   int rv;
+  int value;
+  int proc_rv;
   FILE *outputf;
   std::string filepath;
   struct subprocess_s subproc;
@@ -224,12 +238,15 @@ ffmpeg::channels(const std::filesystem::path &filepath_)
 
   outputf = subprocess_stdout(&subproc);
 
-  fscanf(outputf,"%i",&rv);
+  const bool parsed = (fscanf(outputf,"%i",&value) == 1);
+  const bool join_error = (subprocess_join(&subproc,&proc_rv) != 0);
 
-  subprocess_join(&subproc,NULL);
   subprocess_destroy(&subproc);
 
-  return rv;
+  if(!parsed || join_error || (proc_rv != 0))
+    return -1;
+
+  return value;
 }
 
 u64
@@ -268,18 +285,25 @@ ffmpeg::write(const void                  *data_,
       NULL
     };
 
-  subprocess_create(args.data(),
-                    subprocess_option_inherit_environment|
-                    subprocess_option_search_user_path,
-                    &subproc);
+  if(subprocess_create(args.data(),
+                       subprocess_option_inherit_environment|
+                       subprocess_option_search_user_path,
+                       &subproc) != 0)
+    return 0;
 
   stdinf = subprocess_stdin(&subproc);
 
   rv = fwrite(data_,1,data_size_,stdinf);
   fflush(stdinf);
 
-  subprocess_join(&subproc,&proc_rv);
+  const bool join_error = (subprocess_join(&subproc,&proc_rv) != 0);
+
   subprocess_destroy(&subproc);
+
+  // Zero signals failure so callers cannot mistake a rejected or truncated
+  // conversion for a complete one.
+  if(join_error || (proc_rv != 0) || (rv != data_size_))
+    return 0;
 
   return rv;
 }
