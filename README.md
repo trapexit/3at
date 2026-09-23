@@ -7,12 +7,31 @@ writing non-raw formats.
 The eventual goal is to upstream the SDX2 and ADP4 encoders to FFmpeg.
 
 
+## Build
+
+Native builds use the system C and C++ compilers:
+
+```sh
+make
+make test
+make NDEBUG=1
+make SANITIZE=1 test
+```
+
+The default executable is `build/3at`; `make install PREFIX=/usr/local`
+installs it under `bin`. To cross-compile, install Zig 0.16.0 or run
+`make zig-venv` to obtain it in `.venv`, then run `make release`. Zig from
+`PATH` takes precedence; `ZIG=/path/to/zig` selects another installation.
+The release builds are placed in `build/` for x86-64 and AArch64 Linux
+(musl), 32- and 64-bit Windows (GNU), and AArch64 macOS.
+
+
 ## Usage
 
 ```
-$ ./build/3at_linux_x86_64 --help
+$ ./build/3at --help
 3at: 3DO Audio Tool v1.0.0
-Usage: ./build/3at_linux_x86_64 [OPTIONS] SUBCOMMAND
+Usage: ./build/3at [OPTIONS] SUBCOMMAND
 
 Options:
   -h,--help                   Print this help message and exit
@@ -249,12 +268,13 @@ the practical choice.
 
 ## Tests
 
-Run the codec regression suites with `make test`, or `make test SANITIZE=1`
-to enable AddressSanitizer. The C suite covers exactly representable mono/stereo
-SDX2 signals in ordinary/wide searches, output boundaries, invalid arguments,
-15-frame dynamic-shaping boundaries, allocation-failure cleanup, and
-aligned/final-partial raw ADPCM calls. Allocation failures are injected
-only into the test build; production codecs use the normal allocator.
+Run the codec regression suites with `make test`, or `make SANITIZE=1 test`
+to enable AddressSanitizer and UndefinedBehaviorSanitizer. The C suite covers
+exactly representable mono/stereo SDX2 signals in ordinary/wide searches,
+output boundaries, invalid arguments, 15-frame dynamic-shaping boundaries,
+allocation-failure cleanup, and aligned/final-partial raw ADPCM calls.
+Allocation failures are injected only into the test build; production codecs
+use the normal allocator.
 
 The C++ suites cover the parallel helper used by `best`, search-effort bounds,
 A-weighting frequency sensitivity, half-hop error-weighting invariance, exact
