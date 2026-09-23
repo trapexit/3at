@@ -30,7 +30,7 @@ The release builds are placed in `build/` for x86-64 and AArch64 Linux
 
 ```
 $ ./build/3at --help
-3at: 3DO Audio Tool v1.0.0
+3at: 3DO Audio Tool v1.1.0
 Usage: ./build/3at [OPTIONS] SUBCOMMAND
 
 Options:
